@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ketersediaan Tempat Tidur - RS Cikarang Medika (0132R024)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* TEMA TERANG (Light Mode - Exact Match Gambar 1) */
+      --bg-page: #ffffff;
+      --bg-card: #ffffff;
+      --border-main: #e5e7eb;
+      --grid-divider: #e5e7eb;
+      --header-bg: #176874;
+      --header-text: #ffffff;
+      --cell-bg: #ffffff;
+      --cell-hover: #e4f3f5;
+      --num-color: #176874;
+      --label-color: #4b5563;
+      --footer-bg: #ffffff;
+      --footer-border: #e5e7eb;
+      --footer-text: #374151;
+      --footer-link: #176874;
+      --btn-rute-bg: #ffffff;
+      --btn-rute-hover: #f3f4f6;
+      --btn-rute-border: #d1d5db;
+      --btn-rute-text: #374151;
+      --top-btn-bg: #ffffff;
+      --top-btn-border: #e5e7eb;
+      --top-btn-text: #374151;
+      --top-btn-hover: #f9fafb;
+      --modal-bg: #ffffff;
+      --modal-header: #f8fafc;
+      --modal-border: #e5e7eb;
+      --modal-title: #111827;
+      --modal-sub: #6b7280;
+    }
+
+    body.dark-mode {
+      /* TEMA GELAP (Dark Mode - Exact Match Gambar 2) */
+      --bg-page: #101213;
+      --bg-card: #181a1b;
+      --border-main: #26292b;
+      --grid-divider: #26292b;
+      --header-bg: #5ba3ae;
+      --header-text: #0f172a;
+      --cell-bg: #181a1b;
+      --cell-hover: #202426;
+      --num-color: #5ba3ae;
+      --label-color: #d1d5db;
+      --footer-bg: #181a1b;
+      --footer-border: #26292b;
+      --footer-text: #e5e7eb;
+      --footer-link: #5ba3ae;
+      --btn-rute-bg: #181a1b;
+      --btn-rute-hover: #222628;
+      --btn-rute-border: #323639;
+      --btn-rute-text: #d1d5db;
+      --top-btn-bg: #181a1b;
+      --top-btn-border: #26292b;
+      --top-btn-text: #e5e7eb;
+      --top-btn-hover: #202426;
+      --modal-bg: #181a1b;
+      --modal-header: #141617;
+      --modal-border: #26292b;
+      --modal-title: #f3f4f6;
+      --modal-sub: #9ca3af;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--footer-text);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #9ca3af;
+      border-radius: 9999px;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .live-dot {
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes value-pop {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .number-updated {
+      animation: value-pop 0.4s ease-out;
+    }
+
+    .top-control-btn {
+      background-color: var(--top-btn-bg);
+      border-color: var(--top-btn-border);
+      color: var(--top-btn-text);
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+    .top-control-btn:hover {
+      background-color: var(--top-btn-hover);
+    }
+
+    .aplicares-card {
+      background-color: var(--bg-card);
+      border-color: var(--border-main);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .aplicares-header {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .aplicares-grid {
+      background-color: var(--grid-divider);
+      border-color: var(--grid-divider);
+    }
+
+    .bed-cell {
+      background-color: var(--cell-bg);
+      transition: background-color 0.16s ease;
+    }
+    .bed-cell:hover {
+      background-color: var(--cell-hover);
+    }
+
+    .bed-num {
+      color: var(--num-color);
+      transition: color 0.2s ease, transform 0.16s ease;
+    }
+
+    .bed-lbl {
+      color: var(--label-color);
+      letter-spacing: 0.5px;
+      transition: color 0.2s ease;
+    }
+
+    .rute-btn {
+      background-color: var(--btn-rute-bg);
+      border-color: var(--btn-rute-border);
+      color: var(--btn-rute-text);
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+    .rute-btn:hover {
+      background-color: var(--btn-rute-hover);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 md:p-8 select-none">
+
+  <!-- Top Utility Bar (Sejajar posisi tombol navigasi atas di screenshot referensi) -->
+  <div class="w-full max-w-[1160px] mb-3.5 flex flex-wrap items-center justify-between gap-2.5">
+    <!-- Left: Refresh Manual & Fullscreen -->
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="btn-refresh"
+        onclick="manualRefresh()"
+        title="Sinkronkan Data Terbaru dari Google Sheets"
+        class="top-control-btn inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border text-xs font-medium shadow-2xs cursor-pointer"
+      >
+        <svg id="refresh-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        <span>Refresh Data</span>
+      </button>
+
+      <button
+        type="button"
+        onclick="toggleFullscreen()"
+        title="Layar Penuh (Display TV Lobby)"
+        class="top-control-btn hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border text-xs font-medium shadow-2xs cursor-pointer"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+        </svg>
+        <span>Layar Penuh</span>
+      </button>
+    </div>
+
+    <!-- Right: Elegant Theme Toggle (Terang / Gelap) -->
+    <div class="flex items-center gap-2">
+      <div
+        role="group"
+        aria-label="Pilih Tema Tampilan"
+        class="top-control-btn inline-flex items-center p-1 rounded-lg border shadow-2xs"
+      >
+        <button
+          type="button"
+          id="btn-light-theme"
+          onclick="applyTheme('light')"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" />
+            <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+          </svg>
+          <span>Terang</span>
+        </button>
+
+        <button
+          type="button"
+          id="btn-dark-theme"
+          onclick="applyTheme('dark')"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+          <span>Gelap</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Aplicares Card (Exact Match Layout & Proportions) -->
+  <main class="aplicares-card w-full max-w-[1160px] rounded-[10px] border overflow-hidden shadow-xs">
+    
+    <!-- Header Bar -->
+    <header class="aplicares-header px-5 py-4 sm:px-6 sm:py-[18px] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <h1 class="font-bold text-[15px] sm:text-[18px] md:text-[19px] tracking-[0.3px] uppercase leading-snug">
+        KETERSEDIAAN TEMPAT TIDUR RS CIKARANG MEDIKA (0132R024)
+      </h1>
+
+      <!-- Subtle Live Status Pill inside Header -->
+      <div
+        id="live-badge"
+        title="Auto-refresh setiap 30 detik dari tab Dashboard Google Sheets"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold self-start sm:self-auto bg-black/15 backdrop-blur-2xs"
+      >
+        <span id="live-dot" class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
+        <span id="live-text">Memuat...</span>
+      </div>
+    </header>
+
+    <!-- 5 Columns x 3 Rows Bed Grid (15 Standard Aplicares Categories) -->
+    <section id="bed-grid" class="aplicares-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-[1px] border-t border-b">
+      <!-- 15 cells generated via JS -->
+    </section>
+
+    <!-- Bottom Footer Area -->
+    <footer class="p-3 sm:p-4" style="background-color: var(--footer-bg);">
+      <div
+        class="rounded-lg border grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x"
+        style="background-color: var(--footer-bg); border-color: var(--footer-border);"
+      >
+        
+        <!-- Column 1 (Wider): Address + Rute Button -->
+        <div class="md:col-span-6 px-4 py-3.5 flex items-center justify-between gap-3" style="border-color: var(--footer-border);">
+          <div class="flex items-center gap-3 min-w-0">
+            <svg class="w-5 h-5 shrink-0" style="color: var(--num-color);" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.418-4.418-7-7.582-7-11a7 7 0 1114 0c0 3.418-2.582 6.582-7 11z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=RS+Cikarang+Medika+Jalan+KH+Fudholi+No+78+Cikarang+Utara"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs sm:text-[13.5px] font-normal underline underline-offset-4 hover:opacity-80 transition leading-relaxed"
+              style="color: var(--footer-link);"
+            >
+              Jalan KH. Fudholi No.78, Desa Karang Asih, Kecamatan Cikarang Utara,
+            </a>
+          </div>
+
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=RS+Cikarang+Medika+Jalan+KH+Fudholi+No+78+Cikarang+Utara"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rute-btn shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border text-xs font-medium cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" style="color: var(--num-color);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+            <span>Rute</span>
+          </a>
+        </div>
+
+        <!-- Column 2: Phone Number -->
+        <div class="md:col-span-3 px-4 py-3.5 flex items-center gap-3" style="border-color: var(--footer-border);">
+          <svg class="w-5 h-5 shrink-0 opacity-70" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <a
+            href="tel:02129568832"
+            class="text-xs sm:text-[14px] font-normal underline underline-offset-4 hover:opacity-80 transition"
+            style="color: var(--footer-link);"
+          >
+            021-29568832
+          </a>
+        </div>
+
+        <!-- Column 3: BPJS Partnership Validity -->
+        <div class="md:col-span-3 px-4 py-3.5 flex items-center gap-3" style="border-color: var(--footer-border);">
+          <svg class="w-5 h-5 shrink-0 opacity-70" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+            <circle cx="15" cy="15" r="2" />
+          </svg>
+          <div class="text-xs sm:text-[13px] font-normal leading-snug" style="color: var(--footer-text);">
+            Mitra BPJS Kesehatan<br />
+            <span>hingga 31-12-2026</span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  </main>
+
+  <!-- Subtle Info Line Below Card -->
+  <div class="w-full max-w-[1160px] mt-2.5 px-1 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] opacity-70">
+    <span>Klik salah satu kotak kelas tempat tidur untuk melihat rincian kamar.</span>
+    <span id="sync-detail-label">Menghubungkan ke Google Sheets...</span>
+  </div>
+
+  <!-- Warning Banner if Spreadsheet Share Permission is Private -->
+  <div id="share-warning" class="hidden w-full max-w-[1160px] mt-3 rounded-lg bg-amber-500/10 border border-amber-500/40 px-4 py-2.5 text-xs flex items-center justify-between gap-3">
+    <span>
+      Data live belum dapat ditarik. Pastikan akses <strong>Bagikan (Share)</strong> di Google Spreadsheet diatur ke <strong>"Siapa saja yang memiliki link (Viewer)"</strong>.
+    </span>
+    <button type="button" onclick="manualRefresh()" class="shrink-0 px-3 py-1 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-semibold cursor-pointer">
+      Coba Lagi
+    </button>
+  </div>
+
+  <!-- MODAL: Rincian Ruangan per Kategori Aplicares -->
+  <div id="room-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-2xs p-4" onclick="closeRoomModal(event)">
+    <div
+      class="border rounded-xl w-full max-w-md shadow-2xl overflow-hidden"
+      style="background-color: var(--modal-bg); border-color: var(--modal-border);"
+      onclick="event.stopPropagation()"
+    >
+      <div
+        class="px-5 py-3.5 border-b flex items-center justify-between"
+        style="background-color: var(--modal-header); border-color: var(--modal-border);"
+      >
+        <div>
+          <div class="text-[11px] uppercase tracking-wider font-bold" style="color: var(--num-color);">Rincian Tempat Tidur</div>
+          <h2 id="modal-title" class="text-base font-extrabold" style="color: var(--modal-title);">KELAS I</h2>
+        </div>
+        <button
+          type="button"
+          onclick="closeRoomModal()"
+          class="p-1.5 rounded-lg hover:bg-black/10 transition cursor-pointer"
+          style="color: var(--modal-sub);"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="modal-list" class="p-4 max-h-[60vh] overflow-y-auto divide-y" style="border-color: var(--modal-border);">
+        <!-- Room rows injected dynamically -->
+      </div>
+
+      <div
+        class="px-5 py-3 border-t flex items-center justify-between text-xs"
+        style="background-color: var(--modal-header); border-color: var(--modal-border);"
+      >
+        <span style="color: var(--modal-sub);">Total Sisa Bed Tersedia:</span>
+        <span id="modal-total" class="text-sm font-extrabold" style="color: var(--num-color);">0 Bed</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. KONFIGURASI GOOGLE SPREADSHEET & TEMA (LIGHT / DARK)
+    // =========================================================================
+    const SHEET_ID = '1Y-L3_amRTEIB1O4bs1ykiIau9yk_RqG8SH5jGXq9Ygg';
+    const SHEET_TAB = 'Dashboard';
+    const REFRESH_INTERVAL_MS = 30000; // Auto-refresh setiap 30 detik
+    const THEME_KEY = 'aplicares_theme';
+
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+      document.body.classList.toggle('dark-mode', isDark);
+
+      const btnLight = document.getElementById('btn-light-theme');
+      const btnDark = document.getElementById('btn-dark-theme');
+
+      if (isDark) {
+        btnDark.style.backgroundColor = '#5ba3ae';
+        btnDark.style.color = '#0f172a';
+        btnLight.style.backgroundColor = 'transparent';
+        btnLight.style.color = '#9ca3af';
+      } else {
+        btnLight.style.backgroundColor = '#176874';
+        btnLight.style.color = '#ffffff';
+        btnDark.style.backgroundColor = 'transparent';
+        btnDark.style.color = '#6b7280';
+      }
+
+      try {
+        localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+      } catch (e) {}
+    }
+
+    function initTheme() {
+      let savedTheme = 'light'; // Default 'light'
+      try {
+        savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+      } catch (e) {}
+      applyTheme(savedTheme);
+    }
+
+    // =========================================================================
+    // 2. MASTER 15 KATEGORI RESMI APLICARES BPJS (URUTAN 5x3)
+    // =========================================================================
+    const APLICARES_CATEGORIES = [
+      // Baris 1
+      { key: 'VVIP', label: 'VVIP' },
+      { key: 'VIP', label: 'VIP' },
+      { key: 'UTAMA', label: 'UTAMA' },
+      { key: 'KELAS I', label: 'KELAS I' },
+      { key: 'KELAS II', label: 'KELAS II' },
+      // Baris 2
+      { key: 'KELAS III', label: 'KELAS III' },
+      { key: 'ICU', label: 'ICU' },
+      { key: 'ICCU', label: 'ICCU' },
+      { key: 'NICU', label: 'NICU' },
+      { key: 'PICU', label: 'PICU' },
+      // Baris 3
+      { key: 'IGD', label: 'IGD' },
+      { key: 'UGD', label: 'UGD' },
+      { key: 'BERSALIN', label: 'BERSALIN' },
+      { key: 'HCU', label: 'HCU' },
+      { key: 'ISOLASI', label: 'ISOLASI' }
+    ];
+
+    // Data fallback awal sesuai snapshot spreadsheet terakhir
+    const INITIAL_SNAPSHOT_ROOMS = [
+      // VIP (0)
+      { room: '1I (AS-SYIFA 12) (VIP)', sheetClass: '(VIP)', aplicares: 'VIP', total: 1, occupied: 1, available: 0 },
+      { room: '1J (AS-SYIFA 11) (VIP)', sheetClass: '(VIP)', aplicares: 'VIP', total: 1, occupied: 1, available: 0 },
+      { room: '(VIP) AS-SYIFA 1', sheetClass: '(VIP)', aplicares: 'VIP', total: 1, occupied: 1, available: 0 },
+
+      // KELAS I (7)
+      { room: '1A (AS-SYIFA 8)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 2, occupied: 0, available: 2 },
+      { room: '1B (AS-SYIFA 9)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 2, occupied: 1, available: 1 },
+      { room: '1C (AS-SYIFA 10)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 2, occupied: 1, available: 1 },
+      { room: '1D (AR-RAHMAN 8)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 2, occupied: 1, available: 1 },
+      { room: '1E (AS-SYIFA 4)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 2, occupied: 1, available: 1 },
+      { room: '1G (AS-SYIFA 6)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 1, occupied: 0, available: 1 },
+      { room: '1H (AS-SYIFA 7)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 1, occupied: 1, available: 0 },
+      { room: '2F (AR-RAHMAN 5)', sheetClass: '(KELAS 1)', aplicares: 'KELAS I', total: 2, occupied: 2, available: 0 },
+
+      // KELAS II (7)
+      { room: '2E (AR-RAHMAN 6)', sheetClass: '(KELAS 2)', aplicares: 'KELAS II', total: 3, occupied: 1, available: 2 },
+      { room: '2C (AR-RAHMAN 12)', sheetClass: '(KELAS 2)', aplicares: 'KELAS II', total: 3, occupied: 1, available: 2 },
+      { room: '2D (AR-RAHMAN 13)', sheetClass: '(KELAS 2)', aplicares: 'KELAS II', total: 3, occupied: 0, available: 3 },
+
+      // KELAS III (22)
+      { room: '3H (ANNISA)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 3, occupied: 0, available: 3 },
+      { room: '2G (AS-SYIFA 2)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 4, available: 0 },
+      { room: '3L (AS-SYIFA 3)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 2, available: 2 },
+      { room: '3K (AS-SYIFA 5)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 3, occupied: 0, available: 3 },
+      { room: '3E (AR-RAHMAN 1)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 6, occupied: 6, available: 0 },
+      { room: '3F (AR-RAHMAN 2)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 3, occupied: 1, available: 2 },
+      { room: '3I (AR-RAHMAN 3)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 4, available: 0 },
+      { room: '3J (AR-RAHMAN 4)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 0, available: 4 },
+      { room: '3G (AR-RAHMAN 7)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 0, available: 4 },
+      { room: '3A (AR-RAHMAN 9)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 3, available: 1 },
+      { room: '3D (AR-RAHMAN 10)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 4, available: 0 },
+      { room: '3C (AR-RAHMAN 11)', sheetClass: '(KELAS 3)', aplicares: 'KELAS III', total: 4, occupied: 1, available: 3 },
+
+      // RUANG KHUSUS
+      { room: 'ICU', sheetClass: '(ICU)', aplicares: 'ICU', total: 5, occupied: 0, available: 5 },
+      { room: 'PERINATOLOGI', sheetClass: '(PERINATOLOGI)', aplicares: 'NICU', total: 8, occupied: 0, available: 8 },
+      { room: 'PICU', sheetClass: '(PICU)', aplicares: 'PICU', total: 2, occupied: 1, available: 1 },
+      { room: 'IGD', sheetClass: '(IGD)', aplicares: 'IGD', total: 12, occupied: 0, available: 12 },
+      { room: 'VK (RUANG BERSALIN)', sheetClass: '(RUANG BERSALIN)', aplicares: 'BERSALIN', total: 4, occupied: 0, available: 4 },
+      { room: 'HCU', sheetClass: '(HCU)', aplicares: 'HCU', total: 2, occupied: 0, available: 2 },
+      { room: '3A (ISOLASI 1)', sheetClass: '(ISOLASI)', aplicares: 'ISOLASI', total: 4, occupied: 2, available: 2 },
+      { room: '3B (ISOLASI 2)', sheetClass: '(ISOLASI)', aplicares: 'ISOLASI', total: 4, occupied: 1, available: 3 },
+      { room: 'ISO ICU', sheetClass: '(ICU ISOLASI)', aplicares: 'ISOLASI', total: 1, occupied: 0, available: 1 }
+    ];
+
+    let roomsData = JSON.parse(JSON.stringify(INITIAL_SNAPSHOT_ROOMS));
+    let refreshTimer = null;
+
+    // =========================================================================
+    // 3. PEMETAAN CERDAS NAMA RUANG / KELAS SPREADSHEET -> APLICARES BPJS
+    // =========================================================================
+    function mapRoomToAplicares(rawClass, rawRoom) {
+      const cls = (rawClass || '').toUpperCase().replace(/[()]/g, '').trim();
+      const room = (rawRoom || '').toUpperCase().trim();
+
+      // Abaikan BAYI SEHAT dan OK (RUANG OPERASI) dari grid Aplicares standar
+      if (cls.includes('NON KELAS') || room.includes('BAYI SEHAT') || room === 'OK' || room.includes('RUANG OPERASI')) {
+        return null;
+      }
+
+      // VIP: AS-SYIFA 11, AS-SYIFA 12, AS-SYIFA 1, atau kelas (VIP)
+      if (
+        cls.includes('VIP') ||
+        room.includes('AS-SYIFA 11') ||
+        room.includes('AS-SYIFA 12') ||
+        /\bAS-SYIFA 1\b/.test(room)
+      ) {
+        if (cls.includes('VVIP')) return 'VVIP';
+        return 'VIP';
+      }
+
+      if (cls.includes('VVIP')) return 'VVIP';
+      if (cls.includes('UTAMA')) return 'UTAMA';
+      if (cls === 'KELAS 1' || cls === 'KELAS I') return 'KELAS I';
+      if (cls === 'KELAS 2' || cls === 'KELAS II') return 'KELAS II';
+      if (cls === 'KELAS 3' || cls === 'KELAS III') return 'KELAS III';
+
+      // Isolasi (mencakup 3A ISOLASI 1, 3B ISOLASI 2, dan ISO ICU)
+      if (cls.includes('ISOLASI') || room.includes('ISOLASI') || room.includes('ISO ICU')) return 'ISOLASI';
+      if (cls === 'ICU' || room === 'ICU') return 'ICU';
+      if (cls.includes('ICCU') || room.includes('ICCU')) return 'ICCU';
+      if (cls.includes('NICU') || cls.includes('PERINATOLOGI') || room.includes('PERINATOLOGI')) return 'NICU';
+      if (cls.includes('PICU') || room.includes('PICU')) return 'PICU';
+      if (cls === 'IGD' || room === 'IGD') return 'IGD';
+      if (cls === 'UGD' || room === 'UGD') return 'UGD';
+      if (cls.includes('BERSALIN') || room.includes('BERSALIN') || /\bVK\b/.test(room)) return 'BERSALIN';
+      if (cls === 'HCU' || room === 'HCU') return 'HCU';
+
+      return null;
+    }
+
+    // =========================================================================
+    // 4. RENDER GRID 5x3 APLICARES
+    // =========================================================================
+    function renderGrid(animate = false) {
+      const grid = document.getElementById('bed-grid');
+      grid.innerHTML = '';
+
+      let totalAllAvailable = 0;
+
+      APLICARES_CATEGORIES.forEach((cat) => {
+        const matched = roomsData.filter((r) => r.aplicares === cat.key);
+        const sumAvailable = matched.reduce((acc, item) => acc + (Number(item.available) || 0), 0);
+        totalAllAvailable += sumAvailable;
+
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.onclick = () => openRoomModal(cat.key);
+        cell.title = matched.length > 0
+          ? `Klik untuk rincian ${matched.length} ruangan (${cat.label})`
+          : `Tidak ada ruangan terdaftar untuk kategori ${cat.label}`;
+
+        cell.className =
+          'bed-cell group py-7 px-3 sm:py-8 sm:px-4 flex flex-col items-center justify-center text-center cursor-pointer focus:outline-none';
+
+        cell.innerHTML = `
+          <div class="bed-num text-[32px] sm:text-[36px] font-bold leading-none ${animate ? 'number-updated' : ''}">
+            ${sumAvailable}
+          </div>
+          <div class="bed-lbl mt-2.5 text-[12px] font-semibold uppercase">
+            ${cat.label}
+          </div>
+        `;
+
+        grid.appendChild(cell);
+      });
+
+      return totalAllAvailable;
+    }
+
+    // =========================================================================
+    // 5. POP-UP MODAL RINCIAN KAMAR
+    // =========================================================================
+    function openRoomModal(categoryKey) {
+      const modal = document.getElementById('room-modal');
+      const titleEl = document.getElementById('modal-title');
+      const listEl = document.getElementById('modal-list');
+      const totalEl = document.getElementById('modal-total');
+
+      const matched = roomsData.filter((r) => r.aplicares === categoryKey);
+      titleEl.textContent = categoryKey;
+
+      if (matched.length === 0) {
+        listEl.innerHTML = `
+          <div class="py-8 text-center text-xs" style="color: var(--modal-sub);">
+            Tidak ada ruangan yang terdaftar pada kategori <strong>${categoryKey}</strong> di RS Cikarang Medika.
+          </div>
+        `;
+        totalEl.textContent = '0 Bed';
+      } else {
+        let sum = 0;
+        listEl.innerHTML = matched
+          .map((r) => {
+            sum += r.available;
+            const statusClass =
+              r.available > 0
+                ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
+                : 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30';
+            return `
+              <div class="py-3 flex items-center justify-between gap-3">
+                <div>
+                  <div class="text-sm font-bold" style="color: var(--modal-title);">${r.room}</div>
+                  <div class="text-[11px]" style="color: var(--modal-sub);">
+                    Kapasitas: ${r.total} Bed &bull; Terisi: ${r.occupied} Pasien
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-md border text-xs font-bold ${statusClass}">
+                  Sisa: ${r.available}
+                </span>
+              </div>
+            `;
+          })
+          .join('');
+        totalEl.textContent = `${sum} Bed Tersedia`;
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeRoomModal(e) {
+      if (e && e.target !== e.currentTarget) return;
+      const modal = document.getElementById('room-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // =========================================================================
+    // 6. PARSER & KONEKSI REAL-TIME GOOGLE SHEETS (GVIZ JSONP)
+    // =========================================================================
+    function parseGvizRows(gviz) {
+      const results = [];
+      const rows = (gviz && gviz.table && gviz.table.rows) || [];
+
+      rows.forEach((row) => {
+        const c = row.c || [];
+        const val = (i) => (c[i] && c[i].v !== null && c[i].v !== undefined ? c[i].v : '');
+
+        // Tabel Sisi Kiri: Kolom B(1)=Nama Ruang, D(3)=Kelas, E(4)=Jumlah Bed, F(5)=Terisi, G(6)=Sisa Bed
+        const leftName = String(val(1)).trim();
+        const leftCls = String(val(3)).trim();
+        const leftCap = Number(val(4));
+        const leftOcc = Number(val(5));
+        const leftAvail = Number(val(6));
+
+        if (leftName && leftName !== 'NAMA RUANG' && !leftName.includes('JUMLAH') && !isNaN(leftAvail) && val(6) !== '') {
+          const cat = mapRoomToAplicares(leftCls, leftName);
+          if (cat) {
+            results.push({
+              room: leftName,
+              sheetClass: leftCls,
+              aplicares: cat,
+              total: isNaN(leftCap) ? leftAvail : leftCap,
+              occupied: isNaN(leftOcc) ? 0 : leftOcc,
+              available: Math.max(0, leftAvail)
+            });
+          }
+        }
+
+        // Tabel Sisi Kanan: Kolom I(8)=Nama Ruang, K(10)=Kelas, L(11)=Jumlah Bed, M(12)=Terisi, N(13)=Sisa Bed
+        const rightName = String(val(8)).trim();
+        const rightCls = String(val(10)).trim();
+        const rightCap = Number(val(11));
+        const rightOcc = Number(val(12));
+        const rightAvail = Number(val(13));
+
+        if (rightName && rightName !== 'NAMA RUANG' && !rightName.includes('JUMLAH') && !isNaN(rightAvail) && val(13) !== '') {
+          const cat = mapRoomToAplicares(rightCls, rightName);
+          if (cat) {
+            results.push({
+              room: rightName,
+              sheetClass: rightCls,
+              aplicares: cat,
+              total: isNaN(rightCap) ? rightAvail : rightCap,
+              occupied: isNaN(rightOcc) ? 0 : rightOcc,
+              available: Math.max(0, rightAvail)
+            });
+          }
+        }
+      });
+
+      return results;
+    }
+
+    function loadGvizJsonp() {
+      return new Promise((resolve, reject) => {
+        const cbName = 'aplicaresGviz_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+        const script = document.createElement('script');
+
+        const timer = setTimeout(() => {
+          cleanup();
+          reject(new Error('Waktu koneksi ke Google Sheets habis.'));
+        }, 8000);
+
+        function cleanup() {
+          clearTimeout(timer);
+          delete window[cbName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        window[cbName] = function (data) {
+          cleanup();
+          if (data && data.status === 'ok') {
+            resolve(data);
+          } else {
+            reject(new Error('Akses Google Sheets ditolak.'));
+          }
+        };
+
+        script.onerror = function () {
+          cleanup();
+          reject(new Error('Gagal terhubung ke Google Sheets.'));
+        };
+
+        script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json;responseHandler:${cbName}&sheet=${encodeURIComponent(SHEET_TAB)}&_ts=${Date.now()}`;
+        document.body.appendChild(script);
+      });
+    }
+
+    async function fetchSheetData() {
+      const icon = document.getElementById('refresh-icon');
+      const liveDot = document.getElementById('live-dot');
+      const liveText = document.getElementById('live-text');
+      const detailLabel = document.getElementById('sync-detail-label');
+      const warningEl = document.getElementById('share-warning');
+
+      icon.classList.add('animate-spin');
+
+      try {
+        const response = await loadGvizJsonp();
+        const parsed = parseGvizRows(response);
+
+        if (parsed.length === 0) {
+          throw new Error('Tidak ada baris kamar yang terbaca dari tab Dashboard.');
+        }
+
+        roomsData = parsed;
+        const totalBeds = renderGrid(true);
+
+        const timeStr = new Date().toLocaleTimeString('id-ID', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+
+        liveDot.className = 'w-2 h-2 rounded-full bg-emerald-400 live-dot';
+        liveText.textContent = `LIVE • ${timeStr}`;
+        detailLabel.textContent = `Sinkron otomatis dari Google Sheets (${parsed.length} kamar, Total Sisa Bed: ${totalBeds}) • Update pukul ${timeStr} WIB`;
+        warningEl.classList.add('hidden');
+      } catch (err) {
+        const timeStr = new Date().toLocaleTimeString('id-ID', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+
+        liveDot.className = 'w-2 h-2 rounded-full bg-amber-400';
+        liveText.textContent = 'Snapshot';
+        detailLabel.textContent = `Mode Snapshot (${timeStr} WIB) — Pastikan Google Sheets sudah di-Share publik`;
+        warningEl.classList.remove('hidden');
+      } finally {
+        setTimeout(() => icon.classList.remove('animate-spin'), 350);
+      }
+    }
+
+    function manualRefresh() {
+      fetchSheetData();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    // =========================================================================
+    // 7. INISIALISASI SAAT HALAMAN DIBUKA
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderGrid(false);
+      fetchSheetData();
+
+      if (refreshTimer) clearInterval(refreshTimer);
+      refreshTimer = setInterval(fetchSheetData, REFRESH_INTERVAL_MS);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,3072 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Ekosistem & Arsip Digital — RS Cikarang Medika</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --ios-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ios-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+      --bg-page: radial-gradient(circle at 12% 10%, #e4f3ef 0%, #eef4fa 48%, #fbeaf1 100%);
+      --header-bg: rgba(255, 255, 255, 0.78);
+      --header-border: rgba(255, 255, 255, 0.9);
+      --sidebar-bg: rgba(255, 255, 255, 0.86);
+      --sidebar-border: rgba(203, 213, 225, 0.75);
+      --text-primary: #0f172a;
+      --text-secondary: #1e293b;
+      --text-muted: #334155;
+      --text-accent: #0f766e;
+
+      --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 100%);
+      --card-hover-bg: rgba(255, 255, 255, 1);
+      --card-border: rgba(203, 213, 225, 0.75);
+      --card-hover-border: rgba(14, 165, 233, 0.45);
+      --card-shadow: 
+        0 6px 14px -2px rgba(15, 23, 42, 0.10), 
+        0 20px 38px -8px rgba(15, 23, 42, 0.16), 
+        inset 0 1.5px 1px rgba(255, 255, 255, 1);
+      --card-hover-shadow: 
+        0 14px 28px -4px rgba(14, 116, 144, 0.18), 
+        0 32px 54px -10px rgba(15, 23, 42, 0.24), 
+        inset 0 2px 2px rgba(255, 255, 255, 1);
+      --card-blur: 20px;
+      --card-divider: rgba(226, 232, 240, 0.85);
+
+      --pill-bg: rgba(255, 255, 255, 0.92);
+      --pill-text: #475569;
+      --pill-border: rgba(203, 213, 225, 0.7);
+      --pill-active-bg: #0f172a;
+      --pill-active-text: #ffffff;
+
+      --nav-hover: rgba(15, 23, 42, 0.05);
+      --nav-active-bg: #0f172a;
+      --nav-active-text: #ffffff;
+
+      --input-bg: rgba(255, 255, 255, 0.94);
+      --input-border: rgba(203, 213, 225, 0.8);
+
+      --sec-btn-bg: #ffffff;
+      --sec-btn-text: #334155;
+      --sec-btn-border: rgba(203, 213, 225, 0.9);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: radial-gradient(circle at 15% 10%, #0f172a 0%, #090d16 55%, #111827 100%);
+      --header-bg: rgba(15, 23, 42, 0.78);
+      --header-border: rgba(51, 65, 85, 0.5);
+      --sidebar-bg: rgba(15, 23, 42, 0.84);
+      --sidebar-border: rgba(51, 65, 85, 0.65);
+      --text-primary: #f8fafc;
+      --text-secondary: #e2e8f0;
+      --text-muted: #cbd5e1;
+      --text-accent: #2dd4bf;
+
+      --card-bg: linear-gradient(145deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.92) 100%);
+      --card-hover-bg: rgba(30, 41, 59, 0.98);
+      --card-border: rgba(51, 65, 85, 0.65);
+      --card-hover-border: rgba(45, 212, 191, 0.45);
+      --card-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.45), 0 18px 36px -8px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      --card-hover-shadow: 0 14px 28px -4px rgba(20, 184, 166, 0.16), 0 28px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      --card-blur: 20px;
+      --card-divider: rgba(51, 65, 85, 0.5);
+
+      --pill-bg: rgba(30, 41, 59, 0.85);
+      --pill-text: #cbd5e1;
+      --pill-border: rgba(51, 65, 85, 0.7);
+      --pill-active-bg: #14b8a6;
+      --pill-active-text: #042f2e;
+
+      --nav-hover: rgba(255, 255, 255, 0.06);
+      --nav-active-bg: #14b8a6;
+      --nav-active-text: #042f2e;
+
+      --input-bg: rgba(30, 41, 59, 0.88);
+      --input-border: rgba(51, 65, 85, 0.75);
+
+      --sec-btn-bg: rgba(30, 41, 59, 0.9);
+      --sec-btn-text: #e2e8f0;
+      --sec-btn-border: rgba(71, 85, 105, 0.7);
+    }
+
+    [data-theme="dark"] select.form-input,
+    [data-theme="dark"] select.form-input option {
+      background-color: #1e293b;
+      color: #f8fafc;
+    }
+
+    [data-theme="dark"] .text-rose-700,
+    [data-theme="dark"] .text-rose-600 { color: #fda4af !important; }
+    [data-theme="dark"] .text-amber-800,
+    [data-theme="dark"] .text-amber-700,
+    [data-theme="dark"] .text-amber-600 { color: #fcd34d !important; }
+    [data-theme="dark"] .text-emerald-800,
+    [data-theme="dark"] .text-emerald-700,
+    [data-theme="dark"] .text-emerald-600 { color: #6ee7b7 !important; }
+    [data-theme="dark"] .text-sky-600 { color: #7dd3fc !important; }
+    [data-theme="dark"] .text-purple-600 { color: #d8b4fe !important; }
+    [data-theme="dark"] .text-teal-600 { color: #5eead4 !important; }
+    [data-theme="dark"] .text-indigo-500 { color: #a5b4fc !important; }
+    [data-theme="dark"] .text-slate-500,
+    [data-theme="dark"] .text-slate-600,
+    [data-theme="dark"] .text-slate-700 { color: #cbd5e1 !important; }
+    [data-theme="dark"] .glass-card .bg-slate-900.text-white {
+      background-color: #14b8a6 !important;
+      color: #042f2e !important;
+    }
+
+    [data-theme="liquid"] {
+      --bg-page: var(--liquid-wallpaper, linear-gradient(135deg, #c7f0e6 0%, #cce3fd 35%, #ebd9fc 70%, #fbd6e8 100%));
+      --header-bg: rgba(255, 255, 255, 0.22);
+      --header-border: rgba(255, 255, 255, 0.55);
+      --sidebar-bg: rgba(255, 255, 255, 0.26);
+      --sidebar-border: rgba(255, 255, 255, 0.65);
+      --text-primary: #0f172a;
+      --text-secondary: #0f172a;
+      --text-muted: #1e293b;
+      --text-accent: #0369a1;
+
+      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.07) 55%, rgba(255, 255, 255, 0.18) 100%);
+      --card-hover-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.14) 55%, rgba(255, 255, 255, 0.28) 100%);
+      --card-border: rgba(255, 255, 255, 0.65);
+      --card-hover-border: rgba(255, 255, 255, 0.95);
+      --card-shadow: 
+        0 12px 32px -6px rgba(31, 38, 135, 0.14),
+        0 4px 12px -2px rgba(15, 23, 42, 0.06),
+        inset 0 2px 3px rgba(255, 255, 255, 0.85),
+        inset 0 -2px 4px rgba(255, 255, 255, 0.20);
+      --card-hover-shadow: 
+        0 22px 46px -8px rgba(31, 38, 135, 0.22),
+        0 8px 20px -4px rgba(14, 165, 233, 0.16),
+        inset 0 2.5px 4px rgba(255, 255, 255, 0.98),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.30);
+      --card-blur: 16px;
+      --card-divider: rgba(255, 255, 255, 0.35);
+
+      --pill-bg: rgba(255, 255, 255, 0.28);
+      --pill-text: #0f172a;
+      --pill-border: rgba(255, 255, 255, 0.65);
+      --pill-active-bg: rgba(15, 23, 42, 0.85);
+      --pill-active-text: #ffffff;
+
+      --nav-hover: rgba(255, 255, 255, 0.32);
+      --nav-active-bg: rgba(15, 23, 42, 0.86);
+      --nav-active-text: #ffffff;
+
+      --input-bg: rgba(255, 255, 255, 0.30);
+      --input-border: rgba(255, 255, 255, 0.72);
+
+      --sec-btn-bg: rgba(255, 255, 255, 0.34);
+      --sec-btn-text: #0f172a;
+      --sec-btn-border: rgba(255, 255, 255, 0.78);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      background: var(--bg-page);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text-primary);
+      min-height: 100vh;
+      transition: color 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+    }
+
+    .liquid-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    [data-theme="liquid"] .liquid-orbs { opacity: 1; }
+    .orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(75px);
+      animation: floatOrb 14s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 420px; height: 420px; background: rgba(14, 165, 233, 0.55); top: -80px; left: -60px; }
+    .orb-2 { width: 380px; height: 380px; background: rgba(236, 72, 153, 0.45); top: 25%; right: -70px; animation-delay: -4s; }
+    .orb-3 { width: 450px; height: 450px; background: rgba(16, 185, 129, 0.48); bottom: -100px; left: 28%; animation-delay: -8s; }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(35px, 28px) scale(1.08); }
+    }
+
+    .glass-sidebar {
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      backdrop-filter: blur(24px) saturate(175%);
+      -webkit-backdrop-filter: blur(24px) saturate(175%);
+      box-shadow: 8px 0 32px -8px rgba(15, 23, 42, 0.08);
+      transition: transform 0.45s var(--ios-spring), background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .top-header {
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .side-nav-item {
+      color: var(--text-secondary);
+      transition: all 0.35s var(--ios-spring);
+    }
+    .side-nav-item:hover {
+      background: var(--nav-hover);
+      transform: translateX(4px);
+    }
+    .side-nav-item.active {
+      background: var(--nav-active-bg);
+      color: var(--nav-active-text);
+      box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.25);
+      transform: translateX(4px);
+    }
+    .side-nav-item:active {
+      transform: scale(0.96);
+    }
+
+    .glass-card {
+      position: relative;
+      background: var(--card-bg);
+      backdrop-filter: blur(var(--card-blur)) saturate(175%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(175%);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      transition: 
+        transform 0.45s var(--ios-spring),
+        box-shadow 0.4s var(--ios-smooth),
+        background 0.3s ease,
+        border-color 0.3s ease;
+      will-change: transform, box-shadow;
+      overflow: hidden;
+    }
+
+    [data-theme="liquid"] .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      background: var(--card-hover-bg);
+      border-color: var(--card-hover-border);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .glass-card.no-lift:hover {
+      transform: none;
+    }
+
+    .card-divider { border-top: 1px solid var(--card-divider); }
+
+    .app-icon-box {
+      box-shadow: 0 8px 18px -4px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      transition: transform 0.5s var(--ios-spring), box-shadow 0.4s ease;
+    }
+    .glass-card:hover .app-icon-box {
+      transform: scale(1.1) rotate(-4deg);
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.25);
+    }
+
+    .ios-btn {
+      transition: transform 0.35s var(--ios-spring), background-color 0.2s ease, box-shadow 0.25s ease;
+    }
+    .ios-btn:hover { transform: translateY(-1.5px); }
+    .ios-btn:active { transform: scale(0.94); transition: transform 0.1s ease; }
+
+    .sec-btn {
+      background: var(--sec-btn-bg);
+      color: var(--sec-btn-text);
+      border: 1px solid var(--sec-btn-border);
+      backdrop-filter: blur(12px);
+      font-weight: 600;
+    }
+
+    .search-box, .form-input {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-primary);
+      backdrop-filter: blur(16px);
+    }
+    .search-box::placeholder, .form-input::placeholder { color: var(--text-muted); }
+
+    .theme-switcher {
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      backdrop-filter: blur(16px);
+    }
+    .theme-btn {
+      color: var(--text-muted);
+      transition: all 0.3s var(--ios-spring);
+    }
+    .theme-btn.active {
+      background: var(--pill-active-bg);
+      color: var(--pill-active-text);
+      box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes iosPopIn {
+      0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .card-animate {
+      opacity: 0;
+      animation: iosPopIn 0.52s var(--ios-spring) forwards;
+    }
+
+    @keyframes modalSpring {
+      0% { opacity: 0; transform: scale(0.88) translateY(16px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-animate {
+      animation: modalSpring 0.42s var(--ios-spring) forwards;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen">
+
+  <div class="liquid-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div id="sidebar-backdrop" onclick="toggleSidebar(false)" class="fixed inset-0 z-40 bg-slate-950/40 backdrop-blur-xs hidden lg:hidden transition-opacity"></div>
+
+  <aside id="main-sidebar" class="glass-sidebar fixed lg:sticky top-0 left-0 z-50 h-screen w-72 shrink-0 flex flex-col justify-between -translate-x-full lg:translate-x-0">
+    <div class="p-5 overflow-y-auto flex-1">
+      <div class="flex items-center justify-between mb-7 px-1">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-teal-500 to-sky-500 flex items-center justify-center text-white font-bold shadow-md shadow-teal-500/25 shrink-0">
+            CM
+          </div>
+          <div>
+            <h1 class="text-sm font-bold leading-tight" style="color: var(--text-primary)">RS Cikarang Medika</h1>
+            <p class="text-[11px] font-medium" style="color: var(--text-muted)">Portal & Arsip Digital</p>
+          </div>
+        </div>
+        <button onclick="toggleSidebar(false)" class="lg:hidden p-1.5 rounded-xl sec-btn">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="mb-6">
+        <p class="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted)">
+          Aplikasi & Pelaporan Unit
+        </p>
+        <nav class="space-y-1">
+          <button onclick="selectSection('all-apps')" data-nav="all-apps" class="side-nav-item active w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="layout-grid" class="w-4 h-4"></i>
+              <span>Semua Aplikasi</span>
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-600 font-bold">9</span>
+          </button>
+
+          <button onclick="selectSection('mutu')" data-nav="mutu" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Mutu & Keselamatan</span>
+            </span>
+            <span class="text-[10px] opacity-70">3</span>
+          </button>
+
+          <button onclick="selectSection('fasilitas')" data-nav="fasilitas" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="wrench" class="w-4 h-4 text-rose-500"></i>
+              <span>Fasilitas & MFK</span>
+            </span>
+            <span id="sidebar-mfk-badge" class="hidden text-[10px] px-2 py-0.5 rounded-full bg-rose-500 text-white font-bold animate-pulse">0</span>
+          </button>
+
+          <button onclick="selectSection('pelayanan')" data-nav="pelayanan" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="bed-double" class="w-4 h-4 text-cyan-500"></i>
+              <span>Pelayanan & Ranap</span>
+            </span>
+            <span class="text-[10px] opacity-70">2</span>
+          </button>
+
+          <button onclick="selectSection('sdm')" data-nav="sdm" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="users" class="w-4 h-4 text-indigo-500"></i>
+              <span>SDM & Sekretariat</span>
+            </span>
+            <span class="text-[10px] opacity-70">2</span>
+          </button>
+        </nav>
+      </div>
+
+      <div>
+        <p class="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted)">
+          Berkas & Dokumen Legal RS
+        </p>
+        <nav class="space-y-1">
+          <button onclick="selectSection('kredensialing')" data-nav="kredensialing" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="award" class="w-4 h-4 text-amber-500"></i>
+              <span>Kredensialing Tahunan</span>
+            </span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-600 font-bold">2026</span>
+          </button>
+
+          <button onclick="selectSection('akreditasi')" data-nav="akreditasi" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="book-open-check" class="w-4 h-4 text-sky-500"></i>
+              <span>Dokumen Akreditasi</span>
+            </span>
+            <span class="text-[10px] opacity-70">Pokja</span>
+          </button>
+
+          <button onclick="selectSection('perizinan')" data-nav="perizinan" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="file-badge" class="w-4 h-4 text-purple-500"></i>
+              <span>Perizinan & Legalitas</span>
+            </span>
+            <span class="text-[10px] opacity-70">SIP/Izin</span>
+          </button>
+
+          <button onclick="selectSection('server-lokal')" data-nav="server-lokal" class="side-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold">
+            <span class="flex items-center gap-2.5">
+              <i data-lucide="hard-drive" class="w-4 h-4 text-teal-500"></i>
+              <span>Server Lokal RS (NAS)</span>
+            </span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="p-4 border-t" style="border-color: var(--sidebar-border)">
+      <div class="glass-card no-lift rounded-2xl p-3 flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center shrink-0">
+          <i data-lucide="server" class="w-4 h-4"></i>
+        </div>
+        <div class="min-w-0">
+          <p class="text-[11px] font-bold truncate" style="color: var(--text-primary)">Google Cloud Sync</p>
+          <p id="sync-status-text" class="text-[10px] truncate" style="color: var(--text-muted)">Terhubung ke API MFK</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="sticky top-0 z-30 top-header">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <button onclick="toggleSidebar(true)" class="lg:hidden p-2 rounded-xl sec-btn" aria-label="Buka Menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <div class="hidden sm:flex items-center gap-2 text-xs font-medium" style="color: var(--text-muted)">
+            <span>Portal RS</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            <span id="breadcrumb-current" class="font-bold" style="color: var(--text-primary)">Semua Aplikasi</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="relative">
+            <button onclick="toggleNotifDropdown()" id="notif-bell-btn" title="Notifikasi Laporan Kerusakan Baru" class="ios-btn relative p-2 rounded-full theme-switcher shadow-sm" style="color: var(--text-primary)">
+              <i data-lucide="bell" class="w-4 h-4"></i>
+              <span id="header-notif-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                0
+              </span>
+            </button>
+
+            <div id="notif-dropdown" class="hidden absolute right-0 mt-2.5 w-80 sm:w-96 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-2xl overflow-hidden z-50 text-slate-800">
+              <div class="px-4 py-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Notifikasi Kerusakan Fasilitas</h4>
+                  <p class="text-[10px] text-slate-500">Laporan unit berstatus Menunggu Respon Umum</p>
+                </div>
+                <button onclick="fetchMfkTickets(true)" title="Refresh Data" class="p-1.5 rounded-xl hover:bg-slate-200/70 text-slate-600">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <div id="notif-list" class="max-h-72 overflow-y-auto divide-y divide-slate-100">
+                <div class="p-5 text-center text-xs text-slate-400">Memuat notifikasi...</div>
+              </div>
+              <div class="p-2.5 bg-slate-50 border-t border-slate-100">
+                <button onclick="openMfkWorkspace('dashboard')" class="w-full py-2 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 transition">
+                  Buka Dashboard & Panel Bagian Umum
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-switcher p-1 rounded-full flex items-center gap-0.5 shadow-sm">
+            <button onclick="setTheme('light')" data-theme-btn="light" title="Tema Terang" class="theme-btn active px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+              <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+              <span class="hidden md:inline">Terang</span>
+            </button>
+            <button onclick="setTheme('dark')" data-theme-btn="dark" title="Tema Gelap" class="theme-btn px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+              <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+              <span class="hidden md:inline">Gelap</span>
+            </button>
+            <button onclick="setTheme('liquid')" data-theme-btn="liquid" title="Tema Liquid Glass" class="theme-btn px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+              <i data-lucide="droplets" class="w-3.5 h-3.5"></i>
+              <span class="hidden md:inline">Liquid Glass</span>
+            </button>
+          </div>
+
+          <span id="live-clock" class="hidden xl:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full theme-switcher shadow-sm" style="color: var(--text-secondary)">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-teal-500"></i>
+            <span>Memuat waktu...</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-7">
+        <div>
+          <span id="section-badge" class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-2 theme-switcher shadow-sm" style="color: var(--text-accent)">
+            Operasional & Pelaporan Unit
+          </span>
+          <h2 id="section-title" class="text-2xl sm:text-3xl font-bold tracking-tight" style="color: var(--text-primary)">
+            Semua Aplikasi & Formulir
+          </h2>
+          <p id="section-desc" class="text-sm mt-1" style="color: var(--text-muted)">
+            Akses cepat pelaporan mutu, pemeliharaan fasilitas (MFK), sensus ranap, absensi, dan notulensi.
+          </p>
+        </div>
+
+        <div id="global-search-wrapper" class="relative w-full md:w-72">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Cari modul atau berkas RS..." 
+            class="search-box w-full pl-10 pr-4 py-2.5 text-sm rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 transition shadow-sm"
+          />
+        </div>
+      </div>
+
+      <div id="workspace-container">
+        <div id="content-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm pointer-events-none"></div>
+
+  <div id="app-modal" class="fixed inset-0 z-50 hidden bg-slate-950/50 backdrop-blur-md flex items-center justify-center p-4 transition-opacity">
+    <div class="modal-animate bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-white/80 text-slate-800">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/90">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+          <h3 id="modal-title" class="font-bold text-slate-800 text-base">Judul Modul</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="modal-ext-link" href="#" target="_blank" class="ios-btn text-xs font-semibold text-sky-600 hover:text-sky-700 bg-sky-50 px-3 py-1.5 rounded-xl flex items-center gap-1">
+            <span>Buka Tab Baru</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+          <button onclick="closeModal()" class="ios-btn p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <div id="modal-body" class="p-0 overflow-y-auto flex-1 bg-slate-50"></div>
+    </div>
+  </div>
+
+  <script>
+    const MFK_API_URL = 'https://script.google.com/macros/s/AKfycbw5YQtXJYxlsEhxAVBbzurlyVB-CuODuJHUmBETCknfVjHM_DrHqimpa77P9MCG5XAH3g/exec';
+    const KEBERSIHAN_API_URL = 'https://script.google.com/macros/s/AKfycbzNrmX8oDHvC3b1Nuk-T2ZIaxCi2L4UGygFzpNA8pEYrcAavi-XvGfeAdVutYTZ2MAl/exec';
+    const RANAP_API_URL = 'https://script.google.com/macros/s/AKfycbygG1h0hx85iG71Jlx0FlDZP_D2gSkpDDhL7DG9sKe2iF_P6VIPU3wkGFdlSwTT48r2hg/exec';
+    const REKRED_API_URL = 'https://script.google.com/macros/s/AKfycbyzE4U-rEsnih-7yDjHPrQ_mL7x5_lmWEUl83qKUOwPn_fl-_pXmhkpOL1obn4cxBtJOw/exec';
+
+    let rekredState = {
+      loading: false,
+      updatedAt: '-',
+      rootUrl: 'https://drive.google.com/drive/folders/1bSSmQm1zK4C9IkH1IvBOuFCC2fBeUrz0?usp=sharing',
+      folders: [],
+      rootFiles: [],
+      activeFolderId: 'ALL',
+      activeSubFolder: null,
+      subFolderContents: null,
+      searchQuery: ''
+    };
+
+    let ranapState = {
+      loading: false,
+      updatedAt: '-',
+      summary: {
+        totalPasienRealtime: 0,
+        waitingList: 0,
+        totalBed: 0,
+        totalSisaBed: 0,
+        subTotalBlok1: 0,
+        subTotalBlok2: 0,
+        subTotalBlok3: 0,
+        subTotalBlok4: 0
+      },
+      rooms: [],
+      filterLantai: 'ALL',
+      filterGroup: 'ALL'
+    };
+
+    const KEBERSIHAN_TEMPLATE = [
+      { area: 'Lantai', items: ['Bersih', 'Kering', 'Tidak licin', 'Bebas debu/sampah', 'Sudut ruangan (plint) tidak berkerak'] },
+      { area: 'Dinding & Plafon', items: ['Bebas noda', 'Percikan darah/cairan', 'Sarang laba-laba', 'Tidak berjamur'] },
+      { area: 'Pintu, Kusen & Kaca', items: ['Bebas debu', 'Sidik jari', 'Noda'] },
+      { area: 'Jendela & Tirai / Blinds', items: ['Kaca bersih', 'Kusen bebas debu', 'Tirai pembatasan bersih', 'Tidak robek/bernoda'] },
+      { area: 'AC / Ventilasi / Exhaust', items: ['Kisi-kisi bebas debu', 'Tebal (filter tidak kotor tebal)', 'Tidak menetes air', 'Sirkulasi udara baik'] },
+      { area: 'Furnitur & Permukaan', items: ['Meja Bersih', 'Barang menumpuk', 'Kursi Bersih', 'Lemari Bersih', 'Sakelar Lampu Bersih'] },
+      { area: 'Tempat Sampah', items: ['Medis : Kuning', 'Non-Medis : Hitam', 'Tertutup rapat', 'Plastik rapih', 'Pemilahan sampah tepat'] },
+      { area: 'Toilet / Kamar Mandi', items: ['Kloset', 'Wastafel', 'Lantai Bersih', 'Dinding tidak berkerak', 'Kering', 'Tidak berbau', 'Sabun cuci tangan terisi penuh', 'Tissue terisi penuh'] },
+      { area: 'Fasilitas Kebersihan Tangan', items: ['Handrub berbasis Alkohol tersedia', 'Tidak kedaluwarsa'] }
+    ];
+
+    let kebersihanState = {
+      subTab: 'form',
+      records: [],
+      selectedUnit: 'IGD',
+      petugas: 'Tim Manajemen & Bagian Umum',
+      answers: {},
+      filterUnit: 'ALL',
+      filterTanggal: 'ALL'
+    };
+
+    let mfkState = {
+      loading: false,
+      activeMonth: '',
+      availableMonths: [],
+      stats: { total: 0, menunggu: 0, proses: 0, selesai: 0, rekomendasiGanti: 0, kritis: 0 },
+      tickets: [],
+      lastKnownMenunggu: null,
+      subTab: 'dashboard',
+      filterUnit: 'ALL',
+      filterStatus: 'ALL',
+      umumFilterUrgensi: 'ALL', 
+      umumFilterStatus: 'BELUM',
+      selectedTicketForUpdate: null,
+      umumPinUnlocked: sessionStorage.getItem('cikmed_umum_pin') || ''
+    };
+
+    const UNIT_LIST = [
+      'IGD', 'Pos Security', 'Pendaftaran', 'Farmasi', 'Laboratorium',
+      'Kasir / Administrasi Ranap', 'PIPP', 'RADIOLOGI', 'Poli Jantung',
+      'NS Poliklinik', 'Poli Kandungan', 'Poli Mata', 'Poli Bedah',
+      'Poli Anak', 'Poli THT-KL', 'Poli Paru', 'Poli Saraf',
+      'Poli Penyakit Dalam', 'VK/Kamar Bersalin', 'OK/Bedah', 'CSSD',
+      'Gizi', 'Musholla', 'TPS', 'Rekam Medis', 'IT',
+      'An-Nisa', 'Asy-Syifa', 'Ar-Rahman', 'ICU', 'HCU', 'PICU', 'ICU ISOLASI', 'NICU',
+      'Perinatologi', 'Bayi Sehat', 'Gedung B'
+    ];
+
+    const KATEGORI_PENYEBAB_LIST = [
+      'Usia Pakai / Korosi', 'Kurang Pemeliharaan', 'Human Error / Overload',
+      'Instalasi / Kelistrikan', 'Cacat Produk', 'Kerusakan Berat / Afkir', 'Lainnya'
+    ];
+
+    const STATUS_LIST = ['Menunggu', 'Proses', 'Selesai', 'Rekomendasi Ganti'];
+
+    const JENIS_FASILITAS_DETAIL = [
+      {
+        nama: 'BANGUNAN',
+        cakupan: 'Lantai, dinding, atap, air, kaca, pipa, rel hordeng, dan sejenisnya.'
+      },
+      {
+        nama: 'PENDINGIN',
+        cakupan: 'AC, kipas, exhaust fan, kulkas/freezer, AHU.'
+      },
+      {
+        nama: 'TELEKOMUNIKASI',
+        cakupan: 'PABX, kabel jaringan, pesawat telepon, speaker, amplifier, mic, HT/pager.'
+      },
+      {
+        nama: 'ELEKTRIKAL',
+        cakupan: 'Penerangan, panel listrik (LVMDP > MDP > SDP > Panel Pembagi), grounding, genset.'
+      },
+      {
+        nama: 'MEKANIKAL',
+        cakupan: 'Pompa, troli, lift.'
+      },
+      {
+        nama: 'FURNITURE AND MEUBELAIR',
+        cakupan: 'Kursi, meja, lemari, sofa, bed pasien.'
+      }
+    ];
+    const JENIS_FASILITAS_LIST = JENIS_FASILITAS_DETAIL.map(item => item.nama);
+
+    const APPS_DATA = [
+      {
+        id: 'kerusakan',
+        title: 'Laporan Kerusakan Fasilitas',
+        subtitle: 'Bagian Umum & IPSRS (Standar MFK)',
+        category: 'fasilitas',
+        badge: 'Sistem Tiket & Dashboard',
+        badgeColor: 'bg-rose-500/10 text-rose-500 border-rose-500/25',
+        icon: 'wrench',
+        iconBg: 'bg-gradient-to-br from-rose-400 to-pink-500',
+        description: 'Form pelaporan kerusakan unit tervalidasi, dashboard tracking status real-time, & panel tindak lanjut Bagian Umum.',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/1X_B7sb21MCYw4zTs8vX9pcxoe_hDyiFKNzlJHxIJv3E/edit?gid=159580129#gid=159580129',
+        isMfkApp: true
+      },
+      {
+        id: 'kebersihan-jumat',
+        title: 'Supervisi Kebersihan & Lingkungan (Jumat Keliling)',
+        subtitle: 'Bagian Umum, PPI & Manajemen RS',
+        category: 'fasilitas',
+        badge: 'Ceklis & Laporan Print',
+        badgeColor: 'bg-teal-500/10 text-teal-600 border-teal-500/25',
+        icon: 'sparkles',
+        iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-600',
+        description: 'Ceklis keliling mingguan setiap hari Jumat (9 area, 40 indikator kebersihan unit) dengan skor otomatis & cetak laporan A4.',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/GANTI_ID_SPREADSHEET_KEBERSIHAN_ANDA',
+        isKebersihanApp: true
+      },
+      {
+        id: 'identifikasi',
+        title: 'Ketepatan Identifikasi Pasien',
+        subtitle: 'Indikator Keselamatan Pasien (SKP 1)',
+        category: 'mutu',
+        badge: 'Google Form & Rekap',
+        badgeColor: 'bg-sky-500/10 text-sky-500 border-sky-500/25',
+        icon: 'user-check',
+        iconBg: 'bg-gradient-to-br from-sky-400 to-blue-500',
+        description: 'Pemantauan kepatuhan pemasangan gelang identitas & verifikasi sebelum pemberian obat/tindakan.',
+        formUrl: 'https://forms.gle/7FGsbt5C9CYseciYA',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/1MoUD67iViyXAs9pdTyRVnzmIjTzrSorgIKPA0ywgOqA/edit?usp=drive_link'
+      },
+      {
+        id: 'jatuh',
+        title: 'Pasien Risiko Jatuh Tinggi',
+        subtitle: 'Indikator Keselamatan Pasien (SKP 6)',
+        category: 'mutu',
+        badge: 'Google Form & Rekap',
+        badgeColor: 'bg-amber-500/10 text-amber-500 border-amber-500/25',
+        icon: 'shield-alert',
+        iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
+        description: 'Audit gelang kuning, tanda tempat tidur, posisi bed terendah/kunci roda, dan edukasi BRM.',
+        formUrl: 'https://forms.gle/qgd22m53xmGfkocm7',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/1d3w6tKj_t4YFmWgTB7G_IIFcyKxfmsAXWnzx18aJBl0/edit?usp=drive_link'
+      },
+      {
+        id: 'indikator',
+        title: 'Indikator Mutu Prioritas RS',
+        subtitle: 'Komite Mutu & Akreditasi 2026',
+        category: 'mutu',
+        badge: 'Google Spreadsheet',
+        badgeColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/25',
+        icon: 'bar-chart-3',
+        iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-500',
+        description: 'Input Numerator & Denominator harian unit (VK-PONEK, OK, Lab, Ranap, ICU-HCU) standar 2026.',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/1CiGTQg8VXfaDvw1Sc3xP5Rqy1Puksvcjo85hapXOtZ8/edit?gid=0#gid=0',
+        formUrl: null
+      },
+      {
+        id: 'ranap2026',
+        title: 'Laporan Pasien Rawat Inap 2026',
+        subtitle: 'Monitoring Bed & Sensus Harian Ranap',
+        category: 'pelayanan',
+        badge: 'Dashboard Real-Time',
+        badgeColor: 'bg-cyan-500/10 text-cyan-600 border-cyan-500/25',
+        icon: 'bed-double',
+        iconBg: 'bg-gradient-to-br from-cyan-400 to-teal-500',
+        description: 'Pemantauan okupansi kamar Lantai 1–3, ICU/HCU/Perina, waiting list IGD, titip kamar, dan diagnosa pasien.',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/1Y-L3_amRTEIB1O4bs1ykiIau9yk_RqG8SH5jGXq9Ygg/edit?gid=279254776#gid=279254776',
+        isRanapApp: true
+      },
+      {
+        id: 'monitor-tt',
+        title: 'Monitoring Tempat Tidur (Bed Display)',
+        subtitle: 'Dashboard Ketersediaan Kamar Real-Time',
+        category: 'pelayanan',
+        badge: 'Web App Aktif',
+        badgeColor: 'bg-teal-500/10 text-teal-600 border-teal-500/25',
+        icon: 'monitor',
+        iconBg: 'bg-gradient-to-br from-teal-400 to-sky-500',
+        description: 'Tampilan live ketersediaan tempat tidur per kelas perawatan (VIP, Kelas I–III, ICU/HCU, Isolasi, Bersalin) RS Cikarang Medika.',
+        webUrl: 'https://monitor-tt-rs.vercel.app/',
+        sheetUrl: null
+      },
+      {
+        id: 'absensi',
+        title: 'Data Absensi Karyawan',
+        subtitle: 'Integrasi Fingerprint & Kehadiran',
+        category: 'sdm',
+        badge: 'Web App Aktif',
+        badgeColor: 'bg-indigo-500/10 text-indigo-500 border-indigo-500/25',
+        icon: 'fingerprint',
+        iconBg: 'bg-gradient-to-br from-indigo-400 to-violet-500',
+        description: 'Monitoring log kehadiran fingerprint karyawan dan rekapitulasi shift RS Cikarang Medika.',
+        webUrl: 'https://absensi-karyawan-rs.vercel.app/',
+        sheetUrl: null
+      },
+      {
+        id: 'notulensi',
+        title: 'Notulensi Rapat & RTL',
+        subtitle: 'Sekretariat & Manajemen RS',
+        category: 'sdm',
+        badge: 'In Development (Tim IT)',
+        badgeColor: 'bg-slate-500/10 text-slate-500 border-slate-500/25',
+        icon: 'file-text',
+        iconBg: 'bg-gradient-to-br from-slate-400 to-slate-600',
+        description: 'Arsip risalah rapat koordinasi unit, daftar hadir, dan pemantauan Rencana Tindak Lanjut (RTL).',
+        webUrl: null,
+        sheetUrl: null
+      }
+    ];
+
+    const DOCUMENTS_DATA = [
+      {
+        id: 'kred-2026',
+        title: 'Berkas Re-Kredensialing BPJS 2026',
+        subtitle: 'Self-Assessment, Profil RS & Tindak Lanjut',
+        section: 'kredensialing',
+        sourceType: 'Google Drive / Server Lokal',
+        badgeColor: 'bg-amber-500/10 text-amber-600 border-amber-500/25',
+        icon: 'folder-check',
+        iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
+        description: 'Kumpulan dokumen pemenuhan rekomendasi re-kredensialing tahun 2026, daftar sarana prasarana, dan SDM.',
+        pathInfo: 'https://drive.google.com/drive/folders/1bSSmQm1zK4C9IkH1IvBOuFCC2fBeUrz0?usp=sharing',
+        docUrl: 'https://drive.google.com/drive/folders/1bSSmQm1zK4C9IkH1IvBOuFCC2fBeUrz0?usp=sharing',
+        isRekredApp: true
+      },
+      {
+        id: 'kred-2025',
+        title: 'Arsip Kredensialing Tahun 2025',
+        subtitle: 'Riwayat Penilaian & PKS BPJS Kesehatan',
+        section: 'kredensialing',
+        sourceType: 'Arsip Tahunan',
+        badgeColor: 'bg-slate-500/10 text-slate-500 border-slate-500/25',
+        icon: 'archive',
+        iconBg: 'bg-gradient-to-br from-slate-500 to-slate-700',
+        description: 'Dokumen historis kredensialing tahun sebelumnya beserta Berita Acara Kesepakatan.',
+        pathInfo: '\\\\SERVER-RS\\Arsip_Manajemen\\Kredensialing\\2025',
+        docUrl: '#'
+      },
+      {
+        id: 'kred-nakes',
+        title: 'Kredensialing & SPK/RKK Nakes',
+        subtitle: 'Komite Medik, Keperawatan & Nakes Lain',
+        section: 'kredensialing',
+        sourceType: 'Server Lokal RS',
+        badgeColor: 'bg-teal-500/10 text-teal-600 border-teal-500/25',
+        icon: 'user-cog',
+        iconBg: 'bg-gradient-to-br from-teal-400 to-emerald-500',
+        description: 'Surat Penugasan Klinis (SPK) dan Rincian Kewenangan Klinis (RKK) dokter spesialis, umum, dan perawat.',
+        pathInfo: '\\\\SERVER-RS\\Komite_Medik\\SPK_RKK',
+        docUrl: '#'
+      },
+      {
+        id: 'akr-regulasi',
+        title: 'Regulasi, Pedoman & Panduan RS',
+        subtitle: 'Standar Akreditasi Kemenkes (STARKES)',
+        section: 'akreditasi',
+        sourceType: 'Google Drive & Lokal',
+        badgeColor: 'bg-sky-500/10 text-sky-600 border-sky-500/25',
+        icon: 'book-marked',
+        iconBg: 'bg-gradient-to-br from-sky-400 to-indigo-500',
+        description: 'SK Direktur, Kebijakan Pelayanan, Pedoman Pengorganisasian, dan Panduan tiap Pokja Akreditasi.',
+        pathInfo: '\\\\SERVER-RS\\Akreditasi\\Regulasi_SK',
+        docUrl: '#'
+      },
+      {
+        id: 'akr-spo',
+        title: 'Bank SPO Seluruh Unit Pelayanan',
+        subtitle: 'Standar Prosedur Operasional Terkendali',
+        section: 'akreditasi',
+        sourceType: 'Server Lokal RS',
+        badgeColor: 'bg-blue-500/10 text-blue-600 border-blue-500/25',
+        icon: 'file-spreadsheet',
+        iconBg: 'bg-gradient-to-br from-blue-500 to-cyan-500',
+        description: 'Dokumen SPO Medis, Keperawatan, Penunjang, IT/SIMRS, dan Manajemen Fasilitas.',
+        pathInfo: '\\\\SERVER-RS\\Akreditasi\\SPO_Terkendali',
+        docUrl: '#'
+      },
+      {
+        id: 'izin-rs',
+        title: 'Izin Operasional & Sertifikat Standar RS',
+        subtitle: 'OSS RBA, Dinas Kesehatan & Kemenkes',
+        section: 'perizinan',
+        sourceType: 'Dokumen Vital',
+        badgeColor: 'bg-purple-500/10 text-purple-600 border-purple-500/25',
+        icon: 'shield',
+        iconBg: 'bg-gradient-to-br from-purple-500 to-fuchsia-500',
+        description: 'NIB, Izin Operasional RS Cikarang Medika, Izin IPAL/Limbah B3, dan Sertifikat Laik Fungsi (SLF).',
+        pathInfo: '\\\\SERVER-RS\\Legal_Perizinan\\Izin_RS',
+        docUrl: '#'
+      },
+      {
+        id: 'izin-sip',
+        title: 'Database STR & SIP Tenaga Kesehatan',
+        subtitle: 'Monitoring Masa Berlaku Izin Praktik',
+        section: 'perizinan',
+        sourceType: 'SDM & Legal',
+        badgeColor: 'bg-rose-500/10 text-rose-600 border-rose-500/25',
+        icon: 'id-card',
+        iconBg: 'bg-gradient-to-br from-rose-400 to-red-500',
+        description: 'Arsip scan STR seumur hidup, SIP Dokter/Perawat/Bidan/Apoteker, dan pengingat masa berlaku.',
+        pathInfo: '\\\\SERVER-RS\\SDM\\STR_SIP_Nakes',
+        docUrl: '#'
+      },
+      {
+        id: 'izin-kalibrasi',
+        title: 'Sertifikat Kalibrasi & Izin Alat Medis',
+        subtitle: 'BPFK, Uji Kesesuaian Radiologi & MFK',
+        section: 'perizinan',
+        sourceType: 'IPSRS / MFK',
+        badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/25',
+        icon: 'activity',
+        iconBg: 'bg-gradient-to-br from-emerald-400 to-green-600',
+        description: 'Sertifikat kalibrasi alkes tahunan, izin BAPETEN pesawat X-Ray, dan inspeksi K3.',
+        pathInfo: '\\\\SERVER-RS\\IPSRS\\Kalibrasi_Alkes',
+        docUrl: '#'
+      },
+      {
+        id: 'nas-utama',
+        title: 'File Server Utama RS (Intranet NAS)',
+        subtitle: 'Akses Langsung Direktori Berkas (Via Radmin VPN)',
+        section: 'server-lokal',
+        sourceType: 'Radmin VPN (26.x.x.x)',
+        badgeColor: 'bg-teal-500/10 text-teal-600 border-teal-500/25',
+        icon: 'hard-drive',
+        iconBg: 'bg-gradient-to-br from-teal-500 to-cyan-600',
+        description: 'Repositori terpusat dokumen scan berkapasitas besar RS Cikarang Medika. Wajib mengaktifkan Radmin VPN sebelum membuka.',
+        pathInfo: 'http://26.101.65.134:8080/files',
+        docUrl: 'http://26.101.65.134:8080/files',
+        requiresRadmin: true
+      }
+    ];
+
+    const SECTION_META = {
+      'all-apps': {
+        badge: 'Operasional & Pelaporan Unit',
+        title: 'Semua Aplikasi & Formulir',
+        desc: 'Akses cepat pelaporan mutu, pemeliharaan fasilitas (MFK), sensus ranap, absensi, dan notulensi.',
+        type: 'apps',
+        cat: 'all'
+      },
+      'mutu': {
+        badge: 'Komite Mutu & Keselamatan Pasien',
+        title: 'Mutu & Keselamatan Pasien',
+        desc: 'Pemantauan indikator sasaran keselamatan pasien (SKP) dan indikator mutu prioritas RS 2026.',
+        type: 'apps',
+        cat: 'mutu'
+      },
+      'fasilitas': {
+        badge: 'Manajemen Fasilitas & Keselamatan',
+        title: 'Fasilitas & IPSRS (MFK)',
+        desc: 'Pelaporan kerusakan sarana prasarana dan pemantauan respon perbaikan unit.',
+        type: 'apps',
+        cat: 'fasilitas'
+      },
+      'mfk-workspace': {
+        badge: 'FRM/UMUM/MFK/001 • Sistem Tiket & Monitoring',
+        title: 'Laporan Kerusakan Fasilitas RS',
+        desc: 'Formulir pelaporan unit, dashboard pemantauan status real-time, dan panel tindak lanjut Bagian Umum.',
+        type: 'mfk-workspace'
+      },
+      'kebersihan-workspace': {
+        badge: 'Supervisi Mingguan (Jumat Bersih) • MFK & PPI',
+        title: 'Ceklis Supervisi Kebersihan Unit',
+        desc: 'Pemantauan keliling Manajemen & Bagian Umum setiap hari Jumat beserta cetak laporan resmi.',
+        type: 'kebersihan-workspace'
+      },
+      'pelayanan': {
+        badge: 'Pelayanan Medis & Keperawatan',
+        title: 'Pelayanan & Rawat Inap',
+        desc: 'Pemantauan ketersediaan tempat tidur (bed monitoring) dan sensus harian pasien rawat inap.',
+        type: 'apps',
+        cat: 'pelayanan'
+      },
+      'sdm': {
+        badge: 'Sumber Daya Manusia & Tata Usaha',
+        title: 'SDM & Sekretariat',
+        desc: 'Log kehadiran fingerprint karyawan dan dokumentasi notulensi rapat koordinasi manajemen.',
+        type: 'apps',
+        cat: 'sdm'
+      },
+      'kredensialing': {
+        badge: 'Arsip Penjaminan & BPJS',
+        title: 'Berkas Kredensialing Tahunan',
+        desc: 'Dokumen self-assessment, tindak lanjut rekomendasi re-kredensialing, dan SPK/RKK tenaga klinis.',
+        type: 'docs',
+        docSection: 'kredensialing'
+      },
+      'akreditasi': {
+        badge: 'Standar Akreditasi Rumah Sakit',
+        title: 'Dokumen Akreditasi & SPO',
+        desc: 'Kumpulan regulasi, SK Direktur, pedoman kerja, dan SPO terkendali seluruh unit pelayanan.',
+        type: 'docs',
+        docSection: 'akreditasi'
+      },
+      'perizinan': {
+        badge: 'Legalitas & Kepatuhan Regulasi',
+        title: 'Perizinan & Legalitas RS',
+        desc: 'Izin operasional rumah sakit, sertifikat standar, STR/SIP tenaga kesehatan, dan kalibrasi alat.',
+        type: 'docs',
+        docSection: 'perizinan'
+      },
+      'server-lokal': {
+        badge: 'Integrasi Jaringan Lokal (LAN/NAS)',
+        title: 'Repositori Server Lokal RS',
+        desc: 'Direktori penyimpanan berkas scan berkapasitas besar yang tersimpan di server lokal RS Cikarang Medika.',
+        type: 'nas-embed',
+        docSection: 'server-lokal'
+      },
+      'rekred-workspace': {
+        badge: 'Google Drive Explorer • Real-Time Sync',
+        title: 'Berkas Re-Kredensialing BPJS 2026',
+        desc: 'Navigasi langsung seluruh folder dan dokumen persyaratan Re-Kredensialing BPJS Kesehatan 2026.',
+        type: 'rekred-workspace'
+      },
+      'ranap-workspace': {
+        badge: 'Sensus Harian & Okupansi Tempat Tidur • Real-Time',
+        title: 'Dashboard Pasien Rawat Inap Real-Time',
+        desc: 'Data live total pasien dirawat, sisa bed per ruangan, dan pasien waiting list IGD dari Spreadsheet Ranap 2026.',
+        type: 'ranap-workspace'
+
+        
+      },
+    };
+
+    const workspaceEl = document.getElementById('workspace-container');
+    const searchInput = document.getElementById('search-input');
+    let currentSection = 'all-apps';
+
+    function setTheme(themeName) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      localStorage.setItem('cikmed_launcher_theme', themeName);
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.themeBtn === themeName);
+      });
+    }
+    setTheme(localStorage.getItem('cikmed_launcher_theme') || 'light');
+
+    function loadLiquidWallpaper() {
+      const candidates = ['bg/bg.jpg', 'bg/bg.png', 'bg/bg.webp', 'bg/bg.jpeg'];
+      function tryNext(index) {
+        if (index >= candidates.length) return;
+        const img = new Image();
+        img.onload = () => {
+          const bgValue = `linear-gradient(rgba(255, 255, 255, 0.30), rgba(255, 255, 255, 0.30)), url('${candidates[index]}')`;
+          document.documentElement.style.setProperty('--liquid-wallpaper', bgValue);
+          const orbs = document.querySelector('.liquid-orbs');
+          if (orbs) orbs.style.display = 'none';
+        };
+        img.onerror = () => tryNext(index + 1);
+        img.src = candidates[index];
+      }
+      tryNext(0);
+    }
+    loadLiquidWallpaper();
+
+    async function fetchMfkTickets(showToastOnManual = false, monthOverride = '') {
+      try {
+        mfkState.loading = true;
+        const targetMonth = monthOverride || mfkState.activeMonth || '';
+        const url = targetMonth ? `${MFK_API_URL}?month=${encodeURIComponent(targetMonth)}` : MFK_API_URL;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.success) {
+          const prevMenunggu = mfkState.lastKnownMenunggu;
+          const newMenunggu = data.stats.menunggu || 0;
+
+          mfkState.activeMonth = data.activeMonth;
+          mfkState.availableMonths = data.availableMonths || [];
+          mfkState.stats = data.stats;
+          mfkState.tickets = data.tickets || [];
+          mfkState.lastKnownMenunggu = newMenunggu;
+
+          updateNotificationBadges();
+
+          if (prevMenunggu !== null && newMenunggu > prevMenunggu) {
+            playSoftChime();
+            showToast(`Ada ${newMenunggu - prevMenunggu} laporan kerusakan fasilitas baru masuk!`, 'rose');
+          } else if (showToastOnManual) {
+            showToast(`Data periode ${data.activeMonth} berhasil diperbarui.`, 'teal');
+          }
+
+          if (currentSection === 'mfk-workspace') {
+            if (mfkState.subTab === 'dashboard') {
+              renderMfkWorkspace();
+            }
+          } else if (SECTION_META[currentSection]?.type === 'apps') {
+            renderContent();
+          }
+        }
+      } catch (err) {
+        console.error('Gagal mengambil data MFK:', err);
+        document.getElementById('sync-status-text').textContent = 'Offline / Cek Koneksi API';
+      } finally {
+        mfkState.loading = false;
+      }
+    }
+
+    function updateNotificationBadges() {
+      const count = mfkState.stats.menunggu || 0;
+      const sideBadge = document.getElementById('sidebar-mfk-badge');
+      const bellBadge = document.getElementById('header-notif-badge');
+      const notifList = document.getElementById('notif-list');
+
+      if (count > 0) {
+        sideBadge.textContent = count;
+        sideBadge.classList.remove('hidden');
+        bellBadge.textContent = count;
+        bellBadge.classList.remove('hidden');
+      } else {
+        sideBadge.classList.add('hidden');
+        bellBadge.classList.add('hidden');
+      }
+
+      const pendingTickets = mfkState.tickets.filter(t => t.status.toLowerCase() === 'menunggu');
+      if (pendingTickets.length === 0) {
+        notifList.innerHTML = `<div class="p-6 text-center"><p class="text-xs font-semibold text-slate-600">Tidak ada laporan baru yang menunggu</p><p class="text-[11px] text-slate-400 mt-0.5">Semua tiket bulan ${mfkState.activeMonth} sudah direspon.</p></div>`;
+      } else {
+        notifList.innerHTML = pendingTickets.slice(0, 8).map(t => `<div onclick="jumpToTicketResponse(${t.rowNumber})" class="p-3.5 hover:bg-slate-50 cursor-pointer transition flex items-start justify-between gap-2.5"><div class="min-w-0"><div class="flex items-center gap-1.5"><span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">#${t.no}</span><span class="text-xs font-bold text-slate-800 truncate">${t.unit}</span>${t.urgensi === 3 ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-100 text-rose-600">Urgensi 3</span>' : ''}</div><p class="text-xs font-medium text-slate-700 truncate mt-1">${t.aset}</p><p class="text-[11px] text-slate-500 line-clamp-1">${t.uraian}</p></div><span class="text-[10px] text-slate-400 shrink-0">${t.tanggalRusak}</span></div>`).join('');
+      }
+    }
+
+    function toggleNotifDropdown() {
+      const dd = document.getElementById('notif-dropdown');
+      dd.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const dd = document.getElementById('notif-dropdown');
+      const btn = document.getElementById('notif-bell-btn');
+      if (dd && !dd.contains(e.target) && !btn.contains(e.target)) {
+        dd.classList.add('hidden');
+      }
+    });
+
+    function openMfkWorkspace(tabName = 'dashboard') {
+      document.getElementById('notif-dropdown').classList.add('hidden');
+      mfkState.subTab = tabName;
+      selectSection('mfk-workspace');
+      if (mfkState.tickets.length === 0) {
+        fetchMfkTickets(false);
+      }
+    }
+
+    function jumpToTicketResponse(rowNumber) {
+      document.getElementById('notif-dropdown').classList.add('hidden');
+      const target = mfkState.tickets.find(t => t.rowNumber === rowNumber);
+      if (target) {
+        const isBelum = target.status.toLowerCase() === 'menunggu';
+        mfkState.umumFilterStatus = isBelum ? 'BELUM' : 'SUDAH';
+        mfkState.umumFilterUrgensi = 'ALL';
+      }
+      mfkState.selectedTicketForUpdate = rowNumber;
+      openMfkWorkspace('panel-umum');
+    }
+
+    function playSoftChime() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.45);
+      } catch (e) {}
+    }
+
+    function showToast(msg, color = 'teal') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const badgeBg = color === 'rose' ? 'bg-rose-500' : 'bg-teal-600';
+      toast.className = 'pointer-events-auto bg-white/95 backdrop-blur-xl border border-slate-200 shadow-2xl rounded-2xl p-3.5 flex items-center gap-3 text-slate-800 modal-animate';
+      toast.innerHTML = `<span class="w-2.5 h-2.5 rounded-full ${badgeBg} shrink-0"></span><p class="text-xs font-semibold leading-snug">${msg}</p>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 5000);
+    }
+
+    function toggleSidebar(open) {
+      const sidebar = document.getElementById('main-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (open) {
+        sidebar.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.add('hidden');
+      }
+    }
+
+    function selectSection(sectionKey) {
+      currentSection = sectionKey;
+      const meta = SECTION_META[sectionKey];
+
+      const activeNavKey = (sectionKey === 'mfk-workspace' || sectionKey === 'kebersihan-workspace')
+        ? 'fasilitas'
+        : (sectionKey === 'ranap-workspace' ? 'pelayanan'
+        : (sectionKey === 'rekred-workspace' ? 'kredensialing' : sectionKey));
+      document.querySelectorAll('[data-nav]').forEach(el => {
+        el.classList.toggle('active', el.dataset.nav === activeNavKey);
+      });
+
+      document.getElementById('breadcrumb-current').textContent = meta.title;
+      document.getElementById('section-badge').textContent = meta.badge;
+      document.getElementById('section-title').textContent = meta.title;
+      document.getElementById('section-desc').textContent = meta.desc;
+      document.getElementById('global-search-wrapper').style.display = 
+        (sectionKey === 'mfk-workspace' || sectionKey === 'kebersihan-workspace' || sectionKey === 'ranap-workspace' || sectionKey === 'rekred-workspace' || sectionKey === 'server-lokal') ? 'none' : 'block';
+        toggleSidebar(false);
+      renderContent();
+    }
+
+    function copyServerPath(pathText) {
+      navigator.clipboard.writeText(pathText);
+      showToast(`Path server disalin: ${pathText}`, 'teal');
+    }
+
+    async function openRadminServer(targetUrl, btnEl) {
+      const originalHtml = btnEl ? btnEl.innerHTML : '';
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerHTML = '<span>Mengecek Radmin VPN...</span>';
+      }
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3200);
+
+      try {
+        await fetch(targetUrl, {
+          mode: 'no-cors',
+          cache: 'no-store',
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        showToast('Radmin VPN terhubung! Membuka File Server RS...', 'teal');
+        window.open(targetUrl, '_blank');
+      } catch (err) {
+        clearTimeout(timeoutId);
+        showRadminWarningModal(targetUrl);
+      } finally {
+        if (btnEl) {
+          btnEl.disabled = false;
+          btnEl.innerHTML = originalHtml;
+          lucide.createIcons();
+        }
+      }
+    }
+
+    function showRadminWarningModal(targetUrl) {
+      modal.classList.remove('hidden');
+      modalExtLink.href = targetUrl;
+      modalExtLink.classList.remove('hidden');
+      modalTitle.textContent = 'Koneksi Server Lokal Gagal (No Connection)';
+      modalBody.innerHTML = `<div class="p-7 bg-white text-center"><div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-4 shadow-inner"><i data-lucide="wifi-off" class="w-7 h-7"></i></div><h4 class="text-base font-bold text-slate-800">Radmin VPN Belum Nyala atau Tidak Terhubung</h4><p class="text-xs text-slate-500 max-w-md mx-auto mt-1.5 leading-relaxed">Server berkas berada di jaringan privat <b>26.101.65.134:8080</b> dan tidak dapat dijangkau dari koneksi internet biasa.</p><div class="mt-5 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left max-w-md mx-auto space-y-2 text-xs text-slate-700"><p class="font-bold text-slate-800">Langkah Mengatasi:</p><p>1. Pastikan aplikasi <b>Radmin VPN</b> di komputer/laptop sudah dibuka dan tombol power dalam kondisi <b>ON (Biru/Aktif)</b>.</p><p>2. Pastikan status jaringan RS Cikarang Medika di Radmin VPN sudah <b>Online</b>.</p><p>3. Periksa kembali koneksi internet (Wi-Fi / LAN) komputer Anda.</p></div><div class="mt-6 flex items-center justify-center gap-2.5"><button onclick="closeModal()" class="ios-btn sec-btn px-4 py-2.5 rounded-xl text-xs font-semibold">Tutup</button><button onclick="closeModal(); openRadminServer('${targetUrl}')" class="ios-btn px-5 py-2.5 rounded-xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 flex items-center gap-1.5 shadow-md shadow-teal-600/25"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Coba Hubungkan Lagi</span></button></div></div>`;
+      lucide.createIcons();
+    }
+
+    function renderContent() {
+      const keyword = searchInput.value.toLowerCase();
+      const meta = SECTION_META[currentSection];
+
+      if (meta.type === 'mfk-workspace') {
+        renderMfkWorkspace();
+        return;
+      }
+      if (meta.type === 'kebersihan-workspace') {
+        renderKebersihanWorkspace();
+        return;
+      }
+      if (meta.type === 'nas-embed') {
+        renderNasWorkspace();
+        return;
+      }
+      if (meta.type === 'ranap-workspace') {
+        renderRanapWorkspace();
+        return;
+      }
+        if (meta.type === 'rekred-workspace') {
+        renderRekredWorkspace();
+        return;
+      }
+
+      if (meta.type === 'apps') {
+        const filtered = APPS_DATA.filter(app => {
+          const matchCat = meta.cat === 'all' || app.category === meta.cat;
+          const matchText = app.title.toLowerCase().includes(keyword) || 
+                            app.subtitle.toLowerCase().includes(keyword) || 
+                            app.description.toLowerCase().includes(keyword);
+          return matchCat && matchText;
+        });
+
+        const cardsHtml = filtered.map((app, index) => {
+          let actionButtons = '';
+
+          if (app.isMfkApp) {
+            const pendingCount = mfkState.stats.menunggu || 0;
+            const pendingBadge = pendingCount > 0 ? `<span class="ml-1 px-1.5 py-0.5 rounded-full bg-white/25 text-[10px] font-bold">${pendingCount} Baru</span>` : '';
+            actionButtons = `<button onclick="openMfkWorkspace('form-unit')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 flex items-center justify-center gap-1.5 shadow-md shadow-rose-600/25"><i data-lucide="plus-circle" class="w-3.5 h-3.5"></i><span>Lapor Rusak</span></button><button onclick="openMfkWorkspace('dashboard')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 flex items-center justify-center gap-1 shadow-md"><i data-lucide="activity" class="w-3.5 h-3.5 text-teal-400"></i><span>Dashboard</span>${pendingBadge}</button>`;
+          } else if (app.isKebersihanApp) {
+            actionButtons = `<button onclick="openKebersihanWorkspace('form')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 flex items-center justify-center gap-1.5 shadow-md shadow-teal-600/25"><i data-lucide="clipboard-check" class="w-3.5 h-3.5"></i><span>Isi Ceklis Jumat</span></button><button onclick="openKebersihanWorkspace('riwayat')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 flex items-center justify-center gap-1.5 shadow-md"><i data-lucide="printer" class="w-3.5 h-3.5 text-emerald-400"></i><span>Riwayat & Print</span></button>`;
+          } else if (app.isRanapApp) {
+            actionButtons = `<button onclick="openRanapWorkspace()" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-cyan-600 text-white text-xs font-semibold hover:bg-cyan-700 flex items-center justify-center gap-1.5 shadow-md shadow-cyan-600/25"><i data-lucide="activity" class="w-3.5 h-3.5"></i><span>Dashboard Ranap</span></button><a href="${app.sheetUrl}" target="_blank" class="ios-btn sec-btn py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center" title="Buka Spreadsheet Asli"><i data-lucide="table" class="w-3.5 h-3.5 text-emerald-500"></i></a>`;
+          } else if (app.id === 'notulensi') {
+            actionButtons = `<button onclick="openModal('notulensi')" class="ios-btn sec-btn w-full py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5"><i data-lucide="hourglass" class="w-3.5 h-3.5"></i><span>Menunggu Build Tim</span></button>`;
+          } else if (app.webUrl) {
+            actionButtons = `<button onclick="openAppAction('${app.id}', 'web')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/25"><i data-lucide="app-window" class="w-3.5 h-3.5"></i><span>Buka Aplikasi</span></button><a href="${app.webUrl}" target="_blank" class="ios-btn sec-btn py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center" title="Buka di Tab Baru"><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a>`;
+          } else if (app.formUrl) {
+            actionButtons = `<button onclick="openAppAction('${app.id}', 'form')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 flex items-center justify-center gap-1.5 shadow-md shadow-teal-600/25"><i data-lucide="file-edit" class="w-3.5 h-3.5"></i><span>Isi Form</span></button><a href="${app.sheetUrl}" target="_blank" class="ios-btn sec-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm"><i data-lucide="table" class="w-3.5 h-3.5 text-emerald-500"></i><span>Spreadsheet</span></a>`;
+          } else {
+            actionButtons = `<a href="${app.sheetUrl}" target="_blank" class="ios-btn w-full py-2.5 px-3 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/25"><i data-lucide="table" class="w-3.5 h-3.5"></i><span>Buka Spreadsheet</span><i data-lucide="external-link" class="w-3 h-3 opacity-80"></i></a>`;
+          }
+
+          return `<div style="animation-delay: ${index * 45}ms" class="card-animate glass-card rounded-3xl p-5 flex flex-col justify-between"><div><div class="flex items-start justify-between gap-3 mb-4"><div class="app-icon-box w-12 h-12 rounded-2xl ${app.iconBg} text-white flex items-center justify-center shrink-0"><i data-lucide="${app.icon}" class="w-6 h-6"></i></div><span class="text-[11px] font-semibold px-2.5 py-1 rounded-full border ${app.badgeColor}">${app.badge}</span></div><h3 class="text-base font-bold leading-snug" style="color: var(--text-primary)">${app.title}</h3><p class="text-xs font-medium mt-0.5" style="color: var(--text-accent)">${app.subtitle}</p><p class="text-xs mt-2.5 leading-relaxed" style="color: var(--text-muted)">${app.description}</p></div><div class="mt-5 pt-4 card-divider flex items-center gap-2">${actionButtons}</div></div>`;
+        }).join('');
+
+        workspaceEl.innerHTML = `<div id="content-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">${cardsHtml}</div>`;
+      } else {
+        const filteredDocs = DOCUMENTS_DATA.filter(doc => {
+          const matchSec = doc.section === meta.docSection;
+          const matchText = doc.title.toLowerCase().includes(keyword) || 
+                            doc.subtitle.toLowerCase().includes(keyword) || 
+                            doc.description.toLowerCase().includes(keyword);
+          return matchSec && matchText;
+        });
+
+        const docsHtml = filteredDocs.map((doc, index) => {
+          const escapedPath = doc.pathInfo.replace(/\\/g, '\\\\');
+          const hasLink = doc.docUrl && doc.docUrl !== '#';
+
+          let actionBtnHtml = '';
+          if (doc.isRekredApp) {
+            actionBtnHtml = `<button onclick="openRekredWorkspace()" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 flex items-center justify-center gap-1.5 shadow-md shadow-teal-600/20"><i data-lucide="folder-open" class="w-3.5 h-3.5"></i><span>Buka Direktori</span></button><a href="${doc.docUrl}" target="_blank" title="Buka Langsung di Google Drive" class="ios-btn sec-btn py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center"><i data-lucide="external-link" class="w-3.5 h-3.5 text-amber-500"></i></a>`;
+          } else if (doc.requiresRadmin) {
+            actionBtnHtml = `<button onclick="openRadminServer('${doc.docUrl}', this)" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 flex items-center justify-center gap-1.5 shadow-md shadow-teal-600/25"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Buka File Server</span></button><button onclick="copyServerPath('${escapedPath}')" title="Salin Alamat URL" class="ios-btn sec-btn py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>`;
+          } else if (hasLink) {
+            actionBtnHtml = `<a href="${doc.docUrl}" target="_blank" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 flex items-center justify-center gap-1.5 shadow-md shadow-teal-600/20"><i data-lucide="folder-open" class="w-3.5 h-3.5"></i><span>Buka Direktori</span></a>`;
+          } else {
+            actionBtnHtml = `<button onclick="copyServerPath('${escapedPath}')" class="ios-btn flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-white text-xs font-semibold hover:bg-slate-700 flex items-center justify-center gap-1.5 shadow-sm"><i data-lucide="hard-drive" class="w-3.5 h-3.5"></i><span>Salin Path Lokal</span></button>`;
+          }
+
+          return `<div style="animation-delay: ${index * 45}ms" class="card-animate glass-card rounded-3xl p-5 flex flex-col justify-between"><div><div class="flex items-start justify-between gap-3 mb-4"><div class="app-icon-box w-12 h-12 rounded-2xl ${doc.iconBg} text-white flex items-center justify-center shrink-0"><i data-lucide="${doc.icon}" class="w-6 h-6"></i></div><span class="text-[11px] font-semibold px-2.5 py-1 rounded-full border ${doc.badgeColor}">${doc.sourceType}</span></div><h3 class="text-base font-bold leading-snug" style="color: var(--text-primary)">${doc.title}</h3><p class="text-xs font-medium mt-0.5" style="color: var(--text-accent)">${doc.subtitle}</p><p class="text-xs mt-2.5 leading-relaxed" style="color: var(--text-muted)">${doc.description}</p><div class="mt-3 px-2.5 py-1.5 rounded-xl bg-slate-500/10 border border-slate-400/20 flex items-center justify-between gap-2"><code class="text-[10px] truncate font-mono" style="color: var(--text-secondary)">${doc.pathInfo}</code><button onclick="copyServerPath('${escapedPath}')" title="Salin Alamat" class="shrink-0 p-1 rounded-lg hover:bg-slate-400/20" style="color: var(--text-primary)"><i data-lucide="copy" class="w-3 h-3"></i></button></div></div><div class="mt-4 pt-4 card-divider flex items-center gap-2">${actionBtnHtml}</div></div>`;
+        }).join('');
+
+        workspaceEl.innerHTML = `<div id="content-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">${docsHtml}</div>`;
+      }
+
+      lucide.createIcons();
+    }
+
+    function formatWaktuPemisah(str) {
+      if (!str) return '';
+      // Mengubah "23/11/2026 15:00" menjadi "23/11/2026 || 15:00"
+      return String(str).trim().replace(/^(\d{1,2}\/\d{1,2}\/\d{4})\s+(\d{1,2}:\d{2})$/, '$1 || $2');
+    }
+
+    function toggleMfkQuickFilter(type, value) {
+      if (type === 'ALL') {
+        mfkState.filterStatus = 'ALL';
+        mfkState.filterUrgensi = 'ALL';
+      } else if (type === 'STATUS') {
+        mfkState.filterUrgensi = 'ALL';
+        mfkState.filterStatus = (mfkState.filterStatus === value) ? 'ALL' : value;
+      } else if (type === 'URGENSI') {
+        mfkState.filterStatus = 'ALL';
+        mfkState.filterUrgensi = (String(mfkState.filterUrgensi) === String(value)) ? 'ALL' : String(value);
+      }
+      renderMfkWorkspace();
+    }
+
+    function renderMfkWorkspace() {
+      const s = mfkState.stats;
+      const monthOptions = (mfkState.availableMonths.length ? mfkState.availableMonths : ['Nov 2026'])
+        .map(m => `<option value="${m}" ${m === mfkState.activeMonth ? 'selected' : ''}>Periode: ${m}</option>`)
+        .join('');
+
+        const subNavHtml = `<div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="selectSection('fasilitas')" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="arrow-left" class="w-3.5 h-3.5"></i><span>Kembali</span></button>
+          <button onclick="mfkState.subTab='dashboard'; renderMfkWorkspace()" class="ios-btn px-4 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5 ${mfkState.subTab === 'dashboard' ? 'bg-slate-900 text-white shadow-md' : 'sec-btn'}"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i><span>Dashboard Monitoring</span></button>
+          <button onclick="mfkState.subTab='form-unit'; renderMfkWorkspace()" class="ios-btn px-4 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5 ${mfkState.subTab === 'form-unit' ? 'bg-rose-600 text-white shadow-md' : 'sec-btn'}"><i data-lucide="plus-circle" class="w-3.5 h-3.5"></i><span>Buat Laporan Baru (Unit)</span></button>
+          <button onclick="mfkState.subTab='panel-umum'; renderMfkWorkspace()" class="ios-btn px-4 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5 ${mfkState.subTab === 'panel-umum' ? 'bg-teal-600 text-white shadow-md' : 'sec-btn'}"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i><span>Panel Tindak Lanjut Umum</span>${s.menunggu > 0 ? `<span class="px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[10px]">${s.menunggu}</span>` : ''}</button>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <select onchange="fetchMfkTickets(true, this.value)" class="form-input px-3 py-2 rounded-2xl text-xs font-semibold shadow-sm focus:outline-none">${monthOptions}</select>
+          <button onclick="printMonthlyMfkReport()" class="ios-btn px-3.5 py-2 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-md shadow-teal-600/20 flex items-center gap-1.5" title="Cetak Laporan Bulanan MFK (A4)"><i data-lucide="printer" class="w-3.5 h-3.5"></i><span>Cetak Laporan Bulanan</span></button>
+          <a href="https://docs.google.com/spreadsheets/d/1X_B7sb21MCYw4zTs8vX9pcxoe_hDyiFKNzlJHxIJv3E/edit?gid=159580129#gid=159580129" target="_blank" class="ios-btn sec-btn px-3 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5" title="Lihat Spreadsheet Asli"><i data-lucide="table" class="w-3.5 h-3.5 text-emerald-500"></i><span class="hidden sm:inline">Sheet Asli</span></a>
+        </div>
+      </div>`;
+      
+      let tabBodyHtml = '';
+
+      if (mfkState.subTab === 'dashboard') {
+        const filteredTickets = mfkState.tickets.filter(t => {
+          const matchUnit = mfkState.filterUnit === 'ALL' || t.unit.toLowerCase() === mfkState.filterUnit.toLowerCase();
+          const matchStatus = mfkState.filterStatus === 'ALL' || t.status.toLowerCase() === mfkState.filterStatus.toLowerCase();
+          const matchUrgensi = !mfkState.filterUrgensi || mfkState.filterUrgensi === 'ALL' || String(t.urgensi) === String(mfkState.filterUrgensi);
+          return matchUnit && matchStatus && matchUrgensi;
+        });
+
+        const unitFilterOptions = ['ALL', ...UNIT_LIST].map(u => `<option value="${u}" ${mfkState.filterUnit === u ? 'selected' : ''}>${u === 'ALL' ? 'Semua Unit / Lokasi Spesifik' : u}</option>`).join('');
+
+        const isAllActive   = (mfkState.filterStatus === 'ALL' && (!mfkState.filterUrgensi || mfkState.filterUrgensi === 'ALL'));
+        const isMenungguAct = (mfkState.filterStatus === 'Menunggu');
+        const isProsesAct   = (mfkState.filterStatus === 'Proses');
+        const isGantiAct    = (mfkState.filterStatus === 'Rekomendasi Ganti');
+        const isSelesaiAct  = (mfkState.filterStatus === 'Selesai');
+        const isKritisAct   = (String(mfkState.filterUrgensi) === '3');
+
+        const kpiCardsHtml = `<div class="grid grid-cols-2 sm:grid-cols-6 gap-3 mb-6">
+          <button type="button" onclick="toggleMfkQuickFilter('ALL', 'ALL')" class="ios-btn glass-card text-left rounded-2xl p-4 transition-all cursor-pointer ${isAllActive ? 'ring-2 ring-slate-800 bg-slate-900/5 shadow-md' : 'opacity-85 hover:opacity-100'}">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-semibold" style="color: var(--text-muted)">Total Laporan</p>
+              ${isAllActive ? '<span class="w-2 h-2 rounded-full bg-slate-800"></span>' : ''}
+            </div>
+            <p class="text-2xl font-bold mt-1" style="color: var(--text-primary)">${s.total}</p>
+          </button>
+
+          <button type="button" onclick="toggleMfkQuickFilter('STATUS', 'Menunggu')" class="ios-btn glass-card text-left rounded-2xl p-4 border-l-4 border-l-amber-400 transition-all cursor-pointer ${isMenungguAct ? 'ring-2 ring-amber-500 bg-amber-500/10 shadow-md' : 'opacity-85 hover:opacity-100'}">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-semibold text-amber-600">Menunggu Respon</p>
+              ${isMenungguAct ? '<span class="w-2 h-2 rounded-full bg-amber-500"></span>' : ''}
+            </div>
+            <p class="text-2xl font-bold mt-1 text-amber-600">${s.menunggu}</p>
+          </button>
+
+          <button type="button" onclick="toggleMfkQuickFilter('STATUS', 'Proses')" class="ios-btn glass-card text-left rounded-2xl p-4 border-l-4 border-l-sky-500 transition-all cursor-pointer ${isProsesAct ? 'ring-2 ring-sky-500 bg-sky-500/10 shadow-md' : 'opacity-85 hover:opacity-100'}">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-semibold text-sky-600">Sedang Diproses</p>
+              ${isProsesAct ? '<span class="w-2 h-2 rounded-full bg-sky-500"></span>' : ''}
+            </div>
+            <p class="text-2xl font-bold mt-1 text-sky-600">${s.proses}</p>
+          </button>
+
+          <button type="button" onclick="toggleMfkQuickFilter('STATUS', 'Rekomendasi Ganti')" class="ios-btn glass-card text-left rounded-2xl p-4 border-l-4 border-l-purple-500 transition-all cursor-pointer ${isGantiAct ? 'ring-2 ring-purple-500 bg-purple-500/10 shadow-md' : 'opacity-85 hover:opacity-100'}">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-semibold text-purple-600">Rekomendasi Ganti</p>
+              ${isGantiAct ? '<span class="w-2 h-2 rounded-full bg-purple-500"></span>' : ''}
+            </div>
+            <p class="text-2xl font-bold mt-1 text-purple-600">${s.rekomendasiGanti || 0}</p>
+          </button>
+
+          <button type="button" onclick="toggleMfkQuickFilter('STATUS', 'Selesai')" class="ios-btn glass-card text-left rounded-2xl p-4 border-l-4 border-l-emerald-500 transition-all cursor-pointer ${isSelesaiAct ? 'ring-2 ring-emerald-500 bg-emerald-500/10 shadow-md' : 'opacity-85 hover:opacity-100'}">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-semibold text-emerald-600">Selesai Perbaikan</p>
+              ${isSelesaiAct ? '<span class="w-2 h-2 rounded-full bg-emerald-500"></span>' : ''}
+            </div>
+            <p class="text-2xl font-bold mt-1 text-emerald-600">${s.selesai}</p>
+          </button>
+
+          <button type="button" onclick="toggleMfkQuickFilter('URGENSI', '3')" class="ios-btn glass-card text-left rounded-2xl p-4 border-l-4 border-l-rose-500 transition-all cursor-pointer ${isKritisAct ? 'ring-2 ring-rose-500 bg-rose-500/10 shadow-md' : 'opacity-85 hover:opacity-100'}">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-semibold text-rose-600">Urgensi Kritis (3)</p>
+              ${isKritisAct ? '<span class="w-2 h-2 rounded-full bg-rose-500"></span>' : ''}
+            </div>
+            <p class="text-2xl font-bold mt-1 text-rose-600">${s.kritis}</p>
+          </button>
+        </div>`;
+
+        tabBodyHtml = `${kpiCardsHtml}
+        <div class="glass-card no-lift rounded-2xl p-3.5 mb-5 flex flex-wrap items-center justify-between gap-3"><div class="flex flex-wrap items-center gap-2"><select onchange="mfkState.filterUnit=this.value; renderMfkWorkspace()" class="form-input px-3 py-1.5 rounded-xl text-xs font-semibold">${unitFilterOptions}</select></div><button onclick="fetchMfkTickets(true)" class="ios-btn sec-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Sinkronkan Sekarang</span></button></div>
+        <div class="space-y-3.5">${filteredTickets.length === 0 ? `<div class="glass-card no-lift rounded-3xl p-10 text-center"><p class="text-sm font-bold" style="color: var(--text-primary)">Belum ada data laporan pada filter ini</p><p class="text-xs mt-1" style="color: var(--text-muted)">Klik tombol "Buat Laporan Baru (Unit)" untuk mengirim keluhan kerusakan fasilitas.</p></div>` : filteredTickets.map(t => {
+          const stLower = t.status.toLowerCase();
+          const statusBadge = stLower === 'selesai' ? 'bg-emerald-500/15 text-emerald-600 border-emerald-500/30' : stLower === 'proses' ? 'bg-sky-500/15 text-sky-600 border-sky-500/30' : stLower === 'rekomendasi ganti' ? 'bg-purple-500/15 text-purple-600 border-purple-500/30' : 'bg-amber-500/15 text-amber-600 border-amber-500/30';
+          const urgBadge = t.urgensi === 3 ? 'bg-rose-500 text-white' : t.urgensi === 2 ? 'bg-amber-400 text-slate-900' : 'bg-slate-200 text-slate-700';
+
+          let waktuSelesaiText = 'Dalam antrean / pengerjaan';
+          if (stLower === 'selesai' && t.tanggalSelesai) {
+            waktuSelesaiText = `Selesai: ${formatWaktuPemisah(t.tanggalSelesai)} WIB (${t.durasi})`;
+          } else if (t.tanggalSelesai) {
+            waktuSelesaiText = `${formatWaktuPemisah(t.tanggalSelesai)} WIB`;
+          }
+
+          return `<div class="glass-card no-lift rounded-3xl p-5"><div class="flex flex-wrap items-start justify-between gap-3"><div><div class="flex flex-wrap items-center gap-2"><span class="text-xs font-bold px-2.5 py-0.5 rounded-lg bg-slate-900 text-white">#${t.no}</span><span class="text-xs font-bold px-2.5 py-0.5 rounded-lg bg-teal-500/15 text-teal-600">${t.unit}</span><span class="text-[11px] font-bold px-2 py-0.5 rounded-lg ${urgBadge}">Urgensi ${t.urgensi}</span>${t.jenisFasilitas ? `<span class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-indigo-500/15 text-indigo-600">${t.jenisFasilitas}</span>` : ''}${t.tingkatKerusakan ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-purple-500/15 text-purple-600">Tingkat Rusak: ${t.tingkatKerusakan}</span>` : ''}<span class="text-[11px] font-semibold" style="color: var(--text-muted)">${t.kategori && t.kategori !== '-' ? `• ${t.kategori} ` : ''}• Lapor: ${formatWaktuPemisah(t.tanggalRusak)} WIB</span></div><h4 class="text-base font-bold mt-2" style="color: var(--text-primary)">${t.aset}</h4><p class="text-xs mt-1" style="color: var(--text-secondary)">${t.uraian}</p></div><div class="flex items-center gap-2"><span class="text-xs font-bold px-3 py-1 rounded-full border ${statusBadge}">${t.status}</span><button onclick="jumpToTicketResponse(${t.rowNumber})" title="Respon / Update Tiket (Bagian Umum)" class="ios-btn sec-btn p-2 rounded-xl text-xs font-semibold"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i></button></div></div><div class="mt-4 pt-3.5 card-divider grid grid-cols-1 md:grid-cols-3 gap-3 text-xs"><div><span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted)">Analisis Awal (Umum/Teknisi)</span><p class="font-medium mt-0.5" style="color: var(--text-primary)">${t.analisisAwal || '-'}</p></div><div><span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted)">Riwayat Tindak Lanjut</span><p class="font-medium mt-0.5 whitespace-pre-line leading-relaxed" style="color: var(--text-primary)">${t.tindakLanjut || '-'}</p></div><div><span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted)">Respon Awal & Penyelesaian</span><p class="font-medium mt-0.5" style="color: var(--text-primary)">${t.waktuRespon ? `Direspon Umum: ${formatWaktuPemisah(t.waktuRespon)} WIB<br>` : ''}${waktuSelesaiText}</p></div></div></div>`;
+        }).join('')}</div>`;
+      }
+
+      if (mfkState.subTab === 'form-unit') {
+        const todayIso = new Date().toISOString().split('T')[0];
+        const jamSekarang = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+        tabBodyHtml = `<div class="glass-card no-lift rounded-3xl p-6 max-w-2xl mx-auto"><div class="flex items-center gap-3 mb-5 pb-4 card-divider"><div class="w-10 h-10 rounded-2xl bg-rose-500/15 text-rose-500 flex items-center justify-center shrink-0"><i data-lucide="wrench" class="w-5 h-5"></i></div><div><h3 class="text-base font-bold" style="color: var(--text-primary)">Form Pelaporan Kerusakan Fasilitas (Unit)</h3><p class="text-xs" style="color: var(--text-muted)">Jam input otomatis tercatat (${jamSekarang} WIB) saat laporan dikirim.</p></div></div><form onsubmit="submitNewMfkReport(event)" class="space-y-4"><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Unit / Lokasi Spesifik *</label><select id="mfk-unit" required class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm"><option value="">-- Pilih Unit / Lokasi Spesifik --</option>${UNIT_LIST.map(u => `<option value="${u}">${u}</option>`).join('')}</select></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tanggal Kerusakan (Jam Otomatis) *</label><input type="date" id="mfk-tanggal" value="${todayIso}" required class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm" /></div></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Nama Fasilitas / Aset (Kode Inventaris) *</label><input type="text" id="mfk-aset" required placeholder="Contoh: AC Split / UPS Krisbow / Wastafel" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm" /></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tingkat Urgensi Pelayanan (Diisi Unit) *</label><div class="grid grid-cols-3 gap-2.5"><label class="cursor-pointer"><input type="radio" name="mfk-urgensi" value="1" class="peer hidden" /><div class="p-3 rounded-2xl border border-slate-300/60 text-center peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition"><p class="text-xs font-bold">1 • Rendah</p><p class="text-[10px] opacity-80">Tidak mengganggu layanan</p></div></label><label class="cursor-pointer"><input type="radio" name="mfk-urgensi" value="2" checked class="peer hidden" /><div class="p-3 rounded-2xl border border-slate-300/60 text-center peer-checked:bg-amber-500 peer-checked:text-slate-950 peer-checked:border-amber-500 transition"><p class="text-xs font-bold">2 • Sedang</p><p class="text-[10px] opacity-80">Perlu segera ditangani</p></div></label><label class="cursor-pointer"><input type="radio" name="mfk-urgensi" value="3" class="peer hidden" /><div class="p-3 rounded-2xl border border-slate-300/60 text-center peer-checked:bg-rose-600 peer-checked:text-white peer-checked:border-rose-600 transition"><p class="text-xs font-bold">3 • Kritis</p><p class="text-[10px] opacity-80">Menghambat layanan pasien</p></div></label></div></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Uraian Detail Kerusakan *</label><textarea id="mfk-uraian" rows="3" required placeholder="Jelaskan gejala kerusakan secara jelas (misal: tidak dingin, bocor, mati total)..." class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm"></textarea></div><div class="pt-2 flex items-center justify-end gap-2.5"><button type="button" onclick="mfkState.subTab='dashboard'; renderMfkWorkspace()" class="ios-btn sec-btn px-4 py-2.5 rounded-2xl text-xs font-semibold">Batal</button><button type="submit" id="btn-submit-mfk" class="ios-btn px-6 py-2.5 rounded-2xl bg-rose-600 text-white text-xs font-bold hover:bg-rose-700 shadow-lg shadow-rose-600/25 flex items-center gap-2"><i data-lucide="send" class="w-3.5 h-3.5"></i><span>Kirim Laporan Kerusakan</span></button></div></form></div>`;
+      }
+
+      if (mfkState.subTab === 'panel-umum') {
+        const isBelum = (t) => t.status.toLowerCase() === 'menunggu';
+        const countBelum = mfkState.tickets.filter(t => isBelum(t)).length;
+        const countSudah = mfkState.tickets.filter(t => !isBelum(t)).length;
+
+        const statusFilteredTickets = mfkState.tickets.filter(t => {
+          const f = mfkState.umumFilterStatus;
+          if (f === 'BELUM') return isBelum(t);
+          if (f === 'SUDAH') return !isBelum(t);
+          if (f === 'ALL') return true;
+          return t.status.toLowerCase() === f.toLowerCase();
+        });
+
+        const countU3 = statusFilteredTickets.filter(t => Number(t.urgensi) === 3).length;
+        const countU2 = statusFilteredTickets.filter(t => Number(t.urgensi) === 2).length;
+        const countU1 = statusFilteredTickets.filter(t => Number(t.urgensi) === 1).length;
+
+        let umumTickets = statusFilteredTickets.filter(t => {
+          if (mfkState.umumFilterUrgensi === 'ALL') return true;
+          return Number(t.urgensi) === Number(mfkState.umumFilterUrgensi);
+        });
+
+        umumTickets = [...umumTickets].sort((a, b) => Number(b.urgensi) - Number(a.urgensi));
+
+        let selectedTicket = umumTickets.find(t => t.rowNumber === mfkState.selectedTicketForUpdate) || umumTickets[0];
+        if (selectedTicket) {
+          mfkState.selectedTicketForUpdate = selectedTicket.rowNumber;
+        }
+
+        const getUrgensiMeta = (u) => {
+          const val = Number(u);
+          if (val === 3) return { label: 'Urgensi 3 • Kritis (Menghambat Layanan)', short: 'KRITIS', dot: 'bg-rose-500', badge: 'bg-rose-600 text-white', box: 'bg-rose-500/10 border-rose-500/30 text-rose-700' };
+          if (val === 2) return { label: 'Urgensi 2 • Sedang (Perlu Segera Ditangani)', short: 'SEDANG', dot: 'bg-amber-400', badge: 'bg-amber-400 text-slate-950', box: 'bg-amber-500/10 border-amber-500/30 text-amber-800' };
+          return { label: 'Urgensi 1 • Rendah (Tidak Mengganggu Layanan)', short: 'RENDAH', dot: 'bg-emerald-500', badge: 'bg-emerald-600 text-white', box: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-800' };
+        };
+
+        const selUrgensiMeta = selectedTicket ? getUrgensiMeta(selectedTicket.urgensi) : null;
+
+        const ticketCardsListHtml = umumTickets.length === 0
+          ? `<div class="p-5 rounded-2xl bg-slate-500/10 text-center text-xs font-semibold" style="color: var(--text-secondary)">Tidak ada tiket pada filter ini.</div>`
+          : umumTickets.map(t => {
+              const uMeta = getUrgensiMeta(t.urgensi);
+              const isSelected = selectedTicket && t.rowNumber === selectedTicket.rowNumber;
+              const uTextClass = isSelected
+                ? 'text-white'
+                : Number(t.urgensi) === 3
+                  ? 'text-rose-600'
+                  : Number(t.urgensi) === 2
+                    ? 'text-amber-700'
+                    : 'text-emerald-700';
+
+              return `<button type="button" onclick="mfkState.selectedTicketForUpdate=${t.rowNumber}; renderMfkWorkspace()" style="${isSelected ? '' : 'color: var(--text-primary);'}" class="w-full text-left p-3.5 rounded-2xl border transition flex flex-col gap-1.5 ${isSelected ? 'bg-slate-900 text-white border-slate-900 shadow-md' : 'sec-btn hover:border-teal-500/60'}"><div class="flex items-center justify-between gap-2"><div class="flex items-center gap-1.5 min-w-0"><span class="w-2.5 h-2.5 rounded-full shrink-0 ${uMeta.dot}"></span><span class="text-xs font-bold truncate">#${t.no} • ${t.unit}</span></div><span class="text-[10px] font-bold px-2 py-0.5 rounded-md shrink-0 ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-500/15'}" style="${isSelected ? '' : 'color: var(--text-primary);'}">${t.status}</span></div><p class="text-xs font-extrabold truncate">${t.aset}</p><p class="text-[11px] font-medium line-clamp-2 leading-snug" style="${isSelected ? 'color: #f1f5f9;' : 'color: var(--text-secondary);'}">${t.uraian}</p><div class="flex items-center justify-between text-[11px] font-bold pt-1 mt-0.5 border-t ${isSelected ? 'border-white/15' : 'border-slate-300/50'}"><span class="${uTextClass}">${uMeta.short}</span><span style="${isSelected ? 'color: #e2e8f0;' : 'color: var(--text-secondary);'}">${formatWaktuPemisah(t.tanggalRusak)}</span></div></button>`;
+            }).join('');
+
+        tabBodyHtml = `<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-4 space-y-3">
+            <div class="glass-card no-lift rounded-3xl p-4 space-y-2.5">
+              <div class="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-500/10">
+                <button type="button" onclick="mfkState.umumFilterStatus='BELUM'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="py-1.5 px-2 rounded-xl text-[11px] font-bold transition ${mfkState.umumFilterStatus === 'BELUM' ? 'bg-amber-500 text-slate-950 shadow-sm' : ''}">Belum (${countBelum})</button>
+                <button type="button" onclick="mfkState.umumFilterStatus='SUDAH'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="py-1.5 px-2 rounded-xl text-[11px] font-bold transition ${mfkState.umumFilterStatus === 'SUDAH' ? 'bg-teal-600 text-white shadow-sm' : ''}">Sudah (${countSudah})</button>
+                <button type="button" onclick="mfkState.umumFilterStatus='ALL'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="py-1.5 px-2 rounded-xl text-[11px] font-bold transition ${mfkState.umumFilterStatus === 'ALL' ? 'bg-slate-900 text-white shadow-sm' : ''}">Semua (${mfkState.tickets.length})</button>
+              </div>
+              <div class="space-y-1.5 pt-1">
+                <button type="button" onclick="mfkState.umumFilterUrgensi='ALL'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="ios-btn w-full px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-between border ${mfkState.umumFilterUrgensi === 'ALL' ? 'bg-slate-900 text-white border-slate-900 shadow-sm' : 'sec-btn'}"><span>SEMUA</span><span class="px-2 py-0.5 rounded-lg text-[11px] ${mfkState.umumFilterUrgensi === 'ALL' ? 'bg-white/20 text-white' : 'bg-slate-500/15'}">${statusFilteredTickets.length}</span></button>
+                <button type="button" onclick="mfkState.umumFilterUrgensi='3'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="ios-btn w-full px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-between border ${mfkState.umumFilterUrgensi === '3' ? 'bg-rose-600 text-white border-rose-600 shadow-sm' : 'bg-rose-500/10 text-rose-600 border-rose-500/25'}"><span>KRITIS</span><span class="px-2 py-0.5 rounded-lg text-[11px] ${mfkState.umumFilterUrgensi === '3' ? 'bg-white/25 text-white' : 'bg-rose-500/20'}">${countU3}</span></button>
+                <button type="button" onclick="mfkState.umumFilterUrgensi='2'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="ios-btn w-full px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-between border ${mfkState.umumFilterUrgensi === '2' ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-sm' : 'bg-amber-500/10 text-amber-700 border-amber-500/25'}"><span>SEDANG</span><span class="px-2 py-0.5 rounded-lg text-[11px] ${mfkState.umumFilterUrgensi === '2' ? 'bg-black/15 text-slate-950' : 'bg-amber-500/20'}">${countU2}</span></button>
+                <button type="button" onclick="mfkState.umumFilterUrgensi='1'; mfkState.selectedTicketForUpdate=null; renderMfkWorkspace()" class="ios-btn w-full px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-between border ${mfkState.umumFilterUrgensi === '1' ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-emerald-500/10 text-emerald-700 border-emerald-500/25'}"><span>RENDAH</span><span class="px-2 py-0.5 rounded-lg text-[11px] ${mfkState.umumFilterUrgensi === '1' ? 'bg-white/25 text-white' : 'bg-emerald-500/20'}">${countU1}</span></button>
+              </div>
+            </div>
+            <div class="glass-card no-lift rounded-3xl p-3.5">
+              <div class="flex items-center justify-between px-1 mb-2.5">
+                <span class="text-xs font-extrabold uppercase tracking-wider" style="color: var(--text-primary)">Daftar Laporan (${umumTickets.length})</span>
+                <span class="text-[11px] font-semibold" style="color: var(--text-secondary)">Klik untuk buka</span>
+              </div>
+              <div class="space-y-2.5 max-h-[58vh] overflow-y-auto pr-1">${ticketCardsListHtml}</div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 glass-card no-lift rounded-3xl p-6">
+            <div class="flex items-center gap-3 mb-5 pb-4 card-divider">
+              <div class="w-10 h-10 rounded-2xl bg-teal-500/15 text-teal-600 flex items-center justify-center shrink-0"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+              <div>
+                <h3 class="text-base font-bold" style="color: var(--text-primary)">Panel Tindak Lanjut Bagian Umum / IPSRS</h3>
+                <p class="text-xs" style="color: var(--text-muted)">Jam respon & update otomatis tercatat saat tombol Simpan ditekan.</p>
+              </div>
+            </div>
+            ${!selectedTicket ? `<div class="p-8 rounded-2xl bg-slate-500/10 text-center space-y-2"><p class="text-xs font-bold" style="color: var(--text-primary)">${mfkState.umumFilterStatus === 'BELUM' && countBelum === 0 ? 'Semua laporan di periode ini sudah ditindaklanjuti!' : `Tidak ada tiket yang sesuai filter di periode ${mfkState.activeMonth}.`}</p>${mfkState.umumFilterStatus === 'BELUM' && countSudah > 0 ? `<button type="button" onclick="mfkState.umumFilterStatus='SUDAH'; mfkState.umumFilterUrgensi='ALL'; renderMfkWorkspace()" class="ios-btn sec-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold">Lihat ${countSudah} Tiket yang Sudah Ditindaklanjuti</button>` : ''}</div>` : `<form onsubmit="submitUmumResponse(event)" class="space-y-4">
+              <div class="p-4 rounded-2xl border ${selUrgensiMeta.box} text-xs space-y-1.5">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-1.5 border-b border-current/15">
+                  <span class="font-bold">#${selectedTicket.no} • Unit Pelapor: ${selectedTicket.unit} (Masuk: ${formatWaktuPemisah(selectedTicket.tanggalRusak)} WIB)</span>
+                  <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${selUrgensiMeta.badge}">${selUrgensiMeta.label}</span>
+                </div>
+                <p><span class="font-bold">Aset:</span> ${selectedTicket.aset}${selectedTicket.kategori && selectedTicket.kategori !== '-' ? ` • <span class="font-bold">Kategori:</span> ${selectedTicket.kategori}` : ''}</p>
+                <p><span class="font-bold">Keluhan Unit:</span> ${selectedTicket.uraian}</p>
+                ${selectedTicket.waktuRespon ? `<p><span class="font-bold">Respon Pertama Umum:</span> ${formatWaktuPemisah(selectedTicket.waktuRespon)} WIB</p>` : ''}
+                ${selectedTicket.tindakLanjut && selectedTicket.tindakLanjut !== '-' ? `<div class="pt-1.5 mt-1 border-t border-current/15"><span class="font-bold block mb-0.5">Riwayat Tindak Lanjut Sebelumnya:</span><p class="whitespace-pre-line font-semibold opacity-95">${selectedTicket.tindakLanjut}</p></div>` : ''}
+              </div>
+              <div>
+                <label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Kategori Penyebab Kerusakan (Hasil Pengecekan Umum) *</label>
+                <select id="umum-kategori" required class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm font-semibold">
+                  <option value="">-- Pilih Kategori Penyebab --</option>
+                  ${KATEGORI_PENYEBAB_LIST.map(k => `<option value="${k}" ${selectedTicket.kategori === k ? 'selected' : ''}>${k}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Penyebab Kerusakan (Analisis Awal Teknisi/Umum) *</label>
+                <textarea id="umum-analisis" rows="2" required placeholder="Contoh: Freon habis / kapasitor kompresor lemah..." class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm">${selectedTicket.analisisAwal === '-' ? '' : selectedTicket.analisisAwal}</textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Catatan Tindak Lanjut / Progres Terbaru *</label>
+                <textarea id="umum-tindaklanjut" rows="2" required placeholder="Contoh: Pengajuan dana disetujui, kapasitor baru sudah dipasang & AC kembali dingin..." class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm"></textarea>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1.5">
+                    <label for="umum-jenis-fasilitas" class="block text-xs font-bold" style="color: var(--text-primary)">Jenis Fasilitas Kerusakan *</label>
+                    <div class="relative group inline-flex items-center">
+                      <button type="button" tabindex="0" aria-label="Panduan Jenis Fasilitas" class="w-4 h-4 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center text-[10px] font-extrabold transition cursor-help shadow-xs">!</button>
+                      <div style="background-color: #0f172a; color: #f8fafc; border-color: #334155;" class="pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 absolute left-0 bottom-full mb-2 w-72 sm:w-80 p-3.5 rounded-2xl shadow-2xl border z-50 text-[11px] leading-relaxed">
+                        <p style="color: #5eead4; border-color: #334155;" class="font-extrabold mb-2 pb-1.5 border-b">Panduan Kategori Jenis Fasilitas:</p>
+                        <div class="space-y-1.5">
+                          ${JENIS_FASILITAS_DETAIL.map(d => `<div><span style="color: #fcd34d;" class="font-extrabold">${d.nama}:</span> <span style="color: #f1f5f9;">${d.cakupan}</span></div>`).join('')}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <select id="umum-jenis-fasilitas" required class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm font-semibold">
+                    <option value="">-- Pilih Jenis Fasilitas --</option>
+                    ${JENIS_FASILITAS_LIST.map(jf => `<option value="${jf}" ${selectedTicket.jenisFasilitas === jf ? 'selected' : ''}>${jf}</option>`).join('')}
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tingkat Kerusakan *</label>
+                  <select id="umum-tingkat" required class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm">
+                    <option value="1" ${selectedTicket.tingkatKerusakan === 1 ? 'selected' : ''}>1 • Ringan</option>
+                    <option value="2" ${selectedTicket.tingkatKerusakan === 2 ? 'selected' : ''}>2 • Sedang</option>
+                    <option value="3" ${selectedTicket.tingkatKerusakan === 3 ? 'selected' : ''}>3 • Berat</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Update Status *</label>
+                  <select id="umum-status" required class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm font-bold">
+                    ${STATUS_LIST.map(st => `<option value="${st}" ${selectedTicket.status === st ? 'selected' : ''}>${st}</option>`).join('')}
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">PIN Bagian Umum *</label>
+                  <input type="password" id="umum-pin" value="${mfkState.umumPinUnlocked}" required placeholder="Masukkan PIN" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm" />
+                </div>
+              </div>
+              <div class="pt-2 flex flex-wrap items-center justify-between gap-2.5">
+                <button type="button" id="btn-delete-umum" onclick="deleteUmumReport(${selectedTicket.rowNumber}, '${selectedTicket.no}', '${selectedTicket.unit.replace(/'/g, "\\'")}', '${selectedTicket.aset.replace(/'/g, "\\'")}')" class="ios-btn px-4 py-2.5 rounded-2xl bg-rose-500/15 text-rose-600 border border-rose-500/30 hover:bg-rose-600 hover:text-white text-xs font-bold flex items-center gap-1.5 transition">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                  <span>Hapus Laporan Dobel</span>
+                </button>
+                <button type="submit" id="btn-submit-umum" class="ios-btn px-6 py-2.5 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-lg shadow-teal-600/25 flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                  <span>Simpan Update Bagian Umum</span>
+                </button>
+              </div>
+            </form>`}
+          </div>
+        </div>`;
+      }
+
+      workspaceEl.innerHTML = subNavHtml + tabBodyHtml;
+      lucide.createIcons();
+    }
+
+    async function renderNasWorkspace() {
+      const targetUrl = 'http://26.101.65.134:8080/files';
+
+      workspaceEl.innerHTML = `<div class="glass-card no-lift rounded-3xl p-10 text-center"><div class="w-12 h-12 rounded-2xl bg-teal-500/15 text-teal-600 flex items-center justify-center mx-auto mb-3 animate-pulse"><i data-lucide="wifi" class="w-6 h-6"></i></div><h3 class="text-base font-bold" style="color: var(--text-primary)">Menghubungkan ke File Server RS...</h3><p class="text-xs mt-1" style="color: var(--text-muted)">Memeriksa koneksi jaringan Radmin VPN (26.101.65.134:8080)...</p></div>`;
+      lucide.createIcons();
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3200);
+
+      try {
+        await fetch(targetUrl, {
+          mode: 'no-cors',
+          cache: 'no-store',
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        workspaceEl.innerHTML = `<div class="glass-card no-lift rounded-3xl overflow-hidden flex flex-col"><div class="px-5 py-3.5 border-b flex flex-wrap items-center justify-between gap-3" style="border-color: var(--card-divider)"><div class="flex items-center gap-2.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="text-xs font-bold" style="color: var(--text-primary)">Terhubung ke File Server Utama RS</span><code class="hidden sm:inline text-[11px] px-2 py-0.5 rounded-lg bg-slate-500/10 font-mono" style="color: var(--text-secondary)">${targetUrl}</code></div><div class="flex items-center gap-2"><button onclick="renderNasWorkspace()" class="ios-btn sec-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Muat Ulang</span></button><a href="${targetUrl}" target="_blank" class="ios-btn px-3 py-1.5 rounded-xl bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 flex items-center gap-1.5 shadow-sm"><span>Tab Baru</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></div></div><div class="bg-white w-full h-[72vh]"><iframe src="${targetUrl}" class="w-full h-full border-0" title="File Server Utama RS Cikarang Medika"></iframe></div></div>`;
+      } catch (err) {
+        clearTimeout(timeoutId);
+
+        workspaceEl.innerHTML = `<div class="glass-card no-lift rounded-3xl p-8 text-center max-w-xl mx-auto"><div class="w-14 h-14 rounded-2xl bg-rose-500/15 text-rose-500 flex items-center justify-center mx-auto mb-4"><i data-lucide="wifi-off" class="w-7 h-7"></i></div><h3 class="text-lg font-bold" style="color: var(--text-primary)">Radmin VPN Belum Nyala atau Tidak Terhubung</h3><p class="text-xs mt-1.5 leading-relaxed" style="color: var(--text-muted)">Direktori berkas berada di IP privat <b>26.101.65.134:8080</b> dan tidak dapat dimuat tanpa koneksi Radmin VPN yang aktif.</p><div class="mt-5 p-4 rounded-2xl bg-slate-500/10 border border-slate-400/20 text-left space-y-2 text-xs" style="color: var(--text-secondary)"><p class="font-bold" style="color: var(--text-primary)">Langkah Mengatasi:</p><p>1. Buka aplikasi <b>Radmin VPN</b> di komputer Anda, lalu klik tombol <b>Power (ON)</b> hingga berwarna biru.</p><p>2. Pastikan jaringan <b>RS Cikarang Medika</b> di daftar Radmin berstatus <b>Online</b>.</p><p>3. Pastikan koneksi internet (Wi-Fi / LAN) komputer Anda aktif, lalu klik tombol di bawah.</p></div><div class="mt-6 flex flex-wrap items-center justify-center gap-2.5"><button onclick="renderNasWorkspace()" class="ios-btn px-5 py-2.5 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 flex items-center gap-1.5 shadow-md shadow-teal-600/25"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Cek Koneksi & Muat Ulang</span></button><a href="${targetUrl}" target="_blank" class="ios-btn sec-btn px-4 py-2.5 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><span>Paksa Buka Tab Baru</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></div></div>`;
+      }
+
+      lucide.createIcons();
+    }
+
+    async function submitNewMfkReport(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit-mfk');
+      btn.disabled = true;
+      btn.innerHTML = '<span>Mengirim ke Google Sheets...</span>';
+
+      const urgensiVal = document.querySelector('input[name="mfk-urgensi"]:checked')?.value || '2';
+      const payload = {
+        action: 'create',
+        tanggalRusak: document.getElementById('mfk-tanggal').value,
+        unit: document.getElementById('mfk-unit').value,
+        aset: document.getElementById('mfk-aset').value,
+        urgensi: Number(urgensiVal),
+        uraian: document.getElementById('mfk-uraian').value
+      };
+
+      try {
+        const res = await fetch(MFK_API_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          playSoftChime();
+          showToast(data.message, 'teal');
+          mfkState.subTab = 'dashboard';
+          await fetchMfkTickets(false, data.month);
+        } else {
+          alert('Gagal mengirim laporan: ' + (data.error || 'Terjadi kesalahan'));
+        }
+      } catch (err) {
+        alert('Koneksi gagal saat mengirim laporan: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Kirim Laporan Kerusakan</span>';
+        }
+      }
+    }
+
+    async function submitUmumResponse(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit-umum');
+      const pin = document.getElementById('umum-pin').value;
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>Menyimpan...</span>';
+
+      const payload = {
+        action: 'update',
+        pin: pin,
+        month: mfkState.activeMonth,
+        rowNumber: mfkState.selectedTicketForUpdate || mfkState.tickets[0]?.rowNumber,
+        kategori: document.getElementById('umum-kategori').value,
+        analisisAwal: document.getElementById('umum-analisis').value,
+        tindakLanjut: document.getElementById('umum-tindaklanjut').value,
+        jenisFasilitas: document.getElementById('umum-jenis-fasilitas').value,
+        tingkatKerusakan: Number(document.getElementById('umum-tingkat').value),
+        status: document.getElementById('umum-status').value
+      };
+
+      try {
+        const res = await fetch(MFK_API_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          sessionStorage.setItem('cikmed_umum_pin', pin);
+          mfkState.umumPinUnlocked = pin;
+          showToast(data.message, 'teal');
+          mfkState.subTab = 'dashboard';
+          await fetchMfkTickets(false);
+        } else {
+          alert(data.error || 'Gagal menyimpan update.');
+        }
+      } catch (err) {
+        alert('Koneksi gagal: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Simpan Update Bagian Umum</span>';
+        }
+      }
+    }
+
+    async function deleteUmumReport(rowNumber, ticketNo, unitName, asetName) {
+      const pinInput = document.getElementById('umum-pin');
+      const pin = pinInput ? pinInput.value.trim() : '';
+
+      if (!pin) {
+        alert('Masukkan PIN Bagian Umum terlebih dahulu sebelum menghapus laporan.');
+        if (pinInput) pinInput.focus();
+        return;
+      }
+
+      const yakin = confirm(`Yakin ingin menghapus permanen tiket #${ticketNo} (${unitName} - ${asetName}) karena laporan double?\n\nTindakan ini akan langsung menghapus baris data di Google Sheets.`);
+      if (!yakin) return;
+
+      const btn = document.getElementById('btn-delete-umum');
+      const originalHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span>Menghapus...</span>';
+
+      try {
+        const res = await fetch(MFK_API_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'delete',
+            pin: pin,
+            month: mfkState.activeMonth,
+            rowNumber: rowNumber
+          })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          sessionStorage.setItem('cikmed_umum_pin', pin);
+          mfkState.umumPinUnlocked = pin;
+          mfkState.selectedTicketForUpdate = null;
+          showToast(data.message || `Tiket #${ticketNo} berhasil dihapus.`, 'rose');
+          await fetchMfkTickets(false);
+          renderMfkWorkspace();
+        } else {
+          alert(data.error || 'Gagal menghapus laporan.');
+        }
+      } catch (err) {
+        alert('Koneksi gagal saat menghapus laporan: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+          lucide.createIcons();
+        }
+      }
+    }
+
+    function parseDurationToMinutes(durStr, startStr, endStr) {
+      // 1. Jika tanggal lapor dan tanggal selesai tersedia lengkap, hitung presisi menitnya
+      const parseDt = (s) => {
+        if (!s) return null;
+        const m = String(s).trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:[\s|]+(\d{1,2}):(\d{2}))?/);
+        if (!m) return null;
+        return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]), m[4] ? Number(m[4]) : 0, m[5] ? Number(m[5]) : 0, 0);
+      };
+
+      const dStart = parseDt(startStr);
+      const dEnd = parseDt(endStr);
+      if (dStart && dEnd && dEnd.getTime() >= dStart.getTime()) {
+        return Math.max(1, Math.floor((dEnd.getTime() - dStart.getTime()) / 60000));
+      }
+
+      // 2. Fallback: baca dari string durasi (misal: "3 hari 2 jam", "2 jam 15 mnt", "45 menit", atau angka hari "2")
+      if (!durStr) return null;
+      const str = String(durStr).toLowerCase().trim();
+      if (/^\d+(\.\d+)?$/.test(str)) {
+        return Math.round(Number(str) * 24 * 60);
+      }
+
+      let totalMins = 0;
+      const dayMatch = str.match(/(\d+)\s*hari/);
+      const hourMatch = str.match(/(\d+)\s*jam/);
+      const minMatch = str.match(/(\d+)\s*(?:mnt|menit)/);
+
+      if (dayMatch) totalMins += Number(dayMatch[1]) * 24 * 60;
+      if (hourMatch) totalMins += Number(hourMatch[1]) * 60;
+      if (minMatch) totalMins += Number(minMatch[1]);
+
+      return totalMins > 0 ? totalMins : null;
+    }
+
+    function formatMinutesToHuman(totalMins) {
+      if (totalMins === null || isNaN(totalMins) || totalMins <= 0) return '-';
+      const minsRounded = Math.round(totalMins);
+      const days = Math.floor(minsRounded / (60 * 24));
+      const hours = Math.floor((minsRounded % (60 * 24)) / 60);
+      const mins = minsRounded % 60;
+
+      if (days > 0) {
+        return hours > 0 ? `${days} hari ${hours} jam` : `${days} hari`;
+      }
+      if (hours > 0) {
+        return mins > 0 ? `${hours} jam ${mins} mnt` : `${hours} jam`;
+      }
+      return `${mins} menit`;
+    }
+
+    function printMonthlyMfkReport() {
+      const tickets = mfkState.tickets || [];
+      if (tickets.length === 0) {
+        alert(`Belum ada data laporan kerusakan pada periode ${mfkState.activeMonth || 'ini'} untuk dicetak.`);
+        return;
+      }
+
+      const bulanMap = {
+        Jan: 'Januari', Feb: 'Februari', Mar: 'Maret', Apr: 'April',
+        Mei: 'Mei', Jun: 'Juni', Jul: 'Juli', Agu: 'Agustus',
+        Sep: 'September', Okt: 'Oktober', Nov: 'November', Des: 'Desember'
+      };
+      const periodParts = (mfkState.activeMonth || '').split(' ');
+      const periodeFull = periodParts.length === 2
+        ? `${bulanMap[periodParts[0]] || periodParts[0]} ${periodParts[1]}`
+        : (mfkState.activeMonth || 'Bulan Berjalan');
+
+      const tglCetak = new Date().toLocaleDateString('id-ID', {
+        day: '2-digit', month: 'long', year: 'numeric'
+      });
+
+      const sortedTickets = [...tickets].sort((a, b) => Number(a.no) - Number(b.no));
+
+      const kategoriGroups = [
+        ...JENIS_FASILITAS_DETAIL,
+        { nama: 'BELUM DIKLASIFIKASI', cakupan: 'Laporan unit yang masih menunggu pengecekan & klasifikasi Bagian Umum.' }
+      ];
+
+      let grandTotal = 0, grandMenunggu = 0, grandProses = 0, grandGanti = 0, grandSelesai = 0;
+      let grandU1 = 0, grandU2 = 0, grandU3 = 0;
+
+      let allCompletedDurationsMins = [];
+      let allResponseTimesMins = [];
+      let selesaiUnder24h = 0;
+      let selesaiOver24h = 0;
+
+      sortedTickets.forEach(t => {
+        const respMins = parseDurationToMinutes(null, t.tanggalRusak, t.waktuRespon);
+        if (respMins !== null) allResponseTimesMins.push(respMins);
+
+        if (t.status.toLowerCase() === 'selesai') {
+          const solMins = parseDurationToMinutes(t.durasi, t.tanggalRusak, t.tanggalSelesai);
+          if (solMins !== null) {
+            allCompletedDurationsMins.push(solMins);
+            if (solMins <= 24 * 60) selesaiUnder24h++;
+            else selesaiOver24h++;
+          }
+        }
+      });
+
+      const summaryRowsHtml = kategoriGroups.map((kat, idx) => {
+        const items = sortedTickets.filter(t => {
+          const jf = (t.jenisFasilitas || '').trim().toUpperCase();
+          if (kat.nama === 'BELUM DIKLASIFIKASI') {
+            return !jf || !JENIS_FASILITAS_LIST.includes(jf);
+          }
+          return jf === kat.nama;
+        });
+
+        if (kat.nama === 'BELUM DIKLASIFIKASI' && items.length === 0) return '';
+
+        const total = items.length;
+        const menunggu = items.filter(t => t.status.toLowerCase() === 'menunggu').length;
+        const proses = items.filter(t => t.status.toLowerCase() === 'proses').length;
+        const ganti = items.filter(t => t.status.toLowerCase() === 'rekomendasi ganti').length;
+        const selesaiItems = items.filter(t => t.status.toLowerCase() === 'selesai');
+        const selesai = selesaiItems.length;
+        const belumSelesai = menunggu + proses + ganti;
+
+        const u1 = items.filter(t => Number(t.urgensi) === 1).length;
+        const u2 = items.filter(t => Number(t.urgensi) === 2).length;
+        const u3 = items.filter(t => Number(t.urgensi) === 3).length;
+
+        // Capaian = Selesai / (Selesai + Belum Selesai) * 100%
+        const pembagiTotal = selesai + belumSelesai;
+        const persenSelesai = pembagiTotal > 0 ? Math.round((selesai / pembagiTotal) * 100) : 0;
+
+        const katDurations = selesaiItems
+          .map(t => parseDurationToMinutes(t.durasi, t.tanggalRusak, t.tanggalSelesai))
+          .filter(m => m !== null);
+        const avgKatMins = katDurations.length > 0
+          ? katDurations.reduce((acc, v) => acc + v, 0) / katDurations.length
+          : null;
+        const avgKatText = formatMinutesToHuman(avgKatMins);
+
+        grandTotal += total;
+        grandMenunggu += menunggu;
+        grandProses += proses;
+        grandGanti += ganti;
+        grandSelesai += selesai;
+        grandU1 += u1;
+        grandU2 += u2;
+        grandU3 += u3;
+
+        const capaianCellHtml = pembagiTotal > 0
+          ? `<span style="font-size:8pt; color:${persenSelesai === 100 ? '#047857' : '#0f172a'};">${persenSelesai}%</span><br><span style="font-size:6.5pt; font-weight:normal; color:#475569;">(${selesai}/${pembagiTotal})</span>`
+          : '-';
+
+        return `<tr>
+          <td style="text-align:center;">${idx + 1}</td>
+          <td><b>${kat.nama}</b><br><span style="font-size:6.7pt; color:#475569;">${kat.cakupan}</span></td>
+          <td style="text-align:center; font-weight:bold; border-right: 2px solid #0f172a;">${total}</td>
+          <td style="text-align:center; background:#fffafb;">${u3 > 0 ? `<b style="color:#b91c1c;">${u3}</b>` : '0'}</td>
+          <td style="text-align:center; background:#fffafb;">${u2}</td>
+          <td style="text-align:center; background:#fffafb; border-right: 2px solid #0f172a;">${u1}</td>
+          <td style="text-align:center; background:#f8fafc;">${menunggu}</td>
+          <td style="text-align:center; background:#f8fafc;">${proses}</td>
+          <td style="text-align:center; background:#f8fafc;">${ganti}</td>
+          <td style="text-align:center; background:#f0fdf4; font-weight:bold; color:#047857;">${selesai}</td>
+          <td style="text-align:center; background:#f0fdf4; font-weight:bold;">${capaianCellHtml}</td>
+          <td style="text-align:center; font-weight:bold; color:#0f172a;">${avgKatText}</td>
+        </tr>`;
+      }).join('');
+
+      const grandBelumSelesai = grandMenunggu + grandProses + grandGanti;
+      const grandPembagi = grandSelesai + grandBelumSelesai;
+      const grandPersen = grandPembagi > 0 ? Math.round((grandSelesai / grandPembagi) * 100) : 0;
+
+      const grandAvgSolMins = allCompletedDurationsMins.length > 0
+        ? allCompletedDurationsMins.reduce((a, b) => a + b, 0) / allCompletedDurationsMins.length
+        : null;
+      const grandAvgRespMins = allResponseTimesMins.length > 0
+        ? allResponseTimesMins.reduce((a, b) => a + b, 0) / allResponseTimesMins.length
+        : null;
+
+      const totalEvaluatedSelesai = selesaiUnder24h + selesaiOver24h;
+      const pctUnder24h = totalEvaluatedSelesai > 0 ? Math.round((selesaiUnder24h / totalEvaluatedSelesai) * 100) : 0;
+      const pctOver24h = totalEvaluatedSelesai > 0 ? (100 - pctUnder24h) : 0;
+
+      const detailPerKategoriHtml = kategoriGroups.map(kat => {
+        const items = sortedTickets.filter(t => {
+          const jf = (t.jenisFasilitas || '').trim().toUpperCase();
+          if (kat.nama === 'BELUM DIKLASIFIKASI') {
+            return !jf || !JENIS_FASILITAS_LIST.includes(jf);
+          }
+          return jf === kat.nama;
+        });
+
+        if (items.length === 0) return '';
+
+        const rowsHtml = items.map((t, i) => {
+          const urgLabel = Number(t.urgensi) === 3 ? '3 (Kritis)' : Number(t.urgensi) === 2 ? '2 (Sedang)' : '1 (Rendah)';
+          const tkLabel = t.tingkatKerusakan === 3 ? 'Berat' : t.tingkatKerusakan === 2 ? 'Sedang' : t.tingkatKerusakan === 1 ? 'Ringan' : '-';
+          const katPenyebab = t.kategori && t.kategori !== '-' ? `<b>[${t.kategori}]</b> ` : '';
+          const analisis = t.analisisAwal && t.analisisAwal !== '-' ? `${katPenyebab}${t.analisisAwal}` : (katPenyebab || '-');
+          const riwayat = t.tindakLanjut && t.tindakLanjut !== '-' ? String(t.tindakLanjut).replace(/\n/g, '<br>') : '-';
+          const waktuRespon = t.waktuRespon ? formatWaktuPemisah(t.waktuRespon) : '-';
+          const waktuSelesai = t.status.toLowerCase() === 'selesai' && t.tanggalSelesai
+            ? `${formatWaktuPemisah(t.tanggalSelesai)}<br><b>(${t.durasi || '-'})</b>`
+            : (t.tanggalSelesai ? formatWaktuPemisah(t.tanggalSelesai) : '-');
+
+          const statusStyle = t.status.toLowerCase() === 'selesai'
+            ? 'background:#dcfce7; color:#166534; font-weight:bold;'
+            : t.status.toLowerCase() === 'rekomendasi ganti'
+              ? 'background:#f3e8ff; color:#6b21a8; font-weight:bold;'
+              : t.status.toLowerCase() === 'proses'
+                ? 'background:#ffedd5; color:#9a3412; font-weight:bold;'
+                : 'background:#fef9c3; color:#854d0e; font-weight:bold;';
+
+          return `<tr>
+            <td style="text-align:center;">${i + 1}<br><span style="font-size:6.8pt; color:#64748b;">(#${t.no})</span></td>
+            <td style="text-align:center;">${formatWaktuPemisah(t.tanggalRusak)}</td>
+            <td><b>${t.unit}</b></td>
+            <td><b>${t.aset}</b><br><span style="color:#334155;">${t.uraian}</span></td>
+            <td>${analisis}</td>
+            <td>${riwayat}</td>
+            <td style="text-align:center;">${urgLabel}<br><span style="font-size:7pt; color:#475569;">Rusak: ${tkLabel}</span></td>
+            <td style="text-align:center;">${waktuRespon}</td>
+            <td style="text-align:center;">${waktuSelesai}</td>
+            <td style="text-align:center; ${statusStyle}">${t.status}</td>
+          </tr>`;
+        }).join('');
+
+        return `<div class="kat-block">
+          <div class="kat-header">
+            <span>KATEGORI: ${kat.nama} (${items.length} Laporan)</span>
+            <span style="font-weight:normal; font-size:7.5pt;">Cakupan: ${kat.cakupan}</span>
+          </div>
+          <table class="tbl-mfk">
+            <thead>
+              <tr>
+                <th style="width:4%;">No</th>
+                <th style="width:10%;">Waktu Lapor</th>
+                <th style="width:10%;">Unit</th>
+                <th style="width:16%;">Aset &amp; Keluhan Unit</th>
+                <th style="width:14%;">Penyebab &amp; Analisis</th>
+                <th style="width:17%;">Riwayat Tindak Lanjut</th>
+                <th style="width:8%;">Urgensi / Tingkat</th>
+                <th style="width:8%;">Respon Umum</th>
+                <th style="width:8%;">Selesai &amp; Durasi</th>
+                <th style="width:5%;">Status</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>`;
+      }).join('');
+
+      const printHtml = [
+        '<!DOCTYPE html><html><head>',
+        `<title>Laporan Bulanan Pemeliharaan & Perbaikan Fasilitas (MFK) - ${periodeFull}</title>`,
+        '<style>',
+        '@page { size: A4 landscape; margin: 0; }',
+        '* { box-sizing: border-box; }',
+        'body { font-family: Arial, Helvetica, sans-serif; font-size: 8pt; color: #0f172a; margin: 0; padding: 1.4cm 1.6cm 1.5cm 1.6cm; width: 100%; }',
+        '.judul-dok { text-align: center; font-weight: bold; font-size: 10.5pt; text-decoration: underline; margin: 6px 0 3px; letter-spacing: 0.3px; }',
+        '.sub-dok { text-align: center; font-size: 8.2pt; color: #334155; margin-bottom: 10px; }',
+        '.meta-box { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 7.8pt; background: #f8fafc; border: 1px solid #cbd5e1; }',
+        '.meta-box td { padding: 5px 8px; border: 1px solid #cbd5e1; vertical-align: top; }',
+        '.sec-title { font-size: 8.8pt; font-weight: bold; background: #1e3a5f; color: #ffffff; padding: 5px 8px; margin-top: 10px; border-radius: 3px 3px 0 0; }',
+        'table.tbl-mfk { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 7.3pt; margin-bottom: 10px; }',
+        'table.tbl-mfk th, table.tbl-mfk td { border: 1px solid #334155; padding: 4px 5px; vertical-align: middle; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.3; }',
+        'table.tbl-mfk th { background: #e2e8f0; color: #0f172a; text-align: center; font-weight: bold; }',
+        '.kat-block { margin-top: 10px; page-break-inside: avoid; }',
+        '.kat-header { background: #0f172a; color: #ffffff; padding: 4px 8px; font-weight: bold; font-size: 8pt; display: flex; justify-content: space-between; align-items: center; }',
+        '.ttd { width: 100%; margin-top: 18px; text-align: center; font-size: 8.2pt; page-break-inside: avoid; }',
+        '.ttd td { width: 33.33%; vertical-align: top; }',
+        '</style></head><body>',
+        getKopSuratHtml(),
+        '<div class="judul-dok">LAPORAN BULANAN PEMELIHARAAN &amp; PERBAIKAN KERUSAKAN FASILITAS (MFK)</div>',
+        `<div class="sub-dok">No. Dokumen: FRM/UMUM/MFK/001 &bull; Periode Laporan: <b>${periodeFull}</b> &bull; Dicetak: ${tglCetak}</div>`,
+        '<table class="meta-box">',
+        '<tr>',
+        `<td style="width:25%;"><b>Total Laporan Masuk:</b> ${grandTotal} Tiket<br><span style="color:#475569;">Kritis (3): ${grandU3} | Sedang (2): ${grandU2} | Rendah (1): ${grandU1}</span></td>`,
+        `<td style="width:25%;"><b>Capaian Penyelesaian:</b> ${grandSelesai} dari ${grandPembagi} (${grandPersen}%)<br><span style="color:#475569;">Belum Selesai: ${grandBelumSelesai} (Proses: ${grandProses}, Ganti: ${grandGanti}, Tunggu: ${grandMenunggu})</span></td>`,
+        `<td style="width:25%;"><b>Rata-rata Kecepatan Respon Awal:</b> ${formatMinutesToHuman(grandAvgRespMins)}<br><b>Rata-rata Lama Perbaikan Selesai:</b> ${formatMinutesToHuman(grandAvgSolMins)}</td>`,
+        `<td style="width:25%;"><b>Distribusi Lama Perbaikan (Selesai):</b><br><span style="color:#047857;"><b>&le; 24 Jam:</b> ${selesaiUnder24h} tiket (${pctUnder24h}%)</span> &bull; <span style="color:#b45309;"><b>&gt; 1 Hari:</b> ${selesaiOver24h} tiket (${pctOver24h}%)</span></td>`,
+        '</tr>',
+        '</table>',
+        '<div class="sec-title">I. REKAPITULASI KERUSAKAN &amp; RATA-RATA LAMA PERBAIKAN BERDASARKAN 6 KATEGORI FASILITAS</div>',
+        '<table class="tbl-mfk"><thead>',
+        '<tr>',
+        '<th rowspan="2" style="width:3.5%;">No</th>',
+        '<th rowspan="2" style="width:29.5%;">Kategori Jenis Fasilitas &amp; Cakupan</th>',
+        '<th rowspan="2" style="width:5.5%; border-right: 2px solid #0f172a;">Total<br>Tiket</th>',
+        '<th colspan="3" style="background:#fee2e2; color:#991b1b; border-right: 2px solid #0f172a;">TINGKAT URGENSI (PRIORITAS)</th>',
+        '<th colspan="5" style="background:#dcfce7; color:#166534;">STATUS PENGERJAAN &amp; CAPAIAN UMUM</th>',
+        '<th rowspan="2" style="width:13%;">Rata-rata<br>Lama Selesai</th>',
+        '</tr>',
+        '<tr>',
+        '<th style="width:5.5%; background:#fef2f2; color:#991b1b;">Kritis<br>(3)</th>',
+        '<th style="width:5.5%; background:#fef2f2; color:#991b1b;">Sedang<br>(2)</th>',
+        '<th style="width:5.5%; background:#fef2f2; color:#991b1b; border-right: 2px solid #0f172a;">Rendah<br>(1)</th>',
+        '<th style="width:6.5%; background:#f1f5f9;">Menunggu</th>',
+        '<th style="width:5.5%; background:#f1f5f9;">Proses</th>',
+        '<th style="width:6.5%; background:#f1f5f9;">Rek.<br>Ganti</th>',
+        '<th style="width:5.5%; background:#dcfce7; color:#166534;">Selesai</th>',
+        '<th style="width:8%; background:#dcfce7; color:#166534;">Capaian<br><span style="font-size:6.2pt; font-weight:normal;">(Selesai/Total)</span></th>',
+        '</tr>',
+        '</thead><tbody>',
+        summaryRowsHtml,
+        '<tr style="background:#e2e8f0; font-weight:bold; border-top: 2px solid #0f172a;">',
+        '<td colspan="2" style="text-align:center;">TOTAL / RATA-RATA KESELURUHAN (' + periodeFull.toUpperCase() + ')</td>',
+        `<td style="text-align:center; border-right: 2px solid #0f172a;">${grandTotal}</td>`,
+        `<td style="text-align:center; color:#b91c1c;">${grandU3}</td>`,
+        `<td style="text-align:center;">${grandU2}</td>`,
+        `<td style="text-align:center; border-right: 2px solid #0f172a;">${grandU1}</td>`,
+        `<td style="text-align:center;">${grandMenunggu}</td>`,
+        `<td style="text-align:center;">${grandProses}</td>`,
+        `<td style="text-align:center;">${grandGanti}</td>`,
+        `<td style="text-align:center; color:#047857;">${grandSelesai}</td>`,
+        `<td style="text-align:center; color:#047857;">${grandPersen}%<br><span style="font-size:6.5pt; font-weight:normal; color:#334155;">(${grandSelesai}/${grandPembagi})</span></td>`,
+        `<td style="text-align:center; color:#0f172a;">${formatMinutesToHuman(grandAvgSolMins)}</td>`,
+        '</tr></tbody></table>',
+        '<div class="sec-title">II. RINCIAN &amp; RIWAYAT TINDAK LANJUT KERUSAKAN PER KATEGORI FASILITAS</div>',
+        detailPerKategoriHtml,
+        '<table class="ttd"><tr>',
+        '<td>Dibuat Oleh,<br><b>Staf Bagian Umum / IPSRS</b><br><br><br><br>( ........................................ )</td>',
+        '<td>Diperiksa Oleh,<br><b>Kepala Bagian Umum &amp; MFK</b><br><br><br><br>( ........................................ )</td>',
+        `<td>Cikarang, ${tglCetak}<br><b>Direktur RS Cikarang Medika</b><br><br><br><br>( ........................................ )</td>`,
+        '</tr></table>',
+        '<' + '/body><' + '/html>'
+      ].join('');
+
+      const win = window.open('', '_blank');
+      if (!win) {
+        alert('Pop-up diblokir browser. Izinkan pop-up untuk mencetak laporan bulanan MFK.');
+        return;
+      }
+      win.document.open();
+      win.document.write(printHtml);
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 350);
+    }
+
+
+    function initDefaultKebersihanAnswers() {
+      KEBERSIHAN_TEMPLATE.forEach(g => {
+        g.items.forEach(item => {
+          const key = `${g.area}||${item}`;
+          if (!kebersihanState.answers[key]) {
+            kebersihanState.answers[key] = { nilai: '1', ket: '' };
+          }
+        });
+      });
+    }
+
+    async function fetchKebersihanRecords() {
+      if (!KEBERSIHAN_API_URL || KEBERSIHAN_API_URL.includes('TEMPEL_URL')) return;
+      try {
+        const res = await fetch(KEBERSIHAN_API_URL);
+        const data = await res.json();
+        if (data.success) {
+          kebersihanState.records = data.records || [];
+          if (currentSection === 'kebersihan-workspace' && kebersihanState.subTab === 'riwayat') {
+            renderKebersihanWorkspace();
+          }
+        }
+      } catch (err) {
+        console.error('Gagal memuat riwayat kebersihan:', err);
+      }
+    }
+
+    function openKebersihanWorkspace(tab = 'form') {
+      initDefaultKebersihanAnswers();
+      kebersihanState.subTab = tab;
+      selectSection('kebersihan-workspace');
+      fetchKebersihanRecords();
+    }
+
+    function setKebersihanNilai(key, val) {
+      if (!kebersihanState.answers[key]) kebersihanState.answers[key] = { nilai: val, ket: '' };
+      kebersihanState.answers[key].nilai = val;
+      renderKebersihanWorkspace();
+    }
+
+    function setKebersihanKet(key, text) {
+      if (!kebersihanState.answers[key]) kebersihanState.answers[key] = { nilai: '1', ket: text };
+      kebersihanState.answers[key].ket = text;
+    }
+
+    function getKebersihanLiveScore() {
+      let ya = 0, tidak = 0, na = 0;
+      Object.values(kebersihanState.answers).forEach(a => {
+        if (a.nilai === '1') ya++;
+        else if (a.nilai === '0') tidak++;
+        else na++;
+      });
+      const pembagi = ya + tidak;
+      const skor = pembagi > 0 ? Math.round((ya / pembagi) * 100) : 100;
+      return { ya, tidak, na, skor };
+    }
+
+    function renderKebersihanWorkspace() {
+      initDefaultKebersihanAnswers();
+      const score = getKebersihanLiveScore();
+      const nowStr = new Date().toLocaleDateString('id-ID', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) +
+                     ' • ' + new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+
+      const navHtml = `<div class="flex flex-wrap items-center justify-between gap-3 mb-6"><div class="flex flex-wrap items-center gap-2"><button onclick="selectSection('fasilitas')" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="arrow-left" class="w-3.5 h-3.5"></i><span>Kembali</span></button><button onclick="kebersihanState.subTab='form'; renderKebersihanWorkspace()" class="ios-btn px-4 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5 ${kebersihanState.subTab === 'form' ? 'bg-teal-600 text-white shadow-md' : 'sec-btn'}"><i data-lucide="clipboard-check" class="w-3.5 h-3.5"></i><span>Form Ceklis Jumat Keliling</span></button><button onclick="kebersihanState.subTab='riwayat'; fetchKebersihanRecords(); renderKebersihanWorkspace()" class="ios-btn px-4 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5 ${kebersihanState.subTab === 'riwayat' ? 'bg-slate-900 text-white shadow-md' : 'sec-btn'}"><i data-lucide="printer" class="w-3.5 h-3.5"></i><span>Riwayat & Cetak Laporan (${kebersihanState.records.length})</span></button></div><button onclick="printCurrentChecklistDraft()" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="printer" class="w-3.5 h-3.5 text-teal-600"></i><span>Print Form Saat Ini</span></button></div>`;
+
+      let bodyHtml = '';
+
+      if (kebersihanState.subTab === 'form') {
+        const tableRowsHtml = KEBERSIHAN_TEMPLATE.map(group => {
+          return group.items.map((indikator, idx) => {
+            const key = `${group.area}||${indikator}`;
+            const current = kebersihanState.answers[key] || { nilai: '1', ket: '' };
+            const rowBg = current.nilai === '0' ? 'bg-rose-500/10' : '';
+
+            return `<tr class="border-b border-slate-300/40 ${rowBg}">${idx === 0 ? `<td rowspan="${group.items.length}" class="p-3 font-bold text-xs align-middle border-r border-slate-300/40 bg-slate-500/5" style="color: var(--text-primary)">${group.area}</td>` : ''}<td class="p-2.5 text-xs border-r border-slate-300/40" style="color: var(--text-primary)">${indikator}</td><td class="p-2 text-center border-r border-slate-300/40"><button type="button" onclick="setKebersihanNilai('${key}', '1')" class="w-9 h-7 rounded-lg text-xs font-bold transition ${current.nilai === '1' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-emerald-500/20'}">1</button></td><td class="p-2 text-center border-r border-slate-300/40"><button type="button" onclick="setKebersihanNilai('${key}', '0')" class="w-9 h-7 rounded-lg text-xs font-bold transition ${current.nilai === '0' ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-rose-500/20'}">0</button></td><td class="p-2 text-center border-r border-slate-300/40"><button type="button" onclick="setKebersihanNilai('${key}', 'NA')" class="w-10 h-7 rounded-lg text-[11px] font-bold transition ${current.nilai === 'NA' ? 'bg-slate-700 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-slate-500/20'}">N/A</button></td><td class="p-2"><input type="text" value="${current.ket.replace(/"/g, '&quot;')}" oninput="setKebersihanKet('${key}', this.value)" placeholder="${current.nilai === '0' ? 'Wajib isi temuan/tindak lanjut...' : 'Catatan opsional...'}" class="form-input w-full px-2.5 py-1.5 rounded-xl text-xs" /></td></tr>`;
+          }).join('');
+        }).join('');
+
+        bodyHtml = `<div class="glass-card no-lift rounded-3xl p-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5 mb-5 card-divider"><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Nama Unit / Ruangan *</label><select onchange="kebersihanState.selectedUnit=this.value; renderKebersihanWorkspace()" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm font-bold">${UNIT_LIST.map(u => `<option value="${u}" ${kebersihanState.selectedUnit === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tanggal & Waktu Penilaian</label><input type="text" id="kebersihan-waktu" value="${nowStr}" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-xs font-semibold" /></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tim Supervisi (Manajemen & Umum)</label><input type="text" oninput="kebersihanState.petugas=this.value" value="${kebersihanState.petugas}" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-xs font-semibold" /></div></div><div class="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-teal-500/10 border border-teal-500/25 mb-5 text-xs"><div class="space-y-0.5" style="color: var(--text-secondary)"><p class="font-bold" style="color: var(--text-primary)">Keterangan Skor Standar PPI & MFK:</p><p><b>YA (1)</b>: Bersih, kering bebas debu/noda • <b>TIDAK (0)</b>: Kotor, berdebu, basah/licin, berbau, rusak • <b>N/A</b>: Tidak berlaku di unit ini</p></div><div class="flex items-center gap-3 shrink-0"><span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-700 font-bold">YA: ${score.ya}</span><span class="px-2.5 py-1 rounded-xl bg-rose-500/20 text-rose-700 font-bold">TIDAK: ${score.tidak}</span><span class="px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-sm">Skor: ${score.skor}%</span></div></div><div class="overflow-x-auto rounded-2xl border border-slate-300/50"><table class="w-full border-collapse text-left"><thead><tr class="bg-slate-900 text-white text-[11px] uppercase tracking-wider"><th class="p-3 w-44">Area / Objek Penilaian</th><th class="p-3 w-64">Indikator Standar Kebersihan</th><th class="p-3 text-center w-16">YA (1)</th><th class="p-3 text-center w-20">TIDAK (0)</th><th class="p-3 text-center w-16">N/A</th><th class="p-3">Keterangan / Temuan</th></tr></thead><tbody>${tableRowsHtml}</tbody></table></div><div class="mt-6 flex flex-wrap items-center justify-between gap-3"><button type="button" onclick="kebersihanState.answers={}; initDefaultKebersihanAnswers(); renderKebersihanWorkspace()" class="ios-btn sec-btn px-4 py-2.5 rounded-2xl text-xs font-semibold">Reset Semua ke YA (1)</button><button type="button" id="btn-save-kebersihan" onclick="submitKebersihanChecklist()" class="ios-btn px-6 py-3 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-lg shadow-teal-600/25 flex items-center gap-2"><i data-lucide="save" class="w-4 h-4"></i><span>Simpan Hasil Supervisi Jumat (${kebersihanState.selectedUnit})</span></button></div></div>`;
+      }
+
+      if (kebersihanState.subTab === 'riwayat') {
+        const getDateOnly = (str) => (str || '').split('•')[0].trim();
+        const uniqueDates = [...new Set(kebersihanState.records.map(r => getDateOnly(r.tanggalWaktu)).filter(Boolean))];
+
+        if (kebersihanState.filterTanggal === 'ALL' && uniqueDates.length > 0) {
+          kebersihanState.filterTanggal = uniqueDates[0];
+        }
+
+        const filtered = kebersihanState.records.filter(r => {
+          const matchUnit = kebersihanState.filterUnit === 'ALL' || r.unit.toLowerCase() === kebersihanState.filterUnit.toLowerCase();
+          const matchDate = kebersihanState.filterTanggal === 'ALL' || getDateOnly(r.tanggalWaktu) === kebersihanState.filterTanggal;
+          return matchUnit && matchDate;
+        });
+
+        const dateOptions = [
+          `<option value="ALL" ${kebersihanState.filterTanggal === 'ALL' ? 'selected' : ''}>Semua Tanggal Keliling (${kebersihanState.records.length} data)</option>`,
+          ...uniqueDates.map(d => {
+            const countOnDate = kebersihanState.records.filter(r => getDateOnly(r.tanggalWaktu) === d).length;
+            return `<option value="${d}" ${kebersihanState.filterTanggal === d ? 'selected' : ''}>Jumat: ${d} (${countOnDate} unit)</option>`;
+          })
+        ].join('');
+
+        bodyHtml = `<div class="glass-card no-lift rounded-2xl p-4 mb-5 flex flex-wrap items-center justify-between gap-3"><div class="flex flex-wrap items-center gap-2"><select onchange="kebersihanState.filterTanggal=this.value; renderKebersihanWorkspace()" class="form-input px-3.5 py-2 rounded-xl text-xs font-bold">${dateOptions}</select><select onchange="kebersihanState.filterUnit=this.value; renderKebersihanWorkspace()" class="form-input px-3.5 py-2 rounded-xl text-xs font-bold"><option value="ALL">Semua Unit / Ruangan</option>${UNIT_LIST.map(u => `<option value="${u}" ${kebersihanState.filterUnit === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div><div class="flex flex-wrap items-center gap-2"><button onclick="fetchKebersihanRecords()" class="ios-btn sec-btn px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Refresh</span></button><button onclick="printRekapSemuaUnit(false)" class="ios-btn px-4 py-2 rounded-xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-md shadow-teal-600/20 flex items-center gap-1.5"><i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i><span>Cetak Rekap Semua Unit (${filtered.length})</span></button><button onclick="printRekapSemuaUnit(true)" class="ios-btn px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 shadow-md flex items-center gap-1.5"><i data-lucide="printer" class="w-3.5 h-3.5 text-teal-400"></i><span>Cetak Rekap + Rincian Ceklis</span></button></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${filtered.length === 0 ? `<div class="md:col-span-2 glass-card no-lift rounded-3xl p-10 text-center"><p class="text-sm font-bold" style="color: var(--text-primary)">Belum ada riwayat supervisi kebersihan tersimpan</p><p class="text-xs mt-1" style="color: var(--text-muted)">Silakan isi ceklis pada tab Form Ceklis Jumat Keliling.</p></div>` : filtered.map((rec, idx) => {
+          const badgeColor = rec.skor >= 90 ? 'bg-emerald-500/15 text-emerald-600' : rec.skor >= 75 ? 'bg-amber-500/15 text-amber-600' : 'bg-rose-500/15 text-rose-600';
+          return `<div class="glass-card no-lift rounded-3xl p-5 flex flex-col justify-between"><div><div class="flex items-center justify-between gap-2"><span class="text-xs font-bold px-2.5 py-1 rounded-xl bg-teal-500/15 text-teal-600">${rec.unit}</span><span class="text-xs font-bold px-3 py-1 rounded-full ${badgeColor}">Skor Kepatuhan: ${rec.skor}%</span></div><p class="text-xs font-semibold mt-2.5" style="color: var(--text-primary)">${rec.tanggalWaktu}</p><p class="text-[11px] mt-0.5" style="color: var(--text-muted)">Petugas: ${rec.petugas}</p><div class="mt-3 flex items-center gap-3 text-[11px] font-bold"><span class="text-emerald-600">YA: ${rec.totalYa}</span><span class="text-rose-600">TIDAK: ${rec.totalTidak}</span><span class="text-slate-500">N/A: ${rec.totalNa}</span></div></div><div class="mt-4 pt-3.5 card-divider flex items-center justify-end gap-2"><button onclick="printSavedKebersihanRecord(${idx})" class="ios-btn sec-btn w-full py-2 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2"><i data-lucide="printer" class="w-3.5 h-3.5 text-teal-600"></i><span>Cetak Lembar Unit Ini Saja</span></button></div></div>`;
+        }).join('')}</div>`;
+      }
+
+      workspaceEl.innerHTML = navHtml + bodyHtml;
+      lucide.createIcons();
+    }
+
+    async function submitKebersihanChecklist() {
+      const btn = document.getElementById('btn-save-kebersihan');
+      btn.disabled = true;
+      btn.innerHTML = '<span>Menyimpan ke Spreadsheet...</span>';
+
+      const results = [];
+      KEBERSIHAN_TEMPLATE.forEach(group => {
+        group.items.forEach(indikator => {
+          const key = `${group.area}||${indikator}`;
+          const ans = kebersihanState.answers[key] || { nilai: '1', ket: '' };
+          results.push({
+            area: group.area,
+            indikator: indikator,
+            nilai: ans.nilai,
+            keterangan: ans.ket
+          });
+        });
+      });
+
+      const payload = {
+        unit: kebersihanState.selectedUnit,
+        tanggalWaktu: document.getElementById('kebersihan-waktu').value,
+        petugas: kebersihanState.petugas,
+        results: results
+      };
+
+      try {
+        const res = await fetch(KEBERSIHAN_API_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          playSoftChime();
+          showToast(data.message, 'teal');
+          kebersihanState.subTab = 'riwayat';
+          await fetchKebersihanRecords();
+          renderKebersihanWorkspace();
+        } else {
+          alert('Gagal menyimpan: ' + (data.error || 'Terjadi kesalahan'));
+        }
+      } catch (err) {
+        alert('Koneksi gagal: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Simpan Hasil Supervisi Jumat</span>';
+        }
+      }
+    }
+
+    function printCurrentChecklistDraft() {
+      const results = [];
+      KEBERSIHAN_TEMPLATE.forEach(g => {
+        g.items.forEach(ind => {
+          const ans = kebersihanState.answers[`${g.area}||${ind}`] || { nilai: '1', ket: '' };
+          results.push({ area: g.area, indikator: ind, nilai: ans.nilai, keterangan: ans.ket });
+        });
+      });
+      const sc = getKebersihanLiveScore();
+      openPrintWindow({
+        unit: kebersihanState.selectedUnit,
+        tanggalWaktu: document.getElementById('kebersihan-waktu')?.value || new Date().toLocaleDateString('id-ID'),
+        petugas: kebersihanState.petugas,
+        totalYa: sc.ya,
+        totalTidak: sc.tidak,
+        totalNa: sc.na,
+        skor: sc.skor,
+        items: results
+      });
+    }
+
+    function printSavedKebersihanRecord(idx) {
+      const getDateOnly = (str) => (str || '').split('•')[0].trim();
+      const filtered = kebersihanState.records.filter(r => {
+        const matchUnit = kebersihanState.filterUnit === 'ALL' || r.unit.toLowerCase() === kebersihanState.filterUnit.toLowerCase();
+        const matchDate = kebersihanState.filterTanggal === 'ALL' || getDateOnly(r.tanggalWaktu) === kebersihanState.filterTanggal;
+        return matchUnit && matchDate;
+      });
+      const rec = filtered[idx];
+      if (rec) openPrintWindow(rec);
+    }
+
+    function getKopSuratHtml() {
+      const kopUrl = new URL('bg/kop_surat.png', window.location.href).href;
+      return `<div style="width:100%; text-align:center; margin-bottom:10px;"><img src="${kopUrl}" alt="Kop Surat RS Cikarang Medika" style="width:100%; max-height:155px; object-fit:contain; display:block; margin:0 auto;"></div>`;
+    }
+
+    function printRekapSemuaUnit(includeDetailPerUnit = false) {
+      const getDateOnly = (str) => (str || '').split('•')[0].trim();
+      const filtered = kebersihanState.records.filter(r => {
+        const matchUnit = kebersihanState.filterUnit === 'ALL' || r.unit.toLowerCase() === kebersihanState.filterUnit.toLowerCase();
+        const matchDate = kebersihanState.filterTanggal === 'ALL' || getDateOnly(r.tanggalWaktu) === kebersihanState.filterTanggal;
+        return matchUnit && matchDate;
+      });
+
+      if (filtered.length === 0) {
+        alert('Tidak ada data supervisi pada filter tanggal/unit yang dipilih.');
+        return;
+      }
+
+      const tanggalJudul = kebersihanState.filterTanggal !== 'ALL'
+        ? kebersihanState.filterTanggal
+        : getDateOnly(filtered[0].tanggalWaktu);
+      const petugasTim = filtered[0].petugas || 'Tim Manajemen & Bagian Umum';
+
+      let sumYa = 0, sumTidak = 0, sumNa = 0, sumSkor = 0;
+
+      const rekapRowsHtml = filtered.map((rec, i) => {
+        sumYa += Number(rec.totalYa || 0);
+        sumTidak += Number(rec.totalTidak || 0);
+        sumNa += Number(rec.totalNa || 0);
+        sumSkor += Number(rec.skor || 0);
+
+        const catatanList = (rec.items || [])
+          .filter(it => it.keterangan && it.keterangan.trim() !== '')
+          .map(it => `• ${it.area} : ${it.indikator} : ${it.keterangan.trim()}`);
+
+        const temuanHtml = catatanList.length > 0 ? catatanList.join('<br>') : '-';
+        const predikat = rec.skor >= 90 ? 'Sangat Baik' : rec.skor >= 75 ? 'Cukup / Pembinaan' : 'Kurang (Tindak Lanjut)';
+        const skorStyle = rec.skor < 80 ? 'background:#fee2e2; color:#b91c1c; font-weight:bold;' : 'font-weight:bold;';
+
+        return `<tr><td style="text-align:center;">${i + 1}</td><td style="font-weight:bold;">${rec.unit}</td><td style="text-align:center;">${rec.totalYa}</td><td style="text-align:center; ${Number(rec.totalTidak) > 0 ? 'color:#b91c1c; font-weight:bold;' : ''}">${rec.totalTidak}</td><td style="text-align:center;">${rec.totalNa}</td><td style="text-align:center; ${skorStyle}">${rec.skor}%</td><td style="text-align:center;">${predikat}</td><td style="line-height:1.35;">${temuanHtml}</td></tr>`;
+      }).join('');
+
+      const avgSkor = Math.round(sumSkor / filtered.length);
+
+      let detailSectionsHtml = '';
+      if (includeDetailPerUnit) {
+        detailSectionsHtml = filtered.map((rec, idx) => {
+          const rowsHtml = KEBERSIHAN_TEMPLATE.map(group => {
+            return group.items.map((indikator, gIdx) => {
+              const found = (rec.items || []).find(i => i.area === group.area && i.indikator === indikator) || { nilai: '1', keterangan: '' };
+              const yaMark = found.nilai === '1' ? '✓' : '';
+              const tidakMark = found.nilai === '0' ? '✓' : '';
+              const naMark = found.nilai === 'NA' ? '✓' : '';
+              return `<tr>${gIdx === 0 ? `<td rowspan="${group.items.length}" style="font-weight:bold; vertical-align:middle;">${group.area}</td>` : ''}<td>${indikator}</td><td style="text-align:center; font-weight:bold;">${yaMark}</td><td style="text-align:center; font-weight:bold; ${tidakMark ? 'background:#fee2e2; color:#b91c1c;' : ''}">${tidakMark}</td><td style="text-align:center; font-weight:bold;">${naMark}</td><td>${found.keterangan || ''}</td></tr>`;
+            }).join('');
+          }).join('');
+
+          return [
+            '<div style="page-break-before: always; padding-top: 3cm;">',
+            `<div class="judul-dok" style="margin-top:0;">LAMPIRAN ${idx + 1}: RINCIAN CEKLIS SUPERVISI UNIT — ${rec.unit.toUpperCase()}</div>`,
+            '<table class="meta">',
+            `<tr><td style="width:24%; font-weight:bold;">Nama Unit / Ruangan</td><td style="width:28%;">: <b>${rec.unit}</b></td><td style="width:18%; font-weight:bold;">Skor Kepatuhan</td><td>: <b>${rec.skor}%</b> (YA: ${rec.totalYa} | TIDAK: ${rec.totalTidak} | N/A: ${rec.totalNa})</td></tr>`,
+            `<tr><td style="font-weight:bold;">Waktu Penilaian</td><td>: ${rec.tanggalWaktu}</td><td style="font-weight:bold;">Tim Supervisi</td><td>: ${rec.petugas}</td></tr>`,
+            '</table>',
+            '<table class="ceklis"><thead><tr>',
+            '<th style="width:22%;">AREA / OBJEK PENILAIAN</th>',
+            '<th style="width:30%;">INDIKATOR STANDAR KEBERSIHAN</th>',
+            '<th style="width:7%;">YA (1)</th>',
+            '<th style="width:9%;">TIDAK (0)</th>',
+            '<th style="width:6%;">N/A</th>',
+            '<th style="width:26%;">KETERANGAN</th>',
+            '</tr></thead><tbody>',
+            rowsHtml,
+            '</tbody></table></div>'
+          ].join('');
+        }).join('');
+      }
+
+      const printHtml = [
+        '<!DOCTYPE html><html><head>',
+        `<title>Rekapitulasi Supervisi Kebersihan Semua Unit - ${tanggalJudul}</title>`,
+        '<style>',
+        '@page { size: A4 portrait; margin: 0; }',
+        '* { box-sizing: border-box; }',
+        'body { font-family: Arial, Helvetica, sans-serif; font-size: 8.5pt; color: #000; margin: 0; padding: 3cm 2.5cm 2.5cm 4cm; width: 100%; }',
+        '.kop-surat { display: flex; align-items: center; gap: 12px; border-bottom: 3px double #000; padding-bottom: 8px; margin-bottom: 10px; width: 100%; }',
+        '.kop-logo { width: 52px; height: 52px; border: 1.5px dashed #64748b; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 7.5pt; font-weight: bold; color: #475569; flex-shrink: 0; }',
+        '.kop-teks { flex: 1; text-align: center; padding-right: 52px; }',
+        '.kop-teks h2 { margin: 0; font-size: 13pt; letter-spacing: 0.4px; }',
+        '.kop-sub { margin: 2px 0 0; font-size: 8pt; color: #1e293b; }',
+        '.judul-dok { text-align: center; font-weight: bold; font-size: 10pt; text-decoration: underline; margin: 8px 0 10px; }',
+        '.meta { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 8.2pt; }',
+        '.meta td { padding: 2px 4px; vertical-align: top; }',
+        'table.ceklis { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 8pt; }',
+        'table.ceklis th, table.ceklis td { border: 1px solid #000; padding: 4px 5px; vertical-align: top; word-wrap: break-word; overflow-wrap: break-word; }',
+        'table.ceklis th { background: #e2e8f0; text-align: center; font-weight: bold; }',
+        '.ttd { width: 100%; margin-top: 20px; text-align: center; font-size: 8.5pt; page-break-inside: avoid; }',
+        '.ttd td { width: 50%; vertical-align: top; }',
+        '</style></head><body>',
+        getKopSuratHtml(),
+        '<div class="judul-dok">LAPORAN REKAPITULASI SUPERVISI KEBERSIHAN &amp; LINGKUNGAN (JUMAT BERSIH)</div>',
+        '<table class="meta">',
+        `<tr><td style="width:155px; font-weight:bold;">Hari / Tanggal Supervisi</td><td>: <b>${tanggalJudul}</b></td></tr>`,
+        `<tr><td style="font-weight:bold;">Jumlah Unit Diperiksa</td><td>: <b>${filtered.length} Unit / Ruangan</b></td></tr>`,
+        `<tr><td style="font-weight:bold;">Tim Supervisi</td><td>: ${petugasTim}</td></tr>`,
+        '<tr><td style="font-weight:bold;">Keterangan Penilaian</td><td>: YA (1) = Sesuai Standar PPI &amp; MFK • TIDAK (0) = Kotor / Berdebu / Basah / Rusak • N/A = Tidak Berlaku</td></tr>',
+        '</table>',
+        '<table class="ceklis"><thead><tr>',
+        '<th style="width:4%;">NO</th>',
+        '<th style="width:16%;">NAMA UNIT</th>',
+        '<th style="width:6%;">YA (1)</th>',
+        '<th style="width:7%;">TDK (0)</th>',
+        '<th style="width:5%;">N/A</th>',
+        '<th style="width:7%;">SKOR</th>',
+        '<th style="width:14%;">PREDIKAT</th>',
+        '<th style="width:41%;">TEMUAN / CATATAN TINDAK LANJUT</th>',
+        '</tr></thead><tbody>',
+        rekapRowsHtml,
+        '<tr style="background:#f1f5f9; font-weight:bold;">',
+        `<td colspan="2" style="text-align:center;">TOTAL / RATA-RATA (${filtered.length} UNIT)</td>`,
+        `<td style="text-align:center;">${sumYa}</td>`,
+        `<td style="text-align:center;">${sumTidak}</td>`,
+        `<td style="text-align:center;">${sumNa}</td>`,
+        `<td style="text-align:center;">${avgSkor}%</td>`,
+        `<td style="text-align:center;">${avgSkor >= 90 ? 'Sangat Baik' : avgSkor >= 75 ? 'Cukup' : 'Perlu Perbaikan'}</td>`,
+        '<td>Rekapitulasi keliling mingguan Manajemen &amp; Bagian Umum</td>',
+        '</tr></tbody></table>',
+        '<table class="ttd"><tr>',
+        '<td>Mengetahui,<br><b>Kepala Bagian Umum / IPSRS</b><br><br><br><br>( ........................................ )</td>',
+        `<td>Cikarang, ${tanggalJudul}<br><b>Tim Supervisi / Manajemen RS</b><br><br><br><br>( ........................................ )</td>`,
+        '</tr></table>',
+        detailSectionsHtml,
+        '<' + '/body><' + '/html>'
+      ].join('');
+
+      const win = window.open('', '_blank');
+      if (!win) {
+        alert('Pop-up diblokir browser. Izinkan pop-up untuk mencetak laporan.');
+        return;
+      }
+      win.document.open();
+      win.document.write(printHtml);
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 300);
+    }
+
+    function openPrintWindow(rec) {
+      const rowsHtml = KEBERSIHAN_TEMPLATE.map(group => {
+        return group.items.map((indikator, idx) => {
+          const found = (rec.items || []).find(i => i.area === group.area && i.indikator === indikator) || { nilai: '1', keterangan: '' };
+          const yaMark = found.nilai === '1' ? '✓' : '';
+          const tidakMark = found.nilai === '0' ? '✓' : '';
+          const naMark = found.nilai === 'NA' ? '✓' : '';
+          return `<tr>${idx === 0 ? `<td rowspan="${group.items.length}" style="font-weight:bold; vertical-align:middle;">${group.area}</td>` : ''}<td>${indikator}</td><td style="text-align:center; font-weight:bold;">${yaMark}</td><td style="text-align:center; font-weight:bold; ${tidakMark ? 'background:#fee2e2; color:#b91c1c;' : ''}">${tidakMark}</td><td style="text-align:center; font-weight:bold;">${naMark}</td><td>${found.keterangan || ''}</td></tr>`;
+        }).join('');
+      }).join('');
+
+      const printHtml = [
+        '<!DOCTYPE html><html><head>',
+        `<title>Laporan Supervisi Kebersihan - ${rec.unit}</title>`,
+        '<style>',
+        '@page { size: A4 portrait; margin: 0; }',
+        '* { box-sizing: border-box; }',
+        'body { font-family: Arial, Helvetica, sans-serif; font-size: 8.5pt; color: #000; margin: 0; padding: 3cm 2.5cm 2.5cm 4cm; width: 100%; }',
+        '.judul-dok { text-align: center; font-weight: bold; font-size: 10pt; text-decoration: underline; margin: 6px 0 8px; }',
+        '.meta { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 8.2pt; }',
+        '.meta td { padding: 2px 4px; vertical-align: top; }',
+        'table.ceklis { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 8pt; }',
+        'table.ceklis th, table.ceklis td { border: 1px solid #000; padding: 3.5px 5px; word-wrap: break-word; overflow-wrap: break-word; }',
+        'table.ceklis th { background: #e2e8f0; text-align: center; font-weight: bold; }',
+        '.ttd { width: 100%; margin-top: 18px; text-align: center; font-size: 8.5pt; page-break-inside: avoid; }',
+        '.ttd td { width: 50%; vertical-align: top; }',
+        '</style></head><body>',
+        getKopSuratHtml(),
+        '<div class="judul-dok">FORMULIR CEKLIS SUPERVISI KEBERSIHAN &amp; LINGKUNGAN UNIT (JUMAT BERSIH)</div>',
+        '<table class="meta">',
+        `<tr><td style="width:155px; font-weight:bold;">Nama Unit / Ruangan</td><td>: <b>${rec.unit}</b></td></tr>`,
+        `<tr><td style="font-weight:bold;">Tanggal &amp; Waktu Penilaian</td><td>: ${rec.tanggalWaktu}</td></tr>`,
+        `<tr><td style="font-weight:bold;">Tim Supervisi</td><td>: ${rec.petugas}</td></tr>`,
+        '<tr><td style="font-weight:bold;">Keterangan Skor</td><td>: YA (1) : Bersih, Kering bebas debu/noda, sesuai Standar PPI || Tidak (0) : Kotor, berdebu, basah/licin, berbau, rusak || N/A : Tidak berlaku di unit ini</td></tr>',
+        '</table>',
+        '<table class="ceklis"><thead><tr>',
+        '<th style="width:22%;">AREA / OBJEK PENILAIAN</th>',
+        '<th style="width:30%;">INDIKATOR STANDAR KEBERSIHAN</th>',
+        '<th style="width:7%;">YA (1)</th>',
+        '<th style="width:9%;">TIDAK (0)</th>',
+        '<th style="width:6%;">N/A</th>',
+        '<th style="width:26%;">KETERANGAN</th>',
+        '</tr></thead><tbody>',
+        rowsHtml,
+        '<tr style="background:#f1f5f9; font-weight:bold;">',
+        '<td colspan="2">TOTAL SKOR &amp; KEPATUHAN KEBERSIHAN</td>',
+        `<td style="text-align:center;">${rec.totalYa}</td>`,
+        `<td style="text-align:center;">${rec.totalTidak}</td>`,
+        `<td style="text-align:center;">${rec.totalNa}</td>`,
+        `<td>Skor Kepatuhan: ${rec.skor}%</td>`,
+        '</tr></tbody></table>',
+        '<table class="ttd"><tr>',
+        '<td>Mengetahui,<br><b>Kepala Bagian Umum / IPSRS</b><br><br><br><br>( ........................................ )</td>',
+        '<td>Cikarang, .................................<br><b>Tim Supervisi / Manajemen</b><br><br><br><br>( ........................................ )</td>',
+        '</tr></table>',
+        '<' + '/body><' + '/html>'
+      ].join('');
+
+      const win = window.open('', '_blank');
+      if (!win) {
+        alert('Pop-up diblokir browser. Izinkan pop-up untuk mencetak laporan.');
+        return;
+      }
+      win.document.open();
+      win.document.write(printHtml);
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 300);
+    }
+
+    searchInput.addEventListener('input', renderContent);
+
+    const modal = document.getElementById('app-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const modalExtLink = document.getElementById('modal-ext-link');
+
+    function openAppAction(appId, mode) {
+      const app = APPS_DATA.find(a => a.id === appId);
+      if (!app) return;
+
+      modal.classList.remove('hidden');
+      modalTitle.textContent = app.title;
+
+      if (mode === 'web' && app.webUrl) {
+        modalExtLink.href = app.webUrl;
+        modalExtLink.classList.remove('hidden');
+        modalBody.innerHTML = `<iframe src="${app.webUrl}" class="w-full h-[75vh] border-0"></iframe>`;
+      } else if (mode === 'form' && app.formUrl) {
+        modalExtLink.href = app.formUrl;
+        modalExtLink.classList.remove('hidden');
+        modalBody.innerHTML = `<div class="p-6 text-center bg-white"><p class="text-sm text-slate-600 mb-4">Membuka Google Form <b>${app.title}</b>. Jika tidak muncul karena kebijakan browser, klik tombol <b>Buka Tab Baru</b> di kanan atas.</p><iframe src="${app.formUrl}" class="w-full h-[65vh] rounded-2xl border border-slate-200"></iframe></div>`;
+      }
+    }
+
+    function openModal(type) {
+      modal.classList.remove('hidden');
+      modalExtLink.classList.add('hidden');
+      if (type === 'notulensi') {
+        modalTitle.textContent = 'Notulensi Rapat & RTL';
+        modalBody.innerHTML = `<div class="p-8 text-center bg-white"><div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-3 shadow-inner"><i data-lucide="code-2" class="w-7 h-7"></i></div><h4 class="font-bold text-slate-800">Modul Sedang Dibangun Tim IT</h4><p class="text-xs text-slate-500 max-w-md mx-auto mt-1.5 leading-relaxed">Setelah web notulensi selesai, cukup masukkan URL-nya ke variabel <code>webUrl</code> pada objek <code>notulensi</code> di file <code>index.html</code> ini agar otomatis aktif di Launcher.</p></div>`;
+      }
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modalBody.innerHTML = '';
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+      document.querySelector('#live-clock span').textContent = now.toLocaleDateString('id-ID', options) + ' WIB';
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    renderContent();
+    async function fetchRanapData(showToastManual = false) {
+      if (!RANAP_API_URL || RANAP_API_URL.includes('TEMPEL_URL')) return;
+      try {
+        ranapState.loading = true;
+        if (currentSection === 'ranap-workspace' && ranapState.rooms.length === 0) {
+          renderRanapWorkspace();
+        }
+        const res = await fetch(RANAP_API_URL);
+        const data = await res.json();
+        if (data.success) {
+          ranapState.updatedAt = data.updatedAt;
+          ranapState.summary = data.summary;
+          ranapState.rooms = data.rooms || [];
+          if (showToastManual) {
+            showToast(`Data pasien rawat inap diperbarui (${data.summary.totalPasienRealtime} pasien).`, 'teal');
+          }
+        }
+      } catch (err) {
+        console.error('Gagal memuat data Ranap:', err);
+        if (showToastManual) showToast('Gagal terhubung ke API Spreadsheet Ranap.', 'rose');
+      } finally {
+        ranapState.loading = false;
+        if (currentSection === 'ranap-workspace') {
+          renderRanapWorkspace();
+        }
+      }
+    }
+
+    function openRanapWorkspace() {
+      selectSection('ranap-workspace');
+      fetchRanapData(false);
+    }
+
+    function renderRanapWorkspace() {
+      const s = ranapState.summary;
+      // Hitung kapasitas & pasien khusus ruang rawat inap (kecualikan IGD, VK, OK)
+      // Pisahkan ruang rawat inap murni vs unit transit/non-ranap (IGD, VK, OK, Bayi Sehat)
+      const nonRanapKeywords = ['IGD', 'VK', 'OK', 'BAYI SEHAT'];
+      const ranapOnlyRooms = ranapState.rooms.filter(r => 
+        !nonRanapKeywords.some(k => r.nama.toUpperCase().startsWith(k))
+      );
+      const bedRanapMurni = ranapOnlyRooms.reduce((sum, r) => sum + r.jumlahBed, 0);
+      const pasienRanapMurni = ranapOnlyRooms.reduce((sum, r) => sum + r.terisi, 0);
+      const sisaRanapMurni = bedRanapMurni - pasienRanapMurni;
+      const borPct = bedRanapMurni > 0 ? Math.round((pasienRanapMurni / bedRanapMurni) * 100) : 0;
+      
+      const filteredRooms = ranapState.rooms.filter(r => {
+        const matchLt = ranapState.filterLantai === 'ALL' || String(r.lantai) === String(ranapState.filterLantai);
+        const matchGrp = ranapState.filterGroup === 'ALL' || r.group === ranapState.filterGroup;
+        return matchLt && matchGrp;
+      });
+
+      const groupsOrder = ['Kelas 1 & VIP', 'Kelas 2', 'Kelas 3', 'Intensif, VK, OK & Isolasi'];
+      const groupTotals = {
+        'Kelas 1 & VIP': s.subTotalBlok1,
+        'Kelas 2': s.subTotalBlok2,
+        'Kelas 3': s.subTotalBlok3,
+        'Intensif, VK, OK & Isolasi': s.subTotalBlok4
+      };
+
+      const blocksHtml = groupsOrder.map(grp => {
+        const grpRooms = filteredRooms.filter(r => r.group === grp);
+        if (grpRooms.length === 0) return '';
+
+        const grpBedTotal = grpRooms.reduce((sum, r) => sum + r.jumlahBed, 0);
+        const grpTerisiTotal = grpRooms.reduce((sum, r) => sum + r.terisi, 0);
+        const grpSisaTotal = grpRooms.reduce((sum, r) => sum + r.sisaBed, 0);
+
+        const rowsHtml = grpRooms.map(r => {
+          let sisaBadge = '';
+          if (r.sisaBed < 0) {
+            sisaBadge = `<span class="px-2.5 py-0.5 rounded-lg bg-rose-600 text-white font-extrabold text-xs">${r.sisaBed} (Over)</span>`;
+          } else if (r.sisaBed === 0) {
+            sisaBadge = `<span class="px-2.5 py-0.5 rounded-lg bg-rose-500/15 text-rose-600 font-bold text-xs">Penuh (0)</span>`;
+          } else {
+            sisaBadge = `<span class="px-2.5 py-0.5 rounded-lg bg-emerald-500/15 text-emerald-600 font-bold text-xs">+${r.sisaBed} Kosong</span>`;
+          }
+
+          return `<tr class="border-b border-slate-300/40 hover:bg-slate-500/5 transition">
+            <td class="p-3 text-xs font-bold" style="color: var(--text-primary)">${r.nama}</td>
+            <td class="p-3 text-xs text-center font-semibold" style="color: var(--text-secondary)">Lt. ${r.lantai}</td>
+            <td class="p-3 text-xs text-center"><span class="px-2 py-0.5 rounded-md bg-slate-500/10 font-bold text-[11px]" style="color: var(--text-primary)">${r.kelas}</span></td>
+            <td class="p-3 text-xs text-center font-bold" style="color: var(--text-primary)">${r.jumlahBed}</td>
+            <td class="p-3 text-xs text-center font-extrabold text-cyan-600">${r.terisi}</td>
+            <td class="p-3 text-center">${sisaBadge}</td>
+          </tr>`;
+        }).join('');
+
+        return `<div class="glass-card no-lift rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider">${grp}</span>
+              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-teal-500/25 text-teal-300">Terisi: ${grpTerisiTotal} Pasien</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-500/10 text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted)">
+                    <th class="p-2.5">Nama Ruang</th>
+                    <th class="p-2.5 text-center">Lt</th>
+                    <th class="p-2.5 text-center">Kelas</th>
+                    <th class="p-2.5 text-center">Bed</th>
+                    <th class="p-2.5 text-center">Terisi</th>
+                    <th class="p-2.5 text-center">Sisa Bed</th>
+                  </tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+              </table>
+            </div>
+          </div>
+          <div class="px-5 py-3 bg-emerald-500/10 border-t border-emerald-500/20 flex items-center justify-between text-xs font-extrabold">
+            <span style="color: var(--text-primary)">SUBTOTAL ${grp.toUpperCase()}</span>
+            <span class="text-emerald-600">${grpTerisiTotal} / ${grpBedTotal} Bed (Sisa: ${grpSisaTotal})</span>
+          </div>
+        </div>`;
+      }).join('');
+
+      workspaceEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="selectSection('pelayanan')" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="arrow-left" class="w-3.5 h-3.5"></i><span>Kembali</span></button>
+            <button onclick="fetchRanapData(true)" class="ios-btn px-4 py-2 rounded-2xl bg-cyan-600 text-white text-xs font-bold hover:bg-cyan-700 shadow-md shadow-cyan-600/20 flex items-center gap-1.5"><i data-lucide="refresh-cw" class="w-3.5 h-3.5 ${ranapState.loading ? 'animate-spin' : ''}"></i><span>${ranapState.loading ? 'Menyinkronkan...' : 'Refresh Real-Time'}</span></button>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-[11px] font-semibold px-3 py-1.5 rounded-2xl theme-switcher" style="color: var(--text-muted)">Update: ${ranapState.updatedAt} WIB</span>
+            <a href="https://docs.google.com/spreadsheets/d/1Y-L3_amRTEIB1O4bs1ykiIau9yk_RqG8SH5jGXq9Ygg/edit?gid=279254776#gid=279254776" target="_blank" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="table" class="w-3.5 h-3.5 text-emerald-500"></i><span>Buka Sheet Asli</span></a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="glass-card no-lift rounded-3xl p-5 border-l-4 border-l-cyan-500">
+            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Total Pasien Realtime</p>
+            <div class="flex items-baseline gap-2 mt-1">
+              <p class="text-4xl font-extrabold" style="color: var(--text-primary)">${s.totalPasienRealtime}</p>
+              <span class="text-xs font-semibold" style="color: var(--text-muted)">Pasien Dirawat</span>
+            </div>
+          </div>
+          <div class="glass-card no-lift rounded-3xl p-5 border-l-4 border-l-amber-500">
+            <p class="text-xs font-bold text-amber-600 uppercase tracking-wider">Pasien Waiting List</p>
+            <div class="flex items-baseline gap-2 mt-1">
+              <p class="text-4xl font-extrabold text-amber-600">${s.waitingList}</p>
+              <span class="text-xs font-semibold" style="color: var(--text-muted)">Menunggu Kamar</span>
+            </div>
+          </div>
+          <div class="glass-card no-lift rounded-3xl p-5 border-l-4 border-l-emerald-500">
+            <p class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Total Sisa Bed Kosong</p>
+            <div class="flex items-baseline gap-2 mt-1">
+              <p class="text-4xl font-extrabold text-emerald-600">${s.totalSisaBed}</p>
+              <span class="text-xs font-semibold" style="color: var(--text-muted)">dari ${s.totalBed} Kapasitas</span>
+            </div>
+          </div>
+          <div class="glass-card no-lift rounded-3xl p-5 border-l-4 border-l-indigo-500">
+            <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Okupansi Tempat Tidur</p>
+            <div class="flex items-baseline gap-2 mt-1">
+              <p class="text-4xl font-extrabold text-indigo-600">${borPct}%</p>
+              <span class="text-xs font-semibold" style="color: var(--text-muted)">BOR Saat Ini</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card no-lift rounded-2xl p-3.5 mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <select onchange="ranapState.filterLantai=this.value; renderRanapWorkspace()" class="form-input px-3 py-1.5 rounded-xl text-xs font-bold">
+              <option value="ALL" ${ranapState.filterLantai === 'ALL' ? 'selected' : ''}>Semua Lantai (Lt. 1 - 3)</option>
+              <option value="1" ${ranapState.filterLantai === '1' ? 'selected' : ''}>Lantai 1</option>
+              <option value="2" ${ranapState.filterLantai === '2' ? 'selected' : ''}>Lantai 2</option>
+              <option value="3" ${ranapState.filterLantai === '3' ? 'selected' : ''}>Lantai 3</option>
+            </select>
+            <select onchange="ranapState.filterGroup=this.value; renderRanapWorkspace()" class="form-input px-3 py-1.5 rounded-xl text-xs font-bold">
+              <option value="ALL" ${ranapState.filterGroup === 'ALL' ? 'selected' : ''}>Semua Kelompok Perawatan</option>
+              ${groupsOrder.map(g => `<option value="${g}" ${ranapState.filterGroup === g ? 'selected' : ''}>${g}</option>`).join('')}
+            </select>
+          </div>
+          <span class="text-xs font-semibold" style="color: var(--text-muted)">Menampilkan ${filteredRooms.length} ruangan perawatan</span>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          ${blocksHtml || `<div class="xl:col-span-2 glass-card no-lift rounded-3xl p-10 text-center"><p class="text-sm font-bold" style="color: var(--text-primary)">${ranapState.loading ? 'Memuat data real-time dari Spreadsheet Ranap...' : 'Tidak ada ruangan yang cocok dengan filter.'}</p></div>`}
+        </div>
+      `;
+      lucide.createIcons();
+    }
+    fetchMfkTickets(false);
+    setInterval(() => fetchMfkTickets(false), 45000);
+
+    async function fetchRekredData(showToastManual = false) {
+      if (!REKRED_API_URL || REKRED_API_URL.includes('TEMPEL_URL')) return;
+      try {
+        rekredState.loading = true;
+        if (currentSection === 'rekred-workspace') renderRekredWorkspace();
+
+        const res = await fetch(`${REKRED_API_URL}?action=tree&t=${Date.now()}`);
+        const data = await res.json();
+        if (data.success) {
+          rekredState.updatedAt = data.updatedAt;
+          rekredState.rootUrl = data.rootUrl || rekredState.rootUrl;
+          rekredState.folders = data.folders || [];
+          rekredState.rootFiles = data.rootFiles || [];
+
+          if (rekredState.activeFolderId === 'ALL' && rekredState.folders.length > 0) {
+            rekredState.activeFolderId = rekredState.folders[0].id;
+          }
+
+          // Jika sedang membuka subfolder, refresh juga isi subfolder tersebut
+          if (rekredState.activeSubFolder) {
+            const subRes = await fetch(`${REKRED_API_URL}?action=list&folderId=${encodeURIComponent(rekredState.activeSubFolder.id)}&t=${Date.now()}`);
+            const subData = await subRes.json();
+            if (subData.success) {
+              rekredState.subFolderContents = subData;
+            }
+          }
+
+          if (showToastManual) {
+            showToast(`Direktori Google Drive berhasil diperbarui (${rekredState.folders.length} folder utama).`, 'teal');
+          }
+        }
+      } catch (err) {
+        console.error('Gagal memuat data Drive Rekredensialing:', err);
+        if (showToastManual) showToast('Gagal menyinkronkan data dari Google Drive.', 'rose');
+      } finally {
+        rekredState.loading = false;
+        if (currentSection === 'rekred-workspace') renderRekredWorkspace();
+      }
+    }
+
+    function openRekredWorkspace() {
+      selectSection('rekred-workspace');
+      fetchRekredData(false);
+    }
+
+    function selectRekredMainFolder(folderId) {
+      rekredState.activeFolderId = folderId;
+      rekredState.activeSubFolder = null;
+      rekredState.subFolderContents = null;
+      rekredState.searchQuery = '';
+      renderRekredWorkspace();
+    }
+
+    async function openRekredSubFolder(subFolderId, subFolderName) {
+      rekredState.loading = true;
+      rekredState.activeSubFolder = { id: subFolderId, name: subFolderName };
+      renderRekredWorkspace();
+      try {
+        const res = await fetch(`${REKRED_API_URL}?action=list&folderId=${encodeURIComponent(subFolderId)}`);
+        const data = await res.json();
+        if (data.success) {
+          rekredState.subFolderContents = data;
+        }
+      } catch (err) {
+        console.error('Gagal membuka subfolder:', err);
+        showToast('Gagal memuat isi subfolder.', 'rose');
+      } finally {
+        rekredState.loading = false;
+        renderRekredWorkspace();
+      }
+    }
+
+    function getFileIconMeta(mimeType = '', fileName = '') {
+      const m = mimeType.toLowerCase();
+      const n = fileName.toLowerCase();
+      if (m.includes('pdf') || n.endsWith('.pdf')) return { icon: 'file-text', color: 'text-rose-600 bg-rose-500/10', label: 'PDF' };
+      if (m.includes('spreadsheet') || m.includes('excel') || n.endsWith('.xlsx') || n.endsWith('.xls')) return { icon: 'file-spreadsheet', color: 'text-emerald-600 bg-emerald-500/10', label: 'Excel / Sheet' };
+      if (m.includes('document') || m.includes('word') || n.endsWith('.docx') || n.endsWith('.doc')) return { icon: 'file-type-2', color: 'text-sky-600 bg-sky-500/10', label: 'Word / Docs' };
+      if (m.includes('presentation') || n.endsWith('.pptx')) return { icon: 'presentation', color: 'text-amber-600 bg-amber-500/10', label: 'Slide' };
+      if (m.includes('image') || /\.(jpg|jpeg|png|webp)$/.test(n)) return { icon: 'image', color: 'text-purple-600 bg-purple-500/10', label: 'Gambar' };
+      return { icon: 'file', color: 'text-slate-600 bg-slate-500/10', label: 'Dokumen' };
+    }
+
+    function openRekredFileModal(fileId, fileName, fileUrl) {
+      modal.classList.remove('hidden');
+      modalTitle.textContent = fileName;
+      modalExtLink.href = fileUrl;
+      modalExtLink.classList.remove('hidden');
+
+      // Gunakan endpoint /preview Google Drive agar PDF/Docs/Sheets/Gambar bisa di-embed di dalam modal
+      const previewUrl = `https://drive.google.com/file/d/${encodeURIComponent(fileId)}/preview`;
+      modalBody.innerHTML = `<iframe src="${previewUrl}" class="w-full h-[78vh] border-0 bg-white" allow="autoplay"></iframe>`;
+      lucide.createIcons();
+    }
+
+    function renderRekredWorkspace() {
+      const activeMain = rekredState.folders.find(f => f.id === rekredState.activeFolderId) || rekredState.folders[0];
+      const currentView = rekredState.activeSubFolder && rekredState.subFolderContents
+        ? rekredState.subFolderContents
+        : activeMain;
+
+      const q = (rekredState.searchQuery || '').toLowerCase().trim();
+
+      // Sidebar List Folder Utama (sesuai Google Drive)
+      const sidebarFoldersHtml = rekredState.folders.map(f => {
+        const isSelected = activeMain && activeMain.id === f.id;
+        return `<button type="button" onclick="selectRekredMainFolder('${f.id}')" class="w-full text-left px-3.5 py-3 rounded-2xl transition-all flex items-start justify-between gap-2.5 cursor-pointer ${isSelected ? 'bg-teal-600 text-white shadow-md shadow-teal-600/20' : 'hover:bg-slate-500/10'}" style="${isSelected ? '' : 'color: var(--text-primary)'}">
+          <div class="flex items-start gap-2.5 min-w-0">
+            <i data-lucide="${isSelected ? 'folder-open' : 'folder'}" class="w-4 h-4 mt-0.5 shrink-0 ${isSelected ? 'text-amber-200' : 'text-amber-500'}"></i>
+            <div class="min-w-0">
+              <p class="text-xs font-bold leading-snug break-words">${f.name}</p>
+              <p class="text-[10px] mt-0.5 ${isSelected ? 'text-teal-100' : ''}" style="${isSelected ? '' : 'color: var(--text-muted)'}">Diubah: ${f.lastUpdated}</p>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold shrink-0 ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-500/15'}" style="${isSelected ? '' : 'color: var(--text-secondary)'}">${f.totalItems}</span>
+        </button>`;
+      }).join('');
+
+      // Isi Panel Kanan (Subfolder + Files)
+      let contentItemsHtml = '';
+      if (rekredState.loading && !currentView) {
+        contentItemsHtml = `<div class="p-12 text-center"><i data-lucide="refresh-cw" class="w-6 h-6 animate-spin mx-auto text-teal-600 mb-2"></i><p class="text-sm font-bold" style="color: var(--text-primary)">Menyinkronkan folder Google Drive...</p></div>`;
+      } else if (!currentView) {
+        contentItemsHtml = `<div class="p-12 text-center"><p class="text-sm font-bold" style="color: var(--text-primary)">Belum ada folder yang dimuat.</p><p class="text-xs mt-1" style="color: var(--text-muted)">Pastikan REKRED_API_URL sudah terhubung ke Web App Apps Script.</p></div>`;
+      } else {
+        const subFolders = (currentView.subFolders || []).filter(sf => !q || sf.name.toLowerCase().includes(q));
+        const files = (currentView.files || []).filter(fl => !q || fl.name.toLowerCase().includes(q));
+
+        const subFolderCards = subFolders.map(sf => `
+          <div onclick="openRekredSubFolder('${sf.id}', '${sf.name.replace(/'/g, "\\'")}')" class="glass-card rounded-2xl p-3.5 flex items-center justify-between gap-3 cursor-pointer hover:border-amber-400/50 transition">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0">
+                <i data-lucide="folder" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs font-bold truncate" style="color: var(--text-primary)">${sf.name}</p>
+                <p class="text-[10px]" style="color: var(--text-muted)">Subfolder &bull; Diubah ${sf.lastUpdated}</p>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 shrink-0" style="color: var(--text-muted)"></i>
+          </div>
+        `).join('');
+
+        const fileRows = files.map(fl => {
+          const meta = getFileIconMeta(fl.mimeType, fl.name);
+          const safeName = fl.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+          const safeUrl = fl.url.replace(/'/g, "\\'");
+
+          return `<tr class="border-b border-slate-300/40 hover:bg-slate-500/5 transition">
+            <td class="p-3">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl ${meta.color} flex items-center justify-center shrink-0">
+                  <i data-lucide="${meta.icon}" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <button type="button" onclick="openRekredFileModal('${fl.id}', '${safeName}', '${safeUrl}')" class="text-left text-xs font-bold hover:text-teal-600 transition block truncate max-w-md cursor-pointer" style="color: var(--text-primary)">${fl.name}</button>
+                  <span class="text-[10px] font-semibold" style="color: var(--text-muted)">${meta.label} &bull; ${fl.owner}</span>
+                </div>
+              </div>
+            </td>
+            <td class="p-3 text-xs text-center font-medium hidden sm:table-cell" style="color: var(--text-secondary)">${fl.lastUpdated}</td>
+            <td class="p-3 text-xs text-center font-medium hidden md:table-cell" style="color: var(--text-muted)">${fl.size}</td>
+            <td class="p-3 text-right">
+              <button type="button" onclick="openRekredFileModal('${fl.id}', '${safeName}', '${safeUrl}')" class="ios-btn sec-btn px-3 py-1.5 rounded-xl text-[11px] font-bold inline-flex items-center gap-1 hover:text-teal-600 cursor-pointer">
+                <i data-lucide="eye" class="w-3 h-3"></i><span>Buka</span>
+              </button>
+            </td>
+          </tr>`;
+        }).join('');
+
+        contentItemsHtml = `
+          ${subFolders.length > 0 ? `<div class="mb-5"><p class="text-[11px] font-extrabold uppercase tracking-wider mb-2.5" style="color: var(--text-muted)">Subfolder (${subFolders.length})</p><div class="grid grid-cols-1 md:grid-cols-2 gap-3">${subFolderCards}</div></div>` : ''}
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-wider mb-2.5" style="color: var(--text-muted)">Daftar Dokumen (${files.length})</p>
+            ${files.length === 0 ? `<div class="rounded-2xl border border-dashed border-slate-300/60 p-8 text-center"><p class="text-xs font-semibold" style="color: var(--text-muted)">${subFolders.length > 0 ? 'Semua berkas berada di dalam subfolder di atas.' : 'Tidak ada dokumen di dalam folder ini.'}</p></div>` : `
+            <div class="overflow-x-auto rounded-2xl border border-slate-300/40">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-500/10 text-[10px] font-extrabold uppercase tracking-wider" style="color: var(--text-muted)">
+                    <th class="p-3">Nama Dokumen</th>
+                    <th class="p-3 text-center hidden sm:table-cell">Tanggal Diubah</th>
+                    <th class="p-3 text-center hidden md:table-cell">Ukuran</th>
+                    <th class="p-3 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>${fileRows}</tbody>
+              </table>
+            </div>`}
+          </div>
+        `;
+      }
+
+      const backButtonSection = 'kredensialing';
+
+      workspaceEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="selectSection('${backButtonSection}')" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="arrow-left" class="w-3.5 h-3.5"></i><span>Kembali</span></button>
+            <button onclick="fetchRekredData(true)" class="ios-btn px-4 py-2 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-md shadow-teal-600/20 flex items-center gap-1.5"><i data-lucide="refresh-cw" class="w-3.5 h-3.5 ${rekredState.loading ? 'animate-spin' : ''}"></i><span>${rekredState.loading ? 'Menyinkronkan...' : 'Sinkronkan Drive'}</span></button>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-[11px] font-semibold px-3 py-1.5 rounded-2xl theme-switcher" style="color: var(--text-muted)">Sync: ${rekredState.updatedAt} WIB</span>
+            <a href="${currentView?.url || currentView?.folderUrl || rekredState.rootUrl}" target="_blank" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="hard-drive" class="w-3.5 h-3.5 text-amber-500"></i><span>Buka Folder di Drive</span></a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- SIDEBAR FOLDER UTAMA (7 FOLDER REKREDENSIALING 2026) -->
+          <div class="lg:col-span-4 glass-card no-lift rounded-3xl p-4">
+            <div class="flex items-center justify-between px-2 pb-3 mb-3 border-b border-slate-300/40">
+              <span class="text-xs font-extrabold uppercase tracking-wider" style="color: var(--text-primary)">Folder Re-Kredensialing</span>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600">${rekredState.folders.length} Folder</span>
+            </div>
+            <div class="space-y-1.5">
+              ${sidebarFoldersHtml || `<p class="text-xs p-4 text-center" style="color: var(--text-muted)">Memuat daftar folder...</p>`}
+            </div>
+          </div>
+
+          <!-- PANEL KANAN: ISI FOLDER & DOKUMEN REAL-TIME -->
+          <div class="lg:col-span-8 glass-card no-lift rounded-3xl p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-300/40">
+              <div>
+                <div class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
+                  <span style="color: var(--text-muted)">REKREDENSIALING 2026</span>
+                  ${activeMain ? `<i data-lucide="chevron-right" class="w-3.5 h-3.5" style="color: var(--text-muted)"></i><button onclick="selectRekredMainFolder('${activeMain.id}')" class="hover:underline ${!rekredState.activeSubFolder ? 'text-teal-600' : ''}" style="${rekredState.activeSubFolder ? 'color: var(--text-primary)' : ''}">${activeMain.name}</button>` : ''}
+                  ${rekredState.activeSubFolder ? `<i data-lucide="chevron-right" class="w-3.5 h-3.5" style="color: var(--text-muted)"></i><span class="text-teal-600">${rekredState.activeSubFolder.name}</span>` : ''}
+                </div>
+              </div>
+              <div class="relative w-full sm:w-64">
+                <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+                <input type="text" value="${rekredState.searchQuery}" oninput="rekredState.searchQuery=this.value; renderRekredWorkspace()" placeholder="Cari file di folder ini..." class="form-input w-full pl-8 pr-3 py-1.5 rounded-xl text-xs font-medium">
+              </div>
+            </div>
+
+            ${contentItemsHtml}
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+  </script>
+</body>
+</html>
