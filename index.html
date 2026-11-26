@@ -21,6 +21,7 @@
       --text-secondary: #1e293b;
       --text-muted: #334155;
       --text-accent: #0f766e;
+      --table-border: rgba(148, 163, 184, 0.35);
 
       --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 100%);
       --card-hover-bg: rgba(255, 255, 255, 1);
@@ -65,6 +66,7 @@
       --text-secondary: #e2e8f0;
       --text-muted: #cbd5e1;
       --text-accent: #2dd4bf;
+      --table-border: rgba(255, 255, 255, 0.14);
 
       --card-bg: linear-gradient(145deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.92) 100%);
       --card-hover-bg: rgba(30, 41, 59, 0.98);
@@ -129,6 +131,7 @@
       --text-secondary: #0f172a;
       --text-muted: #1e293b;
       --text-accent: #0369a1;
+      --table-border: rgba(15, 23, 42, 0.22);
 
       --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.07) 55%, rgba(255, 255, 255, 0.18) 100%);
       --card-hover-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.14) 55%, rgba(255, 255, 255, 0.28) 100%);
@@ -178,6 +181,21 @@
       transition: color 0.3s ease;
       -webkit-tap-highlight-color: transparent;
       overflow-x: hidden;
+    }
+
+    .spreadsheet-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .spreadsheet-table th,
+    .spreadsheet-table td {
+      border: 1px solid var(--table-border);
+    }
+    .spreadsheet-table thead th {
+      border-bottom: 2px solid var(--table-border);
+    }
+    .spreadsheet-table tr.group-start td {
+      border-top: 2px solid var(--table-border);
     }
 
     .liquid-orbs {
@@ -338,6 +356,34 @@
     }
     .modal-animate {
       animation: modalSpring 0.42s var(--ios-spring) forwards;
+    }
+    /* === CUSTOM CUTE CURSOR KHUSUS PC (DESKTOP) === */
+    @media (pointer: fine) {
+      /* 1. Kursor default di area halaman: Tangan / Panah imut ber-outline putih */
+      body {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><path d='M6 4 L21 15 L14 17 L17 24 L13.5 25.5 L10.5 18.5 L6 23 Z' fill='%230d9488' stroke='%23ffffff' stroke-width='2' stroke-linejoin='round'/></svg>") 4 3, auto;
+      }
+
+      /* 2. Saat diarahkan ke kolom input / textarea / select: Berubah jadi Ikon Pensil Lucu & Kontras */
+      input[type="text"],
+      input[type="password"],
+      input[type="date"],
+      input[type="search"],
+      textarea,
+      select,
+      .form-input,
+      .search-box {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g transform='rotate(-12 16 16)'><rect x='13' y='3' width='6' height='4' rx='1.5' fill='%23fb7185' stroke='%23ffffff' stroke-width='1.5'/><rect x='13' y='7' width='6' height='15' fill='%23facc15' stroke='%23ffffff' stroke-width='1.5'/><polygon points='13,22 19,22 16,29' fill='%23fed7aa' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/><polygon points='15,26.5 17,26.5 16,29' fill='%230f172a'/></g></svg>") 12 28, text !important;
+      }
+
+      /* 3. Saat diarahkan ke tombol / link yang bisa diklik: Tangan Pointer lucu */
+      button,
+      a,
+      label[for],
+      [onclick],
+      .ios-btn {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><circle cx='15' cy='15' r='10' fill='%23f43f5e' fill-opacity='0.22'/><path d='M12 6 C12 4.8 14 4.8 14 6 L14 13 L15.5 12 C16.5 11.4 17.8 12 17.8 13.2 L17.8 13.8 C18.8 13.3 20 14 20 15.2 L20 16 C21 15.7 22 16.4 22 17.6 L22 21 C22 24.5 19.2 27 15.8 27 L13.5 27 C10.5 27 8.5 24.8 7.8 22 L6.5 17.5 C6.1 16.3 7.3 15.3 8.4 15.9 L12 18 Z' fill='%23ffffff' stroke='%230f172a' stroke-width='1.8' stroke-linejoin='round'/></svg>") 13 5, pointer !important;
+      }
     }
   </style>
 </head>
@@ -1038,9 +1084,7 @@
         title: 'Dashboard Pasien Rawat Inap Real-Time',
         desc: 'Data live total pasien dirawat, sisa bed per ruangan, dan pasien waiting list IGD dari Spreadsheet Ranap 2026.',
         type: 'ranap-workspace'
-
-        
-      },
+      }
     };
 
     const workspaceEl = document.getElementById('workspace-container');
@@ -1233,7 +1277,7 @@
       document.getElementById('section-desc').textContent = meta.desc;
       document.getElementById('global-search-wrapper').style.display = 
         (sectionKey === 'mfk-workspace' || sectionKey === 'kebersihan-workspace' || sectionKey === 'ranap-workspace' || sectionKey === 'rekred-workspace' || sectionKey === 'server-lokal') ? 'none' : 'block';
-        toggleSidebar(false);
+      toggleSidebar(false);
       renderContent();
     }
 
@@ -1302,7 +1346,7 @@
         renderRanapWorkspace();
         return;
       }
-        if (meta.type === 'rekred-workspace') {
+      if (meta.type === 'rekred-workspace') {
         renderRekredWorkspace();
         return;
       }
@@ -1376,7 +1420,6 @@
 
     function formatWaktuPemisah(str) {
       if (!str) return '';
-      // Mengubah "23/11/2026 15:00" menjadi "23/11/2026 || 15:00"
       return String(str).trim().replace(/^(\d{1,2}\/\d{1,2}\/\d{4})\s+(\d{1,2}:\d{2})$/, '$1 || $2');
     }
 
@@ -1400,7 +1443,7 @@
         .map(m => `<option value="${m}" ${m === mfkState.activeMonth ? 'selected' : ''}>Periode: ${m}</option>`)
         .join('');
 
-        const subNavHtml = `<div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+      const subNavHtml = `<div class="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="selectSection('fasilitas')" class="ios-btn sec-btn px-3.5 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5"><i data-lucide="arrow-left" class="w-3.5 h-3.5"></i><span>Kembali</span></button>
           <button onclick="mfkState.subTab='dashboard'; renderMfkWorkspace()" class="ios-btn px-4 py-2 rounded-2xl text-xs font-semibold flex items-center gap-1.5 ${mfkState.subTab === 'dashboard' ? 'bg-slate-900 text-white shadow-md' : 'sec-btn'}"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i><span>Dashboard Monitoring</span></button>
@@ -1843,7 +1886,6 @@
     }
 
     function parseDurationToMinutes(durStr, startStr, endStr) {
-      // 1. Jika tanggal lapor dan tanggal selesai tersedia lengkap, hitung presisi menitnya
       const parseDt = (s) => {
         if (!s) return null;
         const m = String(s).trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:[\s|]+(\d{1,2}):(\d{2}))?/);
@@ -1857,7 +1899,6 @@
         return Math.max(1, Math.floor((dEnd.getTime() - dStart.getTime()) / 60000));
       }
 
-      // 2. Fallback: baca dari string durasi (misal: "3 hari 2 jam", "2 jam 15 mnt", "45 menit", atau angka hari "2")
       if (!durStr) return null;
       const str = String(durStr).toLowerCase().trim();
       if (/^\d+(\.\d+)?$/.test(str)) {
@@ -1965,7 +2006,6 @@
         const u2 = items.filter(t => Number(t.urgensi) === 2).length;
         const u3 = items.filter(t => Number(t.urgensi) === 3).length;
 
-        // Capaian = Selesai / (Selesai + Belum Selesai) * 100%
         const pembagiTotal = selesai + belumSelesai;
         const persenSelesai = pembagiTotal > 0 ? Math.round((selesai / pembagiTotal) * 100) : 0;
 
@@ -2178,7 +2218,6 @@
       setTimeout(() => win.print(), 350);
     }
 
-
     function initDefaultKebersihanAnswers() {
       KEBERSIHAN_TEMPLATE.forEach(g => {
         g.items.forEach(item => {
@@ -2247,17 +2286,27 @@
       let bodyHtml = '';
 
       if (kebersihanState.subTab === 'form') {
-        const tableRowsHtml = KEBERSIHAN_TEMPLATE.map(group => {
+        const tableRowsHtml = KEBERSIHAN_TEMPLATE.map((group, gIndex) => {
           return group.items.map((indikator, idx) => {
             const key = `${group.area}||${indikator}`;
             const current = kebersihanState.answers[key] || { nilai: '1', ket: '' };
-            const rowBg = current.nilai === '0' ? 'bg-rose-500/10' : '';
+            const rowClasses = [
+              current.nilai === '0' ? 'bg-rose-500/10' : '',
+              (idx === 0 && gIndex > 0) ? 'group-start' : ''
+            ].filter(Boolean).join(' ');
 
-            return `<tr class="border-b border-slate-300/40 ${rowBg}">${idx === 0 ? `<td rowspan="${group.items.length}" class="p-3 font-bold text-xs align-middle border-r border-slate-300/40 bg-slate-500/5" style="color: var(--text-primary)">${group.area}</td>` : ''}<td class="p-2.5 text-xs border-r border-slate-300/40" style="color: var(--text-primary)">${indikator}</td><td class="p-2 text-center border-r border-slate-300/40"><button type="button" onclick="setKebersihanNilai('${key}', '1')" class="w-9 h-7 rounded-lg text-xs font-bold transition ${current.nilai === '1' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-emerald-500/20'}">1</button></td><td class="p-2 text-center border-r border-slate-300/40"><button type="button" onclick="setKebersihanNilai('${key}', '0')" class="w-9 h-7 rounded-lg text-xs font-bold transition ${current.nilai === '0' ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-rose-500/20'}">0</button></td><td class="p-2 text-center border-r border-slate-300/40"><button type="button" onclick="setKebersihanNilai('${key}', 'NA')" class="w-10 h-7 rounded-lg text-[11px] font-bold transition ${current.nilai === 'NA' ? 'bg-slate-700 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-slate-500/20'}">N/A</button></td><td class="p-2"><input type="text" value="${current.ket.replace(/"/g, '&quot;')}" oninput="setKebersihanKet('${key}', this.value)" placeholder="${current.nilai === '0' ? 'Wajib isi temuan/tindak lanjut...' : 'Catatan opsional...'}" class="form-input w-full px-2.5 py-1.5 rounded-xl text-xs" /></td></tr>`;
+            return `<tr class="${rowClasses}">
+              ${idx === 0 ? `<td rowspan="${group.items.length}" class="p-3 font-bold text-xs align-middle bg-slate-500/5" style="color: var(--text-primary)">${group.area}</td>` : ''}
+              <td class="p-2.5 text-xs" style="color: var(--text-primary)">${indikator}</td>
+              <td class="p-2 text-center"><button type="button" onclick="setKebersihanNilai('${key}', '1')" class="w-9 h-7 rounded-lg text-xs font-bold transition ${current.nilai === '1' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-emerald-500/20'}">1</button></td>
+              <td class="p-2 text-center"><button type="button" onclick="setKebersihanNilai('${key}', '0')" class="w-9 h-7 rounded-lg text-xs font-bold transition ${current.nilai === '0' ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-rose-500/20'}">0</button></td>
+              <td class="p-2 text-center"><button type="button" onclick="setKebersihanNilai('${key}', 'NA')" class="w-10 h-7 rounded-lg text-[11px] font-bold transition ${current.nilai === 'NA' ? 'bg-slate-700 text-white shadow-sm' : 'bg-slate-500/10 text-slate-400 hover:bg-slate-500/20'}">N/A</button></td>
+              <td class="p-2"><input type="text" value="${current.ket.replace(/"/g, '&quot;')}" oninput="setKebersihanKet('${key}', this.value)" placeholder="${current.nilai === '0' ? 'Wajib isi temuan/tindak lanjut...' : 'Catatan opsional...'}" class="form-input w-full px-2.5 py-1.5 rounded-xl text-xs" /></td>
+            </tr>`;
           }).join('');
         }).join('');
 
-        bodyHtml = `<div class="glass-card no-lift rounded-3xl p-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5 mb-5 card-divider"><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Nama Unit / Ruangan *</label><select onchange="kebersihanState.selectedUnit=this.value; renderKebersihanWorkspace()" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm font-bold">${UNIT_LIST.map(u => `<option value="${u}" ${kebersihanState.selectedUnit === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tanggal & Waktu Penilaian</label><input type="text" id="kebersihan-waktu" value="${nowStr}" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-xs font-semibold" /></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tim Supervisi (Manajemen & Umum)</label><input type="text" oninput="kebersihanState.petugas=this.value" value="${kebersihanState.petugas}" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-xs font-semibold" /></div></div><div class="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-teal-500/10 border border-teal-500/25 mb-5 text-xs"><div class="space-y-0.5" style="color: var(--text-secondary)"><p class="font-bold" style="color: var(--text-primary)">Keterangan Skor Standar PPI & MFK:</p><p><b>YA (1)</b>: Bersih, kering bebas debu/noda • <b>TIDAK (0)</b>: Kotor, berdebu, basah/licin, berbau, rusak • <b>N/A</b>: Tidak berlaku di unit ini</p></div><div class="flex items-center gap-3 shrink-0"><span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-700 font-bold">YA: ${score.ya}</span><span class="px-2.5 py-1 rounded-xl bg-rose-500/20 text-rose-700 font-bold">TIDAK: ${score.tidak}</span><span class="px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-sm">Skor: ${score.skor}%</span></div></div><div class="overflow-x-auto rounded-2xl border border-slate-300/50"><table class="w-full border-collapse text-left"><thead><tr class="bg-slate-900 text-white text-[11px] uppercase tracking-wider"><th class="p-3 w-44">Area / Objek Penilaian</th><th class="p-3 w-64">Indikator Standar Kebersihan</th><th class="p-3 text-center w-16">YA (1)</th><th class="p-3 text-center w-20">TIDAK (0)</th><th class="p-3 text-center w-16">N/A</th><th class="p-3">Keterangan / Temuan</th></tr></thead><tbody>${tableRowsHtml}</tbody></table></div><div class="mt-6 flex flex-wrap items-center justify-between gap-3"><button type="button" onclick="kebersihanState.answers={}; initDefaultKebersihanAnswers(); renderKebersihanWorkspace()" class="ios-btn sec-btn px-4 py-2.5 rounded-2xl text-xs font-semibold">Reset Semua ke YA (1)</button><button type="button" id="btn-save-kebersihan" onclick="submitKebersihanChecklist()" class="ios-btn px-6 py-3 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-lg shadow-teal-600/25 flex items-center gap-2"><i data-lucide="save" class="w-4 h-4"></i><span>Simpan Hasil Supervisi Jumat (${kebersihanState.selectedUnit})</span></button></div></div>`;
+        bodyHtml = `<div class="glass-card no-lift rounded-3xl p-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5 mb-5 card-divider"><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Nama Unit / Ruangan *</label><select onchange="kebersihanState.selectedUnit=this.value; renderKebersihanWorkspace()" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-sm font-bold">${UNIT_LIST.map(u => `<option value="${u}" ${kebersihanState.selectedUnit === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tanggal & Waktu Penilaian</label><input type="text" id="kebersihan-waktu" value="${nowStr}" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-xs font-semibold" /></div><div><label class="block text-xs font-bold mb-1.5" style="color: var(--text-primary)">Tim Supervisi (Manajemen & Umum)</label><input type="text" oninput="kebersihanState.petugas=this.value" value="${kebersihanState.petugas}" class="form-input w-full px-3.5 py-2.5 rounded-2xl text-xs font-semibold" /></div></div><div class="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-teal-500/10 border border-teal-500/25 mb-5 text-xs"><div class="space-y-0.5" style="color: var(--text-secondary)"><p class="font-bold" style="color: var(--text-primary)">Keterangan Skor Standar PPI & MFK:</p><p><b>YA (1)</b>: Bersih, kering bebas debu/noda • <b>TIDAK (0)</b>: Kotor, berdebu, basah/licin, berbau, rusak • <b>N/A</b>: Tidak berlaku di unit ini</p></div><div class="flex items-center gap-3 shrink-0"><span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-700 font-bold">YA: ${score.ya}</span><span class="px-2.5 py-1 rounded-xl bg-rose-500/20 text-rose-700 font-bold">TIDAK: ${score.tidak}</span><span class="px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-sm">Skor: ${score.skor}%</span></div></div><div class="overflow-x-auto rounded-2xl border" style="border-color: var(--table-border);"><table class="spreadsheet-table w-full border-collapse text-left"><thead><tr class="bg-slate-900 text-white text-[11px] uppercase tracking-wider"><th class="p-3 w-44">Area / Objek Penilaian</th><th class="p-3 w-64">Indikator Standar Kebersihan</th><th class="p-3 text-center w-16">YA (1)</th><th class="p-3 text-center w-20">TIDAK (0)</th><th class="p-3 text-center w-16">N/A</th><th class="p-3">Keterangan / Temuan</th></tr></thead><tbody>${tableRowsHtml}</tbody></table></div><div class="mt-6 flex flex-wrap items-center justify-between gap-3"><button type="button" onclick="kebersihanState.answers={}; initDefaultKebersihanAnswers(); renderKebersihanWorkspace()" class="ios-btn sec-btn px-4 py-2.5 rounded-2xl text-xs font-semibold">Reset Semua ke YA (1)</button><button type="button" id="btn-save-kebersihan" onclick="submitKebersihanChecklist()" class="ios-btn px-6 py-3 rounded-2xl bg-teal-600 text-white text-xs font-bold hover:bg-teal-700 shadow-lg shadow-teal-600/25 flex items-center gap-2"><i data-lucide="save" class="w-4 h-4"></i><span>Simpan Hasil Supervisi Jumat (${kebersihanState.selectedUnit})</span></button></div></div>`;
       }
 
       if (kebersihanState.subTab === 'riwayat') {
@@ -2641,6 +2690,7 @@
     updateClock();
 
     renderContent();
+
     async function fetchRanapData(showToastManual = false) {
       if (!RANAP_API_URL || RANAP_API_URL.includes('TEMPEL_URL')) return;
       try {
@@ -2676,15 +2726,12 @@
 
     function renderRanapWorkspace() {
       const s = ranapState.summary;
-      // Hitung kapasitas & pasien khusus ruang rawat inap (kecualikan IGD, VK, OK)
-      // Pisahkan ruang rawat inap murni vs unit transit/non-ranap (IGD, VK, OK, Bayi Sehat)
       const nonRanapKeywords = ['IGD', 'VK', 'OK', 'BAYI SEHAT'];
       const ranapOnlyRooms = ranapState.rooms.filter(r => 
         !nonRanapKeywords.some(k => r.nama.toUpperCase().startsWith(k))
       );
       const bedRanapMurni = ranapOnlyRooms.reduce((sum, r) => sum + r.jumlahBed, 0);
       const pasienRanapMurni = ranapOnlyRooms.reduce((sum, r) => sum + r.terisi, 0);
-      const sisaRanapMurni = bedRanapMurni - pasienRanapMurni;
       const borPct = bedRanapMurni > 0 ? Math.round((pasienRanapMurni / bedRanapMurni) * 100) : 0;
       
       const filteredRooms = ranapState.rooms.filter(r => {
@@ -2694,12 +2741,6 @@
       });
 
       const groupsOrder = ['Kelas 1 & VIP', 'Kelas 2', 'Kelas 3', 'Intensif, VK, OK & Isolasi'];
-      const groupTotals = {
-        'Kelas 1 & VIP': s.subTotalBlok1,
-        'Kelas 2': s.subTotalBlok2,
-        'Kelas 3': s.subTotalBlok3,
-        'Intensif, VK, OK & Isolasi': s.subTotalBlok4
-      };
 
       const blocksHtml = groupsOrder.map(grp => {
         const grpRooms = filteredRooms.filter(r => r.group === grp);
@@ -2823,6 +2864,7 @@
       `;
       lucide.createIcons();
     }
+
     fetchMfkTickets(false);
     setInterval(() => fetchMfkTickets(false), 45000);
 
@@ -2844,7 +2886,6 @@
             rekredState.activeFolderId = rekredState.folders[0].id;
           }
 
-          // Jika sedang membuka subfolder, refresh juga isi subfolder tersebut
           if (rekredState.activeSubFolder) {
             const subRes = await fetch(`${REKRED_API_URL}?action=list&folderId=${encodeURIComponent(rekredState.activeSubFolder.id)}&t=${Date.now()}`);
             const subData = await subRes.json();
@@ -2915,7 +2956,6 @@
       modalExtLink.href = fileUrl;
       modalExtLink.classList.remove('hidden');
 
-      // Gunakan endpoint /preview Google Drive agar PDF/Docs/Sheets/Gambar bisa di-embed di dalam modal
       const previewUrl = `https://drive.google.com/file/d/${encodeURIComponent(fileId)}/preview`;
       modalBody.innerHTML = `<iframe src="${previewUrl}" class="w-full h-[78vh] border-0 bg-white" allow="autoplay"></iframe>`;
       lucide.createIcons();
@@ -2929,7 +2969,6 @@
 
       const q = (rekredState.searchQuery || '').toLowerCase().trim();
 
-      // Sidebar List Folder Utama (sesuai Google Drive)
       const sidebarFoldersHtml = rekredState.folders.map(f => {
         const isSelected = activeMain && activeMain.id === f.id;
         return `<button type="button" onclick="selectRekredMainFolder('${f.id}')" class="w-full text-left px-3.5 py-3 rounded-2xl transition-all flex items-start justify-between gap-2.5 cursor-pointer ${isSelected ? 'bg-teal-600 text-white shadow-md shadow-teal-600/20' : 'hover:bg-slate-500/10'}" style="${isSelected ? '' : 'color: var(--text-primary)'}">
@@ -2944,7 +2983,6 @@
         </button>`;
       }).join('');
 
-      // Isi Panel Kanan (Subfolder + Files)
       let contentItemsHtml = '';
       if (rekredState.loading && !currentView) {
         contentItemsHtml = `<div class="p-12 text-center"><i data-lucide="refresh-cw" class="w-6 h-6 animate-spin mx-auto text-teal-600 mb-2"></i><p class="text-sm font-bold" style="color: var(--text-primary)">Menyinkronkan folder Google Drive...</p></div>`;
@@ -3033,7 +3071,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <!-- SIDEBAR FOLDER UTAMA (7 FOLDER REKREDENSIALING 2026) -->
           <div class="lg:col-span-4 glass-card no-lift rounded-3xl p-4">
             <div class="flex items-center justify-between px-2 pb-3 mb-3 border-b border-slate-300/40">
               <span class="text-xs font-extrabold uppercase tracking-wider" style="color: var(--text-primary)">Folder Re-Kredensialing</span>
@@ -3044,7 +3081,6 @@
             </div>
           </div>
 
-          <!-- PANEL KANAN: ISI FOLDER & DOKUMEN REAL-TIME -->
           <div class="lg:col-span-8 glass-card no-lift rounded-3xl p-5">
             <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-300/40">
               <div>
@@ -3066,7 +3102,6 @@
       `;
       lucide.createIcons();
     }
-
   </script>
 </body>
 </html>
